@@ -54,8 +54,10 @@ H = hypothesis -> confirmed/rejected + evidence.
 
 **Resume** (`VACSKILL SET`/`vac`): read STATE + BOARD + LOG tail (~20
 lines) — nothing more. Files changed since `updated` → re-verify claims
-before building on them. Set `agent:`, announce one line
-`Resume T-003. Next: <next_action>.`, continue in `phase`.
+before building on them. `updated` < ~15 min ago AND `agent:` ≠ you →
+another agent may still be live; confirm takeover with user first. Set
+`agent:`, announce one line `Resume T-003. Next: <next_action>.`, continue
+in `phase`.
 
 **Stop** (`vac stop` or ANY low-context signal — warning, compaction, ~80%
 feel; stop early, never gamble last tokens): STATE handoff + cold-executable
@@ -76,6 +78,7 @@ and obey its VAC protocol block.`
 ## VAC protocol (any agent)
 Memory: .vac/ here. Read .vac/STATE.md before work; update before stop.
 On "VACSKILL SET": read <VAC_HOME>/SKILL.md and follow it.
+Path missing (new machine)? clone github.com/vacterro/vacskills, use its VAC/SKILL.md.
 UI work: also obey <VAC_HOME>/UI.md (Win95 dark golden, Verdana, no AA).
 <!-- VAC:END -->
 ```
@@ -151,11 +154,14 @@ zero unresolved FAIL, zero open P0/P1.
    repos only — package-manager repos use plain patch, tooling rejects
    letters); little change/fix set → `3.2.1`; feature batch → `3.2.0`;
    breaking → major, rare. Update VERSION/package file.
-3. CHANGELOG.md newest-top, 1-2 lines per version. Commit message = that
+3. Before any `git add`: .gitignore must cover stack junk + secrets
+   (node_modules, __pycache__, dist, .env*) — missing → write it first.
+   `.env` committed = secrets burned, tell user rotate.
+4. CHANGELOG.md newest-top, 1-2 lines per version. Commit message = that
    line. Push `github.com/vacterro/<repo>`.
-4. First publish: confirm name + public/private with user, `gh repo create
+5. First publish: confirm name + public/private with user, `gh repo create
    vacterro/<name>`; afterwards ship without asking.
-5. LOG: `RUN: ship v3.2.1 -> pushed <hash>`.
+6. LOG: `RUN: ship v3.2.1 -> pushed <hash>`.
 
 **Perf ticket** (`| perf`) — baseline number first (profiler/timer/EXPLAIN,
 LOG it) → fix top proven bottleneck only → re-measure same way, LOG

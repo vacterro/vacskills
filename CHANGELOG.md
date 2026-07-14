@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.1 — 2026-07-15
+- concurrent-agent takeover guard; new-machine bootstrap fallback in pointer block; .gitignore/.env guard before publish commits
+
 ## 1.1.0a — 2026-07-15
 - add "vac set" as official resume alias
 
