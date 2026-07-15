@@ -1,5 +1,8 @@
 # Changelog
 
+## 3.0.0 — 2026-07-15
+- BREAKING: renamed VAC → vacskill everywhere — skill name, folder, memory dir (.vac/ → .vacskill/), pointer blocks (VACSKILL:BEGIN), repo (github.com/vacterro/vacskill). Short alias `vac` still works for every command. Injector migrates pre-3.0 installs automatically; in projects run `git mv .vac .vacskill`
+
 ## 2.1.0a — 2026-07-15
 - README rewritten for v2.x: angrier grandpa, phases/confidence/graph/KNOWLEDGE covered
 

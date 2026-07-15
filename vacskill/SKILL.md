@@ -1,35 +1,39 @@
 ---
-name: VAC
+name: vacskill
 description: >
-  Cross-agent work protocol. Trigger on "VACSKILL SET", "vac set", "vac",
-  "vac <goal>", "vac stop", "vac status", "vac ship", "vac fix <symptom>",
-  when resuming earlier work, or any multi-step task in a project containing
-  .vac/. Phases PLAN → SCOUT → BUILD → VERIFY → REVIEW → SHIP over
-  persistent .vac/ memory: any agent (Claude Code, OpenCode, Codex, Gemini,
-  others) continues another agent's work without context loss. Companions
-  next to this file: STYLE.md (writing voices — load together with this),
-  UI.md (load only for UI work).
+  Cross-agent work protocol. Trigger on "VACSKILL SET", "vacskill set",
+  "vacskill", "vacskill <goal>", "vacskill stop", "vacskill status",
+  "vacskill ship", "vacskill fix <symptom>" (short alias "vac" works for
+  every command), when resuming earlier work, or any multi-step task in a
+  project containing .vacskill/. Phases PLAN → SCOUT → BUILD → VERIFY →
+  REVIEW → SHIP over persistent .vacskill/ memory: any agent (Claude Code,
+  OpenCode, Codex, Gemini, others) continues another agent's work without
+  context loss. Companions next to this file: STYLE.md (writing voices —
+  load together with this), UI.md (load only for UI work).
 ---
 
-# VAC Protocol
+# vacskill Protocol
 
 Memory owns the project; the model is a temporary worker. Every agent
-reads the same `.vac/`, continues, writes back. Chat history is not
+reads the same `.vacskill/`, continues, writes back. Chat history is not
 memory. This file is cold protocol — voices live in STYLE.md, theme in
 UI.md.
 
 ## Commands
 
+Every command takes `vacskill` or the short alias `vac` — identical
+meaning, pick either.
+
 | Say | Do |
 |---|---|
-| `VACSKILL SET` / `vac set` / `vac` | Resume `.vac/` (init if none). Board done → HUNT |
-| `vac <goal>` | Init if needed → PLAN → work |
-| `vac stop` | Checkpoint + handoff, announce switch phrase |
-| `vac status` | Report state + quick metrics (done/blocked, FAIL rate from LOG), change nothing |
-| `vac ship` | REVIEW gate → green → PUBLISH |
-| `vac fix <symptom>` | Straight to VERIFY/debug |
+| `VACSKILL SET` / `vacskill set` / `vacskill` | Resume `.vacskill/` (init if none). Board done → HUNT |
+| `vacskill <goal>` | Init if needed → PLAN → work |
+| `vacskill stop` | Checkpoint + handoff, announce switch phrase |
+| `vacskill status` | Report state + quick metrics (done/blocked, FAIL rate from LOG), change nothing |
+| `vacskill ship` | REVIEW gate → green → PUBLISH |
+| `vacskill fix <symptom>` | Straight to VERIFY/debug |
 
-## Memory — `.vac/` at project root
+## Memory — `.vacskill/` at project root
 
 ```
 STATE.md     rewrite   position only: phase, task, next_action, blocker
@@ -39,12 +43,15 @@ KNOWLEDGE/   edit      durable truth; files created on first real content
 tmp/         scratch   disposable; never committed, gone by stop/ship
 ```
 
+Legacy `.vac/` found instead? Rename it (`git mv .vac .vacskill`), LOG one
+DEC line, continue. Never run both.
+
 **Checkpoint doctrine — write as you go; dying agents get no goodbye turn.**
 - Ticket finished → tick BOARD + rewrite STATE `next_action` NOW.
 - Run or decision happened → LOG line NOW.
 - Before long/risky operation → STATE `next_action` = that operation FIRST.
 Worst crash loses one in-flight ticket; `git status` shows even that.
-Never store secrets in `.vac/` — it travels with the repo.
+Never store secrets in `.vacskill/` — it travels with the repo.
 
 ### STATE.md — minimal, read every start
 
@@ -96,16 +103,16 @@ rediscovery. Plain professional prose (STYLE.md). Past 4 files or any file
 
 ## Switch protocol
 
-**Resume** (`VACSKILL SET`/`vac`): read STATE + BOARD + LOG tail (~20
-lines) + KNOWLEDGE/ file names (contents on demand). Files changed since
-`updated` → re-verify claims before building on them. `updated` < ~15 min
-AND `agent:` ≠ you → another agent may be live; confirm takeover with
-user. Set `agent:`, announce one line `Resume T-003. Next: <next_action>.`,
-continue in `phase`.
+**Resume** (`VACSKILL SET`/`vacskill`/`vac`): read STATE + BOARD + LOG
+tail (~20 lines) + KNOWLEDGE/ file names (contents on demand). Files
+changed since `updated` → re-verify claims before building on them.
+`updated` < ~15 min AND `agent:` ≠ you → another agent may be live;
+confirm takeover with user. Set `agent:`, announce one line
+`Resume T-003. Next: <next_action>.`, continue in `phase`.
 
-**Stop** (`vac stop`, or ANY low-context signal — platform warning,
+**Stop** (`vacskill stop`, or ANY low-context signal — platform warning,
 compaction, ~80% feel; stop early, never gamble last tokens): empty
-`.vac/tmp/` + remove your debug prints → STATE handoff ≤3 lines +
+`.vacskill/tmp/` + remove your debug prints → STATE handoff ≤3 lines +
 cold-executable `next_action` → tick BOARD → say
 `Saved. On any agent: VACSKILL SET`.
 
@@ -113,20 +120,21 @@ cold-executable `next_action` → tick BOARD → say
 but LOG/BOARD newer → trust LOG tail + first DOING ticket; `git status`
 reveals in-flight edits; re-verify that ticket, finish or reset it.
 
-**Init** (no `.vac/`): create STATE, BOARD, LOG (KNOWLEDGE/ and tmp/ on
-first need). Ensure project-root `AGENTS.md` contains the block below
-(search `VAC:BEGIN` first, never duplicate). `<VAC_HOME>` = absolute
-folder of THIS file — resolve when writing. `CLAUDE.md`/`GEMINI.md`
-missing → create each: `Read AGENTS.md and obey its VAC protocol block.`
+**Init** (no `.vacskill/`): create STATE, BOARD, LOG (KNOWLEDGE/ and tmp/
+on first need). Ensure project-root `AGENTS.md` contains the block below
+(search `VACSKILL:BEGIN` first, never duplicate). `<VACSKILL_HOME>` =
+absolute folder of THIS file — resolve when writing. `CLAUDE.md` /
+`GEMINI.md` missing → create each: `Read AGENTS.md and obey its vacskill
+protocol block.`
 
 ```md
-<!-- VAC:BEGIN -->
-## VAC protocol (any agent)
-Memory: .vac/ here. Read .vac/STATE.md before work; checkpoint as you go.
-On "VACSKILL SET": read <VAC_HOME>/SKILL.md + <VAC_HOME>/STYLE.md.
-Path missing (new machine)? clone github.com/vacterro/vacskills.
-UI work: also obey <VAC_HOME>/UI.md.
-<!-- VAC:END -->
+<!-- VACSKILL:BEGIN -->
+## vacskill protocol (any agent)
+Memory: .vacskill/ here. Read .vacskill/STATE.md before work; checkpoint as you go.
+On "VACSKILL SET": read <VACSKILL_HOME>/SKILL.md + <VACSKILL_HOME>/STYLE.md.
+Path missing (new machine)? clone github.com/vacterro/vacskill.
+UI work: also obey <VACSKILL_HOME>/UI.md.
+<!-- VACSKILL:END -->
 ```
 
 ## Phases
@@ -189,7 +197,7 @@ Fix P0/P1 now (back through BUILD+VERIFY); P2/P3 → tickets. **Cap: same
 finding survives 2 review passes → verdict `NO — <blocker>` + ticket, stop
 cycling.** Verdict → LOG: `DEC: SHIP` / `SHIP after <fixes>` / `NO`.
 
-**SHIP → PUBLISH** — only when user said `vac ship`, or repo has an
+**SHIP → PUBLISH** — only when user said `vacskill ship`, or repo has an
 `origin` remote AND LOG shows a prior ship. NEVER auto-publish a project
 that hasn't opted in. Requires 100% green: blocking tickets DONE, zero
 unresolved FAIL, zero open P0/P1. Target = the user's GitHub, never
@@ -201,8 +209,8 @@ anyone else's.
    package-manager repos use plain patch); little change → `3.2.1`;
    feature batch → `3.2.0`; breaking → major, rare. Update version file.
 3. Before `git add`: .gitignore covers junk + secrets (node_modules,
-   __pycache__, dist, .env*, .vac/tmp/) — missing → write it first. Empty
-   `.vac/tmp/`, strip debug prints.
+   __pycache__, dist, .env*, .vacskill/tmp/) — missing → write it first.
+   Empty `.vacskill/tmp/`, strip debug prints.
 4. CHANGELOG.md newest-top, 1-2 lines per version. Commit message = that
    line. Push to `origin`.
 5. First publish (no origin): confirm repo name + public/private with
@@ -210,14 +218,15 @@ anyone else's.
    account); afterwards ship without asking.
 6. LOG: `RUN: ship v3.2.1 -> pushed <hash>`.
 
-**HUNT** (bare `vac`, board empty/done) — skip if last LOG hunt was clean
-AND `git status` unchanged: say clean, stop. Else sweep in signal order,
-cap 5 tickets: failing tests → recent commits unverified in LOG → stale
-TODO/FIXME/HACK → silent failures (empty catch, ignored returns, missing
-IO error paths) → symmetry gaps (save/load, undo/redo, import/export,
-start/stop) → dead code → orphan files (zero references by grep, not
-entry/doc/config). Obvious junk (`__pycache__`, `.DS_Store`, editor swaps)
-→ delete free; ambiguous → ticket + user confirms. Never invent busywork.
+**HUNT** (bare `vacskill`, board empty/done) — skip if last LOG hunt was
+clean AND `git status` unchanged: say clean, stop. Else sweep in signal
+order, cap 5 tickets: failing tests → recent commits unverified in LOG →
+stale TODO/FIXME/HACK → silent failures (empty catch, ignored returns,
+missing IO error paths) → symmetry gaps (save/load, undo/redo,
+import/export, start/stop) → dead code → orphan files (zero references by
+grep, not entry/doc/config). Obvious junk (`__pycache__`, `.DS_Store`,
+editor swaps) → delete free; ambiguous → ticket + user confirms. Never
+invent busywork.
 
 **Perf** (`perf` flag) — baseline number first (profiler/timer/EXPLAIN →
 LOG) → fix top proven bottleneck only → re-measure same way → LOG `<x>%
@@ -250,6 +259,6 @@ LOG, set `blocker: "STATE rebuilt <date>, verify"`. Reality wins.
 5. Destructive ops (delete, force-push, schema drop) → user confirms
    unless ticket pre-authorizes. Publishing → only per SHIP gating.
 6. Every loop has a cap; hitting a cap = BLOCKED + facts, never spinning.
-7. Leave no litter: scratch in `.vac/tmp/`, gone by stop/ship; orphans
-   deleted only proven-unreferenced or user-confirmed.
+7. Leave no litter: scratch in `.vacskill/tmp/`, gone by stop/ship;
+   orphans deleted only proven-unreferenced or user-confirmed.
 8. Cooperative handoffs: facts + warnings; next agent never guesses.

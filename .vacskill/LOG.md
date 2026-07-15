@@ -34,3 +34,10 @@
 - 15.07.26 08:45 [T-019] DEC: вторая волна ревью — confidence/graph/index/metrics взяли, agents-manifest и metrics.md отложили оркестратору -> KNOWLEDGE/decisions.md
 - 15.07.26 08:50 [T-019] RUN: ship v2.1.0 -> доска научилась параллелить агентов по DAG, тикеты честно говорят насколько им верить
 - 15.07.26 09:10 [T-020] RUN: ship v2.1.0a -> README перезлили под 2.x: дед в форме, фазы и graph на витрине, скука сдохла
+- 15.07.26 10:20 [T-021] DEC: имя одно на всё — скилл, папка, память, репо = vacskill; vac остаётся коротким алиасом, мышечная память не страдает
+- 15.07.26 10:25 [T-021] RUN: git mv VAC->vacskill, .vac->.vacskill -> история файлов цела PASS
+- 15.07.26 10:30 [T-021] RUN: inject.ps1 миграция -> 3 junction created + 5 migrated from VAC, старых блоков ноль PASS
+- 15.07.26 10:32 [T-021] RUN: verify 6 установок -> name=vacskill, memory=.vacskill везде, legacy leftovers пусто PASS
+- 15.07.26 10:35 [T-021] RUN: gh repo rename -> github.com/vacterro/vacskill PUBLIC, remote переставлен PASS
+- 15.07.26 10:38 [T-021] RUN: ship v3.0.0 -> VAC умер, да здравствует vacskill; старое имя живёт только в мигрaторе и летописи
+- 15.07.26 10:38 [T-021] хайку: Три буквы ушли / vacskill пишем целиком / vac всё же жив (elab — жив)

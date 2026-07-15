@@ -1,0 +1,5 @@
+.vacskill/tmp/
+.vac/tmp/
+*.bak
+.DS_Store
+Thumbs.db

@@ -1,6 +1,6 @@
-# VACSKILLS — One Skill. Any Agent. Zero Amnesia.
+# vacskill — One Skill. Any Agent. Zero Amnesia.
 
-**v2.1.0a** · [Changelog](CHANGELOG.md) · plain markdown · zero dependencies · MIT
+**v3.0.0** · [Changelog](CHANGELOG.md) · plain markdown · zero dependencies · MIT
 
 Your AI agent died mid-work. Again. And the next one greets you with
 "So, tell me about your project!" like some intern on day one. To hell
@@ -15,13 +15,13 @@ toaster next year. The **notebook stays**. Memory owns the project; the
 model is just a temporary worker with a shovel.
 
 ```
-vacskills/                  ← this repo, clone anywhere
-  VAC/SKILL.md              cold protocol — how robots work, no feelings
-  VAC/STYLE.md              the voices — kept OUT of the protocol's way
-  VAC/UI.md                 the look (Win95 dark gold) — loaded only for UI
+vacskill/                   ← this repo, clone anywhere
+  vacskill/SKILL.md         cold protocol — how robots work, no feelings
+  vacskill/STYLE.md         the voices — kept OUT of the protocol's way
+  vacskill/UI.md            the look (Win95 dark gold) — loaded only for UI
   inject.ps1 / inject.sh    one-shot installer
 
-your-project/.vac/          ← the notebook, robots build it themselves
+your-project/.vacskill/     ← the notebook, robots build it themselves
   STATE.md                  where we are + the EXACT next command
   BOARD.md                  tickets with needs: dependencies — the boss
   LOG.md                    diary: every run, every decision, one line each
@@ -36,28 +36,31 @@ here.
 ## Install — three commands, no crying
 
 ```
-git clone https://github.com/vacterro/vacskills
-cd vacskills
+git clone https://github.com/vacterro/vacskill
+cd vacskill
 powershell -ExecutionPolicy Bypass -File .\inject.ps1     # Windows
 bash inject.sh                                            # macOS / Linux
 ```
 
 The injector sniffs out every agent on your machine — Claude Code,
 OpenCode, Codex, Gemini/Antigravity, Aider, generic `~/.agents` readers —
-and wires VAC into each as default. Re-run after every `git pull`; it
+and wires vacskill into each as default. Re-run after every `git pull`; it
 skips what's done and refreshes what's stale. Idiot-proof, tested on
 actual idiots (us).
 
 ## How to use it
 
+Every command takes `vacskill` or the short alias `vac`. Same thing, pick
+your poison.
+
 | You say | What happens |
 |---|---|
-| `vac build me X` | notebook born, tickets planned, work starts |
-| `vac` / `VACSKILL SET` | continues from notebook; empty board → hunts bugs itself |
-| `vac fix <thing>` | reproduce → root cause → regression test. No guessing |
-| `vac status` | reads notebook + quick numbers, touches nothing |
-| `vac stop` | proper goodbye note, safe to walk away |
-| `vac ship` | inspection → 100% green → YOUR GitHub, versioned + changelog |
+| `vacskill build me X` | notebook born, tickets planned, work starts |
+| `vacskill` / `VACSKILL SET` | continues from notebook; empty board → hunts bugs itself |
+| `vacskill fix <thing>` | reproduce → root cause → regression test. No guessing |
+| `vacskill status` | reads notebook + quick numbers, touches nothing |
+| `vacskill stop` | proper goodbye note, safe to walk away |
+| `vacskill ship` | inspection → 100% green → YOUR GitHub, versioned + changelog |
 
 **Every ticket walks the same road:** SCOUT (read how the repo already
 does it — inventing a parallel architecture is how agents ruin projects) →
@@ -76,19 +79,20 @@ the merge.
 no goodbye speech, so nothing waits for one. Worst crash loses one ticket,
 and `git status` shows even that. Next robot picks it up cold.
 
-**It cleans up after itself.** Scratch junk lives in `.vac/tmp/`, deleted
-at stop. Orphan files get deleted only when PROVEN unreferenced — or you
-said so. No `.env` ever reaches GitHub; guards check before every commit.
+**It cleans up after itself.** Scratch junk lives in `.vacskill/tmp/`,
+deleted at stop. Orphan files get deleted only when PROVEN unreferenced —
+or you said so. No `.env` ever reaches GitHub; guards check before every
+commit.
 
-**Voices know their place** ([VAC/STYLE.md](VAC/STYLE.md)): chat is short
-and dry; the LOG diary is written by a furious wise grandpa with human
-dates (`15.07.26 14:32`, not ISO soup) and one closing haiku per session —
-because "fixed the damn timeout AGAIN" is remembered a month later and
-"Fixed issue." is forgotten by lunch. Code, commits, docs: boring on
-purpose. Facts exact in every voice.
+**Voices know their place** ([vacskill/STYLE.md](vacskill/STYLE.md)): chat
+is short and dry; the LOG diary is written by a furious wise grandpa with
+human dates (`15.07.26 14:32`, not ISO soup) and one closing haiku per
+session — because "fixed the damn timeout AGAIN" is remembered a month
+later and "Fixed issue." is forgotten by lunch. Code, commits, docs:
+boring on purpose. Facts exact in every voice.
 
-**Any UI comes out Win95 dark golden** ([VAC/UI.md](VAC/UI.md)): Verdana,
-zero antialiasing, sharp bevels, zero animations. Non-negotiable.
+**Any UI comes out Win95 dark golden** ([vacskill/UI.md](vacskill/UI.md)):
+Verdana, zero antialiasing, sharp bevels, zero animations. Non-negotiable.
 Gorgeous.
 
 ## Why it doesn't fall apart
@@ -100,6 +104,13 @@ Gorgeous.
 - Two agents, one project → takeover guard asks before grabbing the wheel.
 - Versions grow slow and honest: `3.1.0 → 3.1.0a` micro, `3.2.1` little,
   `3.2.0` feature. No jumping to v9 because the README got a new emoji.
+
+## Upgrading from VAC (pre-3.0)
+
+Everything got one name: the skill, the folder, the memory. Pull and re-run
+the injector — it strips the old `VAC` blocks, drops the old skill dirs and
+wires `vacskill` in their place. In your projects: `git mv .vac .vacskill`.
+The agent will do it for you on the next `VACSKILL SET` anyway.
 
 ## House rules (for editing this system)
 

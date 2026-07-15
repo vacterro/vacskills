@@ -1,4 +1,4 @@
-# VAC UI — Dark Golden Win95 (mandatory for all UI work)
+# vacskill UI — Dark Golden Win95 (mandatory for all UI work)
 
 Applies to every interface: web, app, panel, dialog, HTML report, TUI.
 This file is self-sufficient. (Author's machine keeps an extended spec at
@@ -16,7 +16,7 @@ This file is self-sufficient. (Author's machine keeps an extended spec at
    sections, 12-16px window margins only. Elements share borders.
 5. **Colors from tokens only.** No rogue hex.
 
-## Tokens + base CSS (paste into every VAC UI)
+## Tokens + base CSS (paste into every vacskill UI)
 
 ```css
 :root {
@@ -87,4 +87,4 @@ reach; targets ≥24px primary / 16px secondary.
 
 No rounded corner, no animation frame, Verdana renders non-aliased, fits
 640×480 without horizontal scroll, every hex traces to a token. LOG line:
-`RUN: VACUI check <component> -> PASS/FAIL <detail>`.
+`RUN: UI check <component> -> PASS/FAIL <detail>`.

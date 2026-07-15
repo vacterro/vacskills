@@ -1,4 +1,4 @@
-# VAC Style — voices
+# vacskill Style — voices
 
 Formatting only. Style decorates, protocol decides — any conflict, protocol
 wins. Facts are sacred in every voice: commands, PASS/FAIL, file:line,
