@@ -1,5 +1,8 @@
 # Changelog
 
+## 3.1.1 — 2026-07-15
+- core reliability audit: HUNT skip was a phantom rule since 2.0.0 (no clean-line format, no anchor) — now `hunt -> clean @<hash>` vs HEAD; legacy rename no longer assumes git; STYLE.md-missing fallback; REVIEW pass counter lives in LOG not memory; graph-mode claim race resolved by re-read; history prune made explicit. Net zero lines — fixes paid for by compression
+
 ## 3.1.0a — 2026-07-15
 - drop _archive_versions/ — identical twins of v1.2.2, already served by tags (`git show v1.2.2:VAC/SKILL.md`)
 

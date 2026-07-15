@@ -5,8 +5,8 @@ description: >
   (alias) and their subcommands (set/stop/status/ship/fix/<goal>), when
   resuming earlier work, or in any project containing .vacskill/. Phases
   PLAN → SCOUT → BUILD → VERIFY → REVIEW → SHIP over persistent .vacskill/
-  memory, so any agent continues another agent's work without context loss.
-  Load STYLE.md with this file (voices); UI.md only for UI work.
+  memory: any agent continues another's work without context loss. Load
+  STYLE.md with this file (voices); UI.md only for UI work.
 ---
 
 # vacskill Protocol
@@ -15,8 +15,9 @@ Memory owns the project; the model is a temporary worker. Every agent reads
 the same `.vacskill/`, continues, writes back. Chat history is not memory.
 Cold protocol here — voices in STYLE.md, theme in UI.md.
 
-**Load STYLE.md now, with this file.** Its Persistence section is what keeps
-the voice alive past twenty turns; skip it and the drift starts by message ten.
+**Load STYLE.md now, with this file** — its Persistence section keeps the
+voice alive past twenty turns. Unreachable (partial copy)? Say so once,
+then work facts-only; protocol never waits on style.
 
 ## Commands — `vacskill` or short alias `vac`, identical
 
@@ -38,8 +39,9 @@ LOG.md       append    journal: what happened, one line per event
 KNOWLEDGE/   edit      durable truth; files created on first real content
 tmp/         scratch   disposable; never committed, gone by stop/ship
 ```
-Legacy `.vac/` instead? `git mv .vac .vacskill`, LOG one DEC line, continue.
-Never run both. Never store secrets — `.vacskill/` travels with the repo.
+Legacy `.vac/` instead? Rename it (`git mv` when tracked, plain move
+otherwise), LOG one DEC line, continue — never run both. No secrets here:
+`.vacskill/` travels with the repo.
 
 **Checkpoint doctrine — write as you go; dying agents get no goodbye turn.**
 - Ticket finished → tick BOARD + rewrite STATE `next_action` NOW.
@@ -48,9 +50,9 @@ Never run both. Never store secrets — `.vacskill/` travels with the repo.
 Worst crash loses one in-flight ticket; `git status` shows even that.
 
 **Backups.** Under git, committed `.vacskill/` IS the backup — any state
-returns via `git show <rev>:.vacskill/STATE.md`. No git? Before each
-STATE/BOARD rewrite copy the old one to
-`.vacskill/history/<name>-<DD.MM.YY-HHmm>.md`, keep last 5.
+returns via `git show <rev>:.vacskill/STATE.md`. No git? Each STATE/BOARD
+rewrite first copies the old one to `.vacskill/history/<name>-<DD.MM.YY-
+HHmm>.md`, deleting all but the newest 5 of that name in the same breath.
 
 ### STATE.md — minimal, read every start
 
@@ -72,9 +74,9 @@ are all DONE. Board order = priority = law. Reordering = deliberate act:
 move the ticket AND log a DEC why. An agent that "prefers" another task is broken.
 
 **Graph mode (several agents):** `needs:` is the DAG. Claim one unblocked
-`[P]` ticket by writing `owner: <name>` + a LOG claim line; first claim in
-LOG wins. Touch only your ticket's files. Join ticket (`needs:` all
-branches) re-runs full VERIFY after merge.
+`[P]` ticket: write `owner: <name>` + a LOG claim line, then re-read LOG —
+an earlier claim on that ticket beats yours, yield and take the next.
+Touch only your ticket's files. Join ticket re-runs full VERIFY after merge.
 
 ### LOG.md — journal only
 
@@ -93,8 +95,8 @@ decisions.md      long-lived choices + why; supersede = edit in place + note
 traps.md          bugs that bit, gotchas, flaky zones, env quirks
 ```
 Create each at first real content — no empty placeholders. SCOUT reads
-KNOWLEDGE/ before re-scouting: knowledge is cheaper than rediscovery. Plain
-prose. Past 4 files or ~200 lines → `index.md`: topic → file:line pointers.
+KNOWLEDGE/ before re-scouting: knowledge beats rediscovery. Plain prose.
+Past 4 files or ~200 lines → `index.md`: topic → file:line pointers.
 
 ## Switch protocol
 
@@ -109,9 +111,9 @@ Next: <next_action>.`, continue in `phase`.
 remove debug prints → STATE handoff ≤3 lines + cold-executable
 `next_action` → tick BOARD → say `Saved. On any agent: VACSKILL SET`.
 
-**Crash recovery** (died without stop): checkpoints carry it. STATE stale but
-LOG/BOARD newer → trust LOG tail + first DOING ticket; `git status` reveals
-in-flight edits; re-verify that ticket, finish or reset.
+**Crash recovery** (died without stop): checkpoints carry it. Newest
+evidence wins — LOG tail + first DOING ticket over a stale STATE; `git
+status` reveals in-flight edits; re-verify that ticket, finish or reset.
 
 **Init** (no `.vacskill/`): create STATE, BOARD, LOG (KNOWLEDGE/, tmp/ on
 first need). Ensure project-root `AGENTS.md` has the block below (search
@@ -179,13 +181,14 @@ failing input:
   passwords; `npm audit`/`pip-audit` when present.
 - **P2 reliability** — silent catches, missing timeouts, leaks, unbounded
   growth. **P3 maintainability** — duplication 3+, dead code, missing tests.
-Fix P0/P1 now (back through BUILD+VERIFY); P2/P3 → tickets. **Cap: same
-finding survives 2 passes → verdict `NO — <blocker>` + ticket, stop
-cycling.** Verdict → LOG: `DEC: SHIP` / `SHIP after <fixes>` / `NO`.
+Fix P0/P1 now (back through BUILD+VERIFY); P2/P3 → tickets. Verdict → LOG:
+`DEC: SHIP` / `SHIP after <fixes>` / `NO — <blocker>`. **Cap: LOG already
+holds a verdict naming this same finding → it survived a pass; verdict `NO`
++ ticket, stop cycling** (the LOG is the counter, not your memory).
 
 **SHIP → PUBLISH** — only when user said `vacskill ship`, or repo has
-`origin` AND LOG shows a prior ship. NEVER auto-publish a project that
-hasn't opted in. Requires 100% green: blocking tickets DONE, zero unresolved
+`origin` AND LOG shows a prior ship; never auto-publish a project that
+hasn't opted in. Needs 100% green: blocking tickets DONE, zero unresolved
 FAIL, zero open P0/P1. Target = the user's GitHub, never anyone else's.
 1. README beautiful every ship: pitch, features, working install, usage,
    screenshot if UI, version + changelog link. Stale README = P1.
@@ -197,21 +200,22 @@ FAIL, zero open P0/P1. Target = the user's GitHub, never anyone else's.
    Empty `.vacskill/tmp/`, strip debug prints.
 4. CHANGELOG.md newest-top, 1-2 lines per version = the commit message. Push.
 5. Tag it: `git tag -a v<version> -m "<changelog line>"` + `git push origin
-   --tags`. Any shipped state then returns via `git show v<version>:<file>`.
-   Tags are the archive — no `_archive_*` copies in the tree.
+   --tags` — any shipped state returns via `git show v<version>:<file>`.
+   Tags are the archive; no `_archive_*` copies in the tree.
 6. First publish (no origin): confirm name + public/private, `gh repo create
    <name> --source .` (logged-in account); afterwards ship without asking.
 7. LOG: `RUN: ship v3.2.1 -> pushed <hash>`.
 
-**HUNT** (bare `vacskill`, board empty/done) — skip if last LOG hunt was
-clean AND `git status` unchanged: say clean, stop. Else sweep in signal
-order, cap 5 tickets: failing tests → recent commits unverified in LOG →
+**HUNT** (bare `vacskill`, board empty/done) — a clean sweep ends with
+`RUN: hunt -> clean @<short-hash>` (HEAD then). Skip a sweep only if that
+hash == current HEAD and the tree is unmodified; no such line = sweep.
+Signal order, cap 5 tickets: failing tests → commits unverified in LOG →
 stale TODO/FIXME/HACK → silent failures (empty catch, ignored returns,
 missing IO error paths) → symmetry gaps (save/load, undo/redo,
 import/export, start/stop) → dead code → orphan files (zero references by
 grep, not entry/doc/config). Obvious junk (`__pycache__`, `.DS_Store`,
-editor swaps) → delete free; ambiguous → ticket + user confirms. Never
-invent busywork.
+editor swaps) → delete free; ambiguous → ticket + user confirms. Nothing
+found → write the clean line above, report, stop. Never invent busywork.
 
 **Perf** (`perf` flag) — baseline number first (profiler/timer/EXPLAIN →
 LOG) → fix top proven bottleneck only → re-measure same way → LOG `<x>% vs
@@ -220,8 +224,7 @@ baseline` → gain <20% and uglier → revert + LOG why. Behavior identical.
 ## Token discipline
 
 - STATE + BOARD full; LOG tail only; KNOWLEDGE on demand. Re-read only
-  changed files. Grep before read.
-- Batch independent tool calls. One verify command beats three.
+  changed files. Grep before read. Batch independent tool calls.
 - Chat report ≤8 lines: done / verified / blocked / next. Quote ≤3 decisive
   output lines. LOG lines ≤120 chars.
 
@@ -231,10 +234,9 @@ Compact LOG in place: keep every DEC, last RUN per task, unresolved FAILs;
 collapse repeated PASSes to one line + count; header `# compacted <date>`.
 KNOWLEDGE/ never auto-pruned — edit for truth, not size. BOARD DONE >30 →
 oldest to `archive.md`. STATE contradicts files → rebuild from BOARD + LOG,
-set `blocker: "STATE rebuilt <date>, verify"`. Reality wins.
-
-**This file too:** it must not outgrow ~250 lines. Adding a rule? Find the
-stale one it replaces. Length is not thoroughness — it is drift.
+`blocker: "STATE rebuilt <date>, verify"`. Reality wins. **This file too:**
+cap ~250 lines — a new rule must evict a stale one. Length is not
+thoroughness, it is drift.
 
 ## Iron rules
 
@@ -242,8 +244,7 @@ stale one it replaces. Length is not thoroughness — it is drift.
 2. Board picks the task; the agent does not.
 3. `next_action` executable by an agent with zero chat history.
 4. Journal ≠ knowledge: LOG events, KNOWLEDGE/ truth.
-5. Destructive ops (delete, force-push, schema drop) → user confirms unless
-   the ticket pre-authorizes. Publishing → only per SHIP gating.
+5. Destructive ops → user confirms unless pre-authorized; publish per SHIP gating.
 6. Every loop has a cap; hitting one = BLOCKED + facts, never spinning.
 7. Leave no litter; delete only proven-unreferenced or user-confirmed.
 8. STYLE.md voice holds to the last response. Corporate prose = drift.
