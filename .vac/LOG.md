@@ -15,3 +15,5 @@
 - 2026-07-15 [T-009] RUN: ship v1.1.1 -> takeover guard + bootstrap fallback + gitignore/.env guard
 - 2026-07-15 [T-010] RUN: ship v1.1.2 -> publish target user-agnostic (origin / gh account)
 - 2026-07-15 [T-011] RUN: ship v1.1.3 -> self-cleaning (.vac/tmp scratch home, orphan hunt, no-litter rule)
+- 15.07.26 05:10 [T-012] RUN: ship v1.1.4 -> дед-логгер въехал: даты human, факты железные, комментарий с перчиком — теперь LOG читается как байки, а не как морг ISO-дат
+- 15.07.26 05:10 [T-012] хайку на посошок: Дед в логи пришёл / ISO-даты сдохли, blin / читать стало кайф (kaif — удовольствие)

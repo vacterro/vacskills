@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.4 — 2026-07-15
+- дед-логгер: human dates DD.MM.YY HH:mm in LOG, wise-angry-grandpa commentary voice (facts stay exact), closing haiku on stop/ship; chat voice unchanged
+
 ## 1.1.3 — 2026-07-15
 - self-cleaning: scratch confined to .vac/tmp/ (deleted at stop/ship), orphan-file hunting with proven-unreferenced guard, no-litter iron rule
 
