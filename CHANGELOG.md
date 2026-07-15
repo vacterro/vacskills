@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.5 — 2026-07-15
+- chat voice = дед-caveman fusion: caveman compression + grandpa wit/мат/аналогии, clarity sacred; LOG persona unchanged
+
 ## 1.1.4a — 2026-07-15
 - hard wall: дед voice + haiku confined to .vac/ files only; chat strictly caveman
 
