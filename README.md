@@ -1,6 +1,6 @@
 # vacskill — One Skill. Any Agent. Zero Amnesia.
 
-**v3.1.1** · [Changelog](CHANGELOG.md) · plain markdown · zero dependencies · MIT
+**v3.1.2** · [Changelog](CHANGELOG.md) · plain markdown · zero dependencies · MIT
 
 Your AI agent died mid-work. Again. And the next one greets you with
 "So, tell me about your project!" like some intern on day one. To hell
