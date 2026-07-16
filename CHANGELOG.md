@@ -1,5 +1,10 @@
 # Changelog
 
+## 6.3.0 -- 2026-07-17
+- BREAKING / REWRITE: `PROTOCOL.md` has been brutally minimized (< 60 lines). 
+- doc: Removed Abstract, Scope, Adapter Contract, and CLI commands from the core protocol machine document. These have been migrated to `SPEC.md` and `GUIDE.md` to prevent any context distraction.
+- feat: `DONE` phase formally forbidden without successful `VERIFY` (or `MANUAL-VERIFY`), `needs` formalized as strict DAG, and `HUNT` signal dependency rigidly enforced.
+
 ## 6.2.0 -- 2026-07-17
 - refactor: Ruthlessly purged all conversational/literary explanations from `PROTOCOL.md` to ensure the machine document remains absolutely cold and unambiguous.
 - feat: Formalized Conformance into three strict vectors: Repo Validation, Session Validation, and Phase Contract Validation. `vacskill validate` is now structurally mandated to enforce these vectors.

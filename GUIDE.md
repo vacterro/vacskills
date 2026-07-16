@@ -16,3 +16,12 @@ When you have multiple agents (or even the same agent on different days) working
 Want your agent to run security checks during `VERIFY`? Add an extension:
 - Place your security rules in `extensions/security/README.md`.
 - When the agent enters the `VERIFY` phase, it will read those rules automatically.
+
+## CLI Commands
+While agents interact with the file system directly, humans can use these commands to manage the session:
+| Command | Action |
+|---|---|
+| `vacskill continue` | Wake up the agent and execute the `next_action`. |
+| `vacskill stop` | Force the agent to checkpoint and handoff. |
+| `vacskill status` | Report current state without changing anything. |
+| `vacskill validate` | Run the conformance checks. |
