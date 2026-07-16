@@ -1,4 +1,4 @@
-﻿# Decisions
+# Decisions
 
 - Protocol/personality split (v2.0.0): SKILL.md = cold workflow, STYLE.md =
   voices, UI.md = theme. Reason: long mixed prompts drift — every extra
