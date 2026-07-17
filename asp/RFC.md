@@ -20,7 +20,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 - **DONE**: A ticket MUST NOT be marked `DONE` without a successful `VERIFY` (or human `MANUAL-VERIFY`).
 - **HUNT**: Transition to `HUNT` MUST occur strictly when `BOARD.md` has no open `TODO` tickets without blockers, or when explicitly signaled by a failed verification loop. Agent MUST NOT hallucinate tasks during `HUNT`.
 - **ADD**: Transition to `ADD` occurs when instructed to brainstorm and implement new features based on core UX rules.
-- **DEFAULT BEHAVIOR**: If the user runs the protocol (e.g., `/asp` or `asp continue`) and `BOARD.md` is empty (no tickets), the agent MUST immediately transition to the `HUNT` phase to search for bugs or dead code without asking for permission.
+- **DEFAULT BEHAVIOR**: If the user runs the protocol (e.g., `/asp` or `asp continue`) and `BOARD.md` is empty (no tickets), the agent MUST immediately transition to the `HUNT` phase to search for bugs. If `HUNT` finds nothing (clean), the agent MUST immediately transition to `ADD` to evolve the software.
 
 ## 4. Ticket Model (DAG)
 - Tickets MUST define dependencies using `needs: [T-XXX]`.
