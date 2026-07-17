@@ -1,6 +1,6 @@
 # Agent Session Protocol (ASP)
 
-**v7.1.0** | [Spec](SPEC.md) | [Guide](GUIDE.md) | plain markdown | zero deps | MIT
+**v7.1.2** | [Spec](SPEC.md) | [Guide](GUIDE.md) | plain markdown | zero deps | MIT
 
 **One command. Zero amnesia.**
 
@@ -18,13 +18,18 @@ Instead of writing a README instructing models "how to behave", you drop ASP int
 
 ## Quick Start (5 minutes)
 
-Run these three commands to inject the protocol into any project:
+**1. Install Globally (Once per machine)**
+Inject the protocol into your agents (Claude Code, Gemini, OpenCode, Aider, Antigravity):
 ```bash
 git clone https://github.com/vacterro/asp
 cd asp
 powershell -ExecutionPolicy Bypass -File .\bootstrap\inject.ps1     # Windows
 bash bootstrap/inject.sh                                            # macOS / Linux
 ```
+
+**2. Start a Project**
+Open an agent in your project folder and type:
+> `asp SET` (or `asp INIT`)
 
 No install? Paste one line to your agent:
 > Read <clone>/asp/RFC.md + <clone>/asp/STYLE.md and follow them.
