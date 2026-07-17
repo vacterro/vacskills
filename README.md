@@ -20,7 +20,7 @@ Instead of writing a README instructing models "how to behave", you drop ASP int
 
 Run these three commands to inject the protocol into any project:
 ```bash
-git clone https://github.com/vacterro/vacskill
+git clone https://github.com/vacterro/asp
 cd vacskill
 powershell -ExecutionPolicy Bypass -File .\bootstrap\inject.ps1     # Windows
 bash bootstrap/inject.sh                                            # macOS / Linux

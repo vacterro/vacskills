@@ -1,5 +1,8 @@
 # Changelog
 
+## 7.1.2 -- 2026-07-17
+- refactor: Renamed GitHub repository from `vacskill` to `asp`. Updated all absolute URLs and git clone instructions.
+
 ## 7.1.1 -- 2026-07-17
 - doc: Formally defined the boundary of ASP regarding distributed consensus. ASP explicitly states it is a local state protocol relying on atomic filesystem commits; true multi-machine network distribution requires an external "Coordinator" built on top of ASP.
 
@@ -42,14 +45,14 @@
 
 ## 5.2.0 -- 2026-07-17
 - BREAKING / REWRITE: Converted the core `PROTOCOL.md` from a conversational guide into a strict, RFC-style normative specification.
-- feat: Formalized the State Machine (`INIT в†’ PLAN в†’ SCOUT в†’ BUILD в†’ VERIFY в†’ REVIEW в†’ SHIP в†’ DONE | BLOCKED`).
+- feat: Formalized the State Machine (`INIT РІвЂ вЂ™ PLAN РІвЂ вЂ™ SCOUT РІвЂ вЂ™ BUILD РІвЂ вЂ™ VERIFY РІвЂ вЂ™ REVIEW РІвЂ вЂ™ SHIP РІвЂ вЂ™ DONE | BLOCKED`).
 - feat: Formalized Claim/Ownership logic (`owner` and `claim_time` added to `board.schema.json`) to prevent multi-agent race conditions.
 - feat: Added Capability Negotiation handshake (agents MUST check capabilities like git/shell before engaging).
 - feat: Added formal Recovery doctrine.
 - doc: Stripped all "marketing copy" and persona out of `PROTOCOL.md` into non-normative abstracts, reinforcing that voice (`STYLE.md`) never overrides logic.
 
 ## 5.1.0 -- 2026-07-17
-- feat: unified "РґРµРґ СЃ СЂР°Р№РѕРЅР°" persona. Removed haiku requirement completely. The direct, witty, tough-love "grandpa" style is now the default for both chat responses and LOG entries (while maintaining strict caveman token compression and preserving facts verbatim).
+- feat: unified "Р Т‘Р ВµР Т‘ РЎРѓ РЎР‚Р В°Р в„–Р С•Р Р…Р В°" persona. Removed haiku requirement completely. The direct, witty, tough-love "grandpa" style is now the default for both chat responses and LOG entries (while maintaining strict caveman token compression and preserving facts verbatim).
 
 ## 5.0.1 -- 2026-07-17
 - fix: extract missing `verify.md`, `review.md`, `done.md`, and `blocked.md` phases that were unintentionally merged or omitted in 5.0.0, which broke lazy loading when STATE entered these phases
@@ -75,7 +78,7 @@
 - anti-drift: STYLE.md Persistence section (voice holds every response, no revert after many turns) + protocol loads it upfront; git tags as release archive (all 17 past versions tagged retroactively); memory backup rule for non-git projects; self-imposed ~250-line cap -- SKILL.md compressed 281 -> 249 with zero rules lost
 
 ## 3.0.0 -- 2026-07-15
-- BREAKING: renamed VAC -> asp everywhere -- skill name, folder, memory dir (.vac/ -> .asp/), pointer blocks (VACSKILL:BEGIN), repo (github.com/vacterro/vacskill). Short alias `vac` still works for every command. Injector migrates pre-3.0 installs automatically; in projects run `git mv .vac .asp`
+- BREAKING: renamed VAC -> asp everywhere -- skill name, folder, memory dir (.vac/ -> .asp/), pointer blocks (VACSKILL:BEGIN), repo (github.com/vacterro/asp). Short alias `vac` still works for every command. Injector migrates pre-3.0 installs automatically; in projects run `git mv .vac .asp`
 
 ## 2.1.0a -- 2026-07-15
 - README rewritten for v2.x: angrier grandpa, phases/confidence/graph/KNOWLEDGE covered

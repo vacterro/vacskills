@@ -1,4 +1,4 @@
-# asp injector Р Р†Р вЂљРІР‚Сњ installs asp as default protocol on every agentic system found.
+# asp injector Р В Р вЂ Р В РІР‚С™Р Р†Р вЂљРЎСљ installs asp as default protocol on every agentic system found.
 # Run from the clone dir:  powershell -ExecutionPolicy Bypass -File .\inject.ps1
 # Idempotent: safe to re-run any time (skips what's already installed).
 # Also migrates pre-3.0 installs named "VAC".
@@ -26,7 +26,7 @@ project root contains .asp/: read $SkillHome\RFC.md + $SkillHome\STYLE.md
 and follow them.
 Memory: .asp/ at project root - read .asp/STATE.md before work;
 checkpoint BOARD + STATE after every ticket, LOG line after every run.
-Path missing (new machine)? clone github.com/vacterro/vacskill.
+Path missing (new machine)? clone github.com/vacterro/asp.
 UI work: also obey $SkillHome\UI.md (Win95 dark golden, Verdana, no AA).
 <!-- ASP:END -->
 "@
@@ -47,7 +47,7 @@ function Add-Block([string]$file) {
   if (Test-Path $file) {
     if (Select-String -Path $file -Pattern "ASP:BEGIN" -Quiet) {
       if (Select-String -Path $file -Pattern "PROTOCOL\.md" -Quiet) { return "already" }
-      # 3.x block points at SKILL.md Р Р†Р вЂљРІР‚Сњ replace with RFC.md block
+      # 3.x block points at SKILL.md Р В Р вЂ Р В РІР‚С™Р Р†Р вЂљРЎСљ replace with RFC.md block
       $text = Get-Content $file -Raw -Encoding utf8
       $clean = [regex]::Replace($text, '(?s)\s*<!-- ASP:BEGIN -->.*?<!-- ASP:END -->\s*', "`n")
       Write-NoBom $file ($clean.TrimEnd() + $block + "`n")
