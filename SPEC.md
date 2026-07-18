@@ -3,7 +3,10 @@
 ## Abstract
 **Design Goal #1: A cold agent with zero chat history must be able to execute `/saipen continue` and resume productive work within one minute, without asking the user to repeat context.**
 
-SAIPEN is an ABI (Application Binary Interface) for engineering AI agents—a compatibility layer that solves the amnesia problem. It guarantees that any compatible AI agent can safely continue any project without being rebriefed. Whether you use Claude today, Gemini tomorrow, and GPT the day after, they will all work as a single unified engineer.
+SAIPEN guarantees that any compatible AI agent can safely continue any project without being rebriefed. It is an ABI (Application Binary Interface) for engineering AI agents—a compatibility layer that solves the amnesia problem. Whether you use Claude today, Gemini tomorrow, and GPT the day after, they will all operate against the same project state without requiring you to restate context.
+
+### Core Philosophy: Project State > Model Memory
+Memory should live next to the code, not inside the head of another model. SAIPEN shifts the paradigm from `Project -> Memory -> LLM` to `Project -> SAIPEN State -> LLM`. The memory belongs to the project.
 
 At its core, SAIPEN uses a portable, file-backed continuation protocol for LLM agents. Implementations MAY vary. The on-disk contract MUST remain stable. Everything in this protocol exists to serve the Continuation Test.
 

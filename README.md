@@ -29,6 +29,9 @@ Agent ->  Works.
 
 Instead of writing a README instructing models "how to behave", you drop SAIPEN into your project. Whether you use Claude today and Gemini tomorrow, both agents will instantly negotiate capabilities, follow the state machine, and execute the next action.
 
+### Core Philosophy: Project State > Model Memory
+Memory should live next to the code, not inside the head of another model. SAIPEN shifts the paradigm from `Project -> Memory -> LLM` to `Project -> SAIPEN State -> LLM`. The memory belongs to the project.
+
 ## The ABI for AI Agents (Compatibility Layer)
 
 SAIPEN consists of two independent layers.
