@@ -10,7 +10,7 @@
 
 **One command. Zero amnesia.**
 
-**Не объясняй ничего. Просто напиши saipen и продолжи работу над проектом как ни в чём не бывало.**
+**Не объясняй ничего. Просто напиши saipen и продолжи работу над проектом как ни в чём не бывало, любым агентом.**
 
 [![Russian Guide](https://img.shields.io/badge/📖_ELI5_Guide-НА_РУССКОМ-red?style=for-the-badge)](GUIDE_RU.md)
 [![English Guide](https://img.shields.io/badge/📖_ELI5_Guide-IN_ENGLISH-blue?style=for-the-badge)](GUIDE_EN.md)
