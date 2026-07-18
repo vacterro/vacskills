@@ -1,7 +1,9 @@
 # Board
 ## DOING
 ## TODO
+## TODO
 ## DONE
+- [x] T-059 ADD: Backup host config before injection | files: bootstrap/inject.ps1, bootstrap/inject.sh | verify: .bak files created before modification | needs: none
 - [x] T-058 DEEP AUDIT FOR RESIDUALS | files: repo-wide | verify: all files point to saipen, commits pushed | needs: T-057
 - [x] T-057 CONCURRENCY BOUNDARIES | files: SPEC.md | verify: v7.1.1 pushed | needs: T-056
 - [x] T-056 TOTAL BOOTSTRAP DECOUPLING | files: init.md, inject.* | verify: v7.1.0 pushed | needs: T-055

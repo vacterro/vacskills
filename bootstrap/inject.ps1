@@ -8,6 +8,7 @@ param([string]$SkillHome = (Join-Path (Split-Path $PSScriptRoot) "saipen"))
 $ErrorActionPreference = "Continue"
 $Utf8NoBom = New-Object System.Text.UTF8Encoding($false)
 function Write-NoBom([string]$file, [string]$text) {
+  if ((Test-Path $file) -and -not (Test-Path "$file.bak")) { Copy-Item $file "$file.bak" -Force }
   [System.IO.File]::WriteAllText($file, $text, $Utf8NoBom)
 }
 try { $SkillHome = (Resolve-Path $SkillHome).Path } catch {

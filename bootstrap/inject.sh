@@ -7,6 +7,10 @@ set -u
 SKILL_HOME="$(cd "$(dirname "$0")/../saipen" 2>/dev/null && pwd)"
 [ -f "$SKILL_HOME/RFC.md" ] || { echo "FATAL: saipen/RFC.md not found"; exit 1; }
 
+backup_file() {
+  [ -f "$1" ] && [ ! -f "$1.bak" ] && cp "$1" "$1.bak"
+}
+
 BLOCK="
 <!-- SAIPEN:BEGIN -->
 ## saipen protocol (global)
@@ -22,10 +26,10 @@ UI work: also obey $SKILL_HOME/UI.md (Win95 dark golden, Verdana, no AA).
 # Pre-3.0 block points at the old VAC/ folder Р В Р’В Р В РІР‚В Р В Р’В Р Р†Р вЂљРЎв„ўР В Р вЂ Р В РІР‚С™Р РЋРЎС™ strip it before adding the new one.
 strip_legacy_block()  # Strip old SAIPEN, ASP, and VACSKILL blocks
 {
+  backup_file "$1"
   sed -i.bak '/<!-- SAIPEN:BEGIN -->/,/<!-- SAIPEN:END -->/d' "$1" 2>/dev/null || sed -i '' '/<!-- SAIPEN:BEGIN -->/,/<!-- SAIPEN:END -->/d' "$1"
   sed -i.bak '/<!-- ASP:BEGIN -->/,/<!-- ASP:END -->/d' "$1" 2>/dev/null || sed -i '' '/<!-- ASP:BEGIN -->/,/<!-- ASP:END -->/d' "$1"
   sed -i.bak '/<!-- VACSKILL:BEGIN -->/,/<!-- VACSKILL:END -->/d' "$1" 2>/dev/null || sed -i '' '/<!-- VACSKILL:BEGIN -->/,/<!-- VACSKILL:END -->/d' "$1"
-  rm -f "$1.bak" && rm -f "$1.bak"
   return 0
 }
 
@@ -35,9 +39,11 @@ add_block() { # $1=file
   if [ -f "$1" ] && grep -q "SAIPEN:BEGIN" "$1"; then
     if grep -q "PROTOCOL\.md" "$1"; then echo "already"; return; fi
     # 3.x block points at SKILL.md Р В Р’В Р В РІР‚В Р В Р’В Р Р†Р вЂљРЎв„ўР В Р вЂ Р В РІР‚С™Р РЋРЎС™ replace with RFC.md block
-    sed -i.bak '/<!-- SAIPEN:BEGIN -->/,/<!-- SAIPEN:END -->/d' "$1" && rm -f "$1.bak"
+    backup_file "$1"
+    sed -i.bak '/<!-- SAIPEN:BEGIN -->/,/<!-- SAIPEN:END -->/d' "$1" 2>/dev/null || sed -i '' '/<!-- SAIPEN:BEGIN -->/,/<!-- SAIPEN:END -->/d' "$1"
     printf '%s\n' "$BLOCK" >> "$1"; echo "block upgraded to RFC.md"; return
   fi
+  backup_file "$1"
   mkdir -p "$(dirname "$1")"; printf '%s\n' "$BLOCK" >> "$1"
   [ $migrated -eq 0 ] && echo "migrated from VAC" || echo "block added"
 }
@@ -83,10 +89,13 @@ if command -v aider >/dev/null 2>&1; then
   P="$SKILL_HOME/RFC.md"
   if [ ! -f "$A" ]; then printf '# saipen protocol auto-loaded\nread:\n  - %s\n' "$P" > "$A"; printf '%-28s %s\n' "Aider conf" "created"
   elif grep -qE '/(VAC|vacskill)/SKILL\.md' "$A"; then
-    sed -i.bak "s#.*/\(VAC\|saipen\)/SKILL\.md#  - $P#" "$A" && rm -f "$A.bak"
+    backup_file "$A"
+    sed -i.bak "s#.*/\(VAC\|saipen\)/SKILL\.md#  - $P#" "$A" 2>/dev/null || sed -i '' "s#.*/\(VAC\|saipen\)/SKILL\.md#  - $P#" "$A"
     printf '%-28s %s\n' "Aider conf" "migrated to RFC.md"
   elif grep -qF "$P" "$A"; then printf '%-28s %s\n' "Aider conf" "already"
-  elif ! grep -q "^read:" "$A"; then printf '\n# saipen protocol auto-loaded\nread:\n  - %s\n' "$P" >> "$A"; printf '%-28s %s\n' "Aider conf" "read: appended"
+  elif ! grep -q "^read:" "$A"; then 
+    backup_file "$A"
+    printf '\n# saipen protocol auto-loaded\nread:\n  - %s\n' "$P" >> "$A"; printf '%-28s %s\n' "Aider conf" "read: appended"
   else printf '%-28s %s\n' "Aider conf" "has own read: - add manually: $P"; fi
 else printf '%-28s %s\n' "Aider" "not installed - skip"; fi
 

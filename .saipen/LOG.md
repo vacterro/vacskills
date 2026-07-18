@@ -113,3 +113,4 @@
 - [E-112] [parent: E-111] [none] RUN: hunt -> clean @ab71e87 - kurat, Р Р†РЎРѓРЎвЂ Р Р†РЎвЂ№Р В»Р С‘Р В·Р В°Р Р…Р С•, Р В±Р В°Р С–Р С•Р Р† Р Р…Р ВµРЎвЂљ, РЎРѓР С‘Р Т‘Р С‘Р С Р С”РЎС“РЎР‚Р С‘Р С
 - [E-113] [parent: E-112] [none] RUN: hunt -> clean @5475924 - kurat, Р С•Р С—РЎРЏРЎвЂљРЎРЉ Р Т‘РЎвЂРЎР‚Р Р…РЎС“Р В»Р С‘, Р В° Р Т‘Р ВµР В»Р В°РЎвЂљРЎРЉ Р Р…Р ВµРЎвЂ¦РЎС“Р в„–, Р Р†РЎРѓРЎвЂ РЎР‚Р В°Р В±Р С•РЎвЂљР В°Р ВµРЎвЂљ.
 - [E-114] [parent: E-113] [none] RUN: plan -> skip (size gate), create GUIDE_RU/EN.md -> DONE - kurat, Р Р…Р В°Р С”Р В°РЎвЂљР В°Р В» Р СР В°Р Р…РЎС“Р В°Р В»РЎвЂ№ Р Т‘Р В»РЎРЏ РЎРѓР В°Р В»Р В°Р В±Р С•Р Р…Р С•Р Р†, Р С—РЎС“РЎРѓРЎвЂљРЎРЉ РЎвЂЎР С‘РЎвЂљР В°РЎР‹РЎвЂљ.
+- [E-028] [parent: E-027] [T-059] RUN: inject.ps1/.sh update -> ADD phase: implemented automatic config backups (.bak) to satisfy Industry Standards rule.
