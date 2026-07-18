@@ -37,7 +37,7 @@
 - feat: `next_action` in `STATE.md` MUST now be an explicitly executable command (e.g. `pytest tests/`), not a vague intent, to ensure zero-context resumption.
 
 ## 6.0.0 -- 2026-07-17
-- BREAKING / REBRAND: Renamed "Cross-Agent Project Memory Protocol" to **SAIPEN (SAIPEN)**.
+- BREAKING / REBRAND: Renamed "Cross-Agent Project Memory Protocol" to **SAIPEN**.
 - BREAKING: `LOG.md` events are no longer linear lists. They are now graph nodes identified by `[E-XXX]` and `[parent: E-XXX]`, enabling safe multi-agent branching and merges.
 - feat: Implemented Two-Way Capability Negotiation. The protocol now dictates `requires:` in `STATE.md`, and the agent locks its `mode:` based on local capabilities.
 - feat: Formalized Architecture Decision Records (ADR). Long-term truths live in `KNOWLEDGE/ADR-XXX.md` to prevent log bloat.
@@ -52,20 +52,20 @@
 
 ## 5.2.0 -- 2026-07-17
 - BREAKING / REWRITE: Converted the core `PROTOCOL.md` from a conversational guide into a strict, RFC-style normative specification.
-- feat: Formalized the State Machine (`INIT Р Р†РІР‚В РІР‚в„ў PLAN Р Р†РІР‚В РІР‚в„ў SCOUT Р Р†РІР‚В РІР‚в„ў BUILD Р Р†РІР‚В РІР‚в„ў VERIFY Р Р†РІР‚В РІР‚в„ў REVIEW Р Р†РІР‚В РІР‚в„ў SHIP Р Р†РІР‚В РІР‚в„ў DONE | BLOCKED`).
+- feat: Formalized the State Machine (`INIT Р В Р вЂ Р Р†Р вЂљР’В Р Р†Р вЂљРІвЂћСћ PLAN Р В Р вЂ Р Р†Р вЂљР’В Р Р†Р вЂљРІвЂћСћ SCOUT Р В Р вЂ Р Р†Р вЂљР’В Р Р†Р вЂљРІвЂћСћ BUILD Р В Р вЂ Р Р†Р вЂљР’В Р Р†Р вЂљРІвЂћСћ VERIFY Р В Р вЂ Р Р†Р вЂљР’В Р Р†Р вЂљРІвЂћСћ REVIEW Р В Р вЂ Р Р†Р вЂљР’В Р Р†Р вЂљРІвЂћСћ SHIP Р В Р вЂ Р Р†Р вЂљР’В Р Р†Р вЂљРІвЂћСћ DONE | BLOCKED`).
 - feat: Formalized Claim/Ownership logic (`owner` and `claim_time` added to `board.schema.json`) to prevent multi-agent race conditions.
 - feat: Added Capability Negotiation handshake (agents MUST check capabilities like git/shell before engaging).
 - feat: Added formal Recovery doctrine.
 - doc: Stripped all "marketing copy" and persona out of `PROTOCOL.md` into non-normative abstracts, reinforcing that voice (`STYLE.md`) never overrides logic.
 
 ## 5.1.0 -- 2026-07-17
-- feat: unified "Р В РўвЂР В Р’ВµР В РўвЂ Р РЋР С“ Р РЋР вЂљР В Р’В°Р В РІвЂћвЂ“Р В РЎвЂўР В Р вЂ¦Р В Р’В°" persona. Removed haiku requirement completely. The direct, witty, tough-love "grandpa" style is now the default for both chat responses and LOG entries (while maintaining strict caveman token compression and preserving facts verbatim).
+- feat: unified "Р В Р’В Р СћРІР‚ВР В Р’В Р вЂ™Р’ВµР В Р’В Р СћРІР‚В Р В Р Р‹Р В РЎвЂњ Р В Р Р‹Р В РІР‚С™Р В Р’В Р вЂ™Р’В°Р В Р’В Р Р†РІР‚С›РІР‚вЂњР В Р’В Р РЋРІР‚СћР В Р’В Р В РІР‚В¦Р В Р’В Р вЂ™Р’В°" persona. Removed haiku requirement completely. The direct, witty, tough-love "grandpa" style is now the default for both chat responses and LOG entries (while maintaining strict caveman token compression and preserving facts verbatim).
 
 ## 5.0.1 -- 2026-07-17
 - fix: extract missing `verify.md`, `review.md`, `done.md`, and `blocked.md` phases that were unintentionally merged or omitted in 5.0.0, which broke lazy loading when STATE entered these phases
 
 ## 5.0.0 -- 2026-07-17
-- BREAKING: 2-tier protocol architecture. PROTOCOL.md is now a dense boot loader (~110 lines, ~1,200 tokens cold start). Phase-specific rules moved to lazy-loaded saipen/phases/ modules (init, plan, scout, build, ship, hunt). Agent loads only the phase it needs -- 60% fewer tokens per session vs monolithic v4. All rules preserved, zero lost. README rewritten for SAIPEN (SAIPEN) positioning
+- BREAKING: 2-tier protocol architecture. PROTOCOL.md is now a dense boot loader (~110 lines, ~1,200 tokens cold start). Phase-specific rules moved to lazy-loaded saipen/phases/ modules (init, plan, scout, build, ship, hunt). Agent loads only the phase it needs -- 60% fewer tokens per session vs monolithic v4. All rules preserved, zero lost. README rewritten for SAIPEN positioning
 ## 4.1.0 -- 2026-07-17
 - Public launch edition: fix encoding corruption throughout (control chars -> clean ASCII, no BOM anywhere); README rewritten for public consumption with clean ASCII art; PROTOCOL.md audited and rebuilt clean
 

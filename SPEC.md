@@ -1,4 +1,4 @@
-# SAIPEN (SAIPEN) Specification
+# SAIPEN Specification
 
 ## Abstract
 **Design Goal #1: A cold agent with zero chat history must be able to execute `/saipen continue` and resume productive work within one minute, without asking the user to repeat context.**

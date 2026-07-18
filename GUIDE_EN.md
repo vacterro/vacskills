@@ -2,7 +2,7 @@
 
 Listen here, rookie. The problem is simple: your AI agents have the memory of a goldfish. Yesterday you spent half a day explaining your architecture, and today you open a fresh chat and it starts building everything from scratch while asking stupid questions.
 
-**SAIPEN (SAIPEN)** is just a damn notebook. A hard, fireproof notebook that sits in the `.saipen/` folder right inside your project.
+**SAIPEN** is just a damn notebook. A hard, fireproof notebook that sits in the `.saipen/` folder right inside your project.
 
 The agent wakes up, opens this notebook (`STATE.md` and `BOARD.md`), sees exactly which line of code it left off at yesterday, and gets back to work. No whining, no repeating yourself.
 
@@ -24,10 +24,10 @@ Open your terminal or editor in your project folder, call the agent, and tell it
 It will grumble, create an `.saipen/` folder, and start writing a list of tasks (tickets). Bam, the patient is on the hook.
 
 **Step 3. Make it work**
-- You type `/saipen continue` вЂ” the agent shuts up, reads what it planned, picks the top task, and does it.
-- The next day, you open a completely blank chat, type `/saipen continue` again вЂ” it picks up the old notes from the folder and resumes exactly where it stopped.
+- You type `/saipen continue` РІР‚вЂќ the agent shuts up, reads what it planned, picks the top task, and does it.
+- The next day, you open a completely blank chat, type `/saipen continue` again РІР‚вЂќ it picks up the old notes from the folder and resumes exactly where it stopped.
 
-And if you need it to permanently remember that you only use Tabs and not Spaces вЂ” toss a text file into `.saipen/KNOWLEDGE/`. It will read it like the Ten Commandments before every single task.
+And if you need it to permanently remember that you only use Tabs and not Spaces РІР‚вЂќ toss a text file into `.saipen/KNOWLEDGE/`. It will read it like the Ten Commandments before every single task.
 
 **Step 4. Evolution (for lazy asses)**
 Board empty? Bored? Type `/saipen`.

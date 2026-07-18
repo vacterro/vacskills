@@ -1,4 +1,4 @@
-# SAIPEN (SAIPEN) Conformance
+# SAIPEN Conformance
 
 Implementations MUST pass self-check across three vectors:
 1. **Repo Validation**: `STATE.md`, `BOARD.md`, and `LOG.md` MUST conform to `extensions/schemas/`.

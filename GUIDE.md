@@ -1,4 +1,4 @@
-# SAIPEN (SAIPEN) Guide
+# SAIPEN Guide
 
 Welcome to SAIPEN! If you're a human developer looking to tame your AI agents, you're in the right place. 
 
