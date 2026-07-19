@@ -10,7 +10,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 - Agent MUST degrade capabilities if host tools are missing.
 
 ### 1.2 File Model
-- **STATE.md**: MUST contain frontmatter: `phase`, `task`, `next_action`, `blocker`, `agent`, `updated`. `next_action` MUST be an immediately executable command.
+- **STATE.md**: MUST contain frontmatter: `phase`, `task`, `next_action`, `blocker`, `agent`, `updated`. `next_action` MUST be an immediately executable command. MAY contain `goal_mode: true|false` (default `false`) — see § 2.4.
 - **BOARD.md**: MUST track `status` (TODO/DOING/DONE), `needs:` (dependencies), and `owner` (claims).
 - **LOG.md**: Append-only event graph. MUST use Event IDs (`[E-001]`) and MAY use `parent_id` (`[parent: E-001]`).
 - **KNOWLEDGE/**: Directory for durable truths. MUST NOT contain event histories. Uses ADR pattern (`ADR-001.md`).
@@ -87,3 +87,13 @@ When the user requests one step of a well-known user workflow, the agent SHOULD 
 - **Evaluate over blindly adding**: If asked for "Apply", the agent evaluates "Save", "Cancel", and "OK". It rejects irrelevant additions (e.g., "Save As").
 - **The smallest complete solution wins**: The agent MUST complete the minimal coherent set for the requested workflow. It MUST NOT expand into massive related epics (e.g., "Export" justifies "Import", but does NOT justify building "Cloud Sync").
 - **Complete before you extend**: Finish the requested workflow to its logical end before proposing a different one (e.g., "Login" implies "Logout" and wrong-password handling — not OAuth or SSO). Completion is preferred over expansion — the agent SHOULD preserve user expectations before introducing new capabilities.
+
+### 2.4 GOAL Mode (Autonomous Execution)
+`saipen goal <text>` is an explicit, session-scoped opt-in to run a request to completion with minimal interruption. It is NOT the default — `saipen <text>` and bare `saipen continue` retain today's behavior.
+
+- **Entry**: Agent MUST set `goal_mode: true` in `STATE.md`. `PLAN` runs as normal, then the agent MUST proceed directly into `SCOUT` for the first ticket without pausing to ask "shall I continue?".
+- **Continuation**: While `goal_mode: true`, the agent MUST advance `SCOUT → BUILD → VERIFY → REVIEW` across successive tickets without stopping between them, subject to the caps below. `REVIEW` MUST re-run `PLAN` for the next wave automatically if the board defines one (§ Ticket DAG); it MUST NOT wait for a human prompt to start a new wave.
+- **SHIP exception**: The `saipen ship` gate in the SHIP phase is satisfied by an active `goal_mode: true` for subsequent ships to an existing `origin`. Agent MUST auto-push without re-confirming per ship. **First publish of a brand-new repository still MUST confirm name and public/private with the user** — creating a new public artifact is a one-way door goal_mode does not waive.
+- **Safety valve**: A single `saipen goal` invocation MUST NOT process more than 3 waves or 20 tickets, whichever comes first. On hitting this ceiling, the agent MUST stop, write a full BOARD/STATE checkpoint, and report progress — the user re-invokes `saipen goal` to continue.
+- **Unchanged under GOAL**: All existing caps still apply verbatim (3 dead hypotheses / 2 fix cycles per ticket in VERIFY; 2 review passes per finding in REVIEW). GOAL mode MUST NOT skip `VERIFY` or `REVIEW` — autonomy applies to *continuation between steps*, never to the correctness gates themselves. Destructive ops outside the ship/publish path (force-push, schema drop, deleting user data) still require explicit confirmation unless the ticket itself pre-authorizes them.
+- **Exit**: `goal_mode` MUST be set back to `false` in `STATE.md` when the board reaches `DONE`, hits `BLOCKED`, or the safety valve triggers. Final report: tickets done/verified/shipped, any blocked, next action.

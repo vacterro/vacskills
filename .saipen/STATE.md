@@ -10,5 +10,6 @@ requires:
   - filesystem
   - git
 mode: full
-updated: 2026-07-18T23:15:00Z
+goal_mode: false
+updated: 2026-07-18T23:40:00Z
 ---

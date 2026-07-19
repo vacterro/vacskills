@@ -1,5 +1,8 @@
 # Changelog
 
+## 7.3.0 -- 2026-07-18
+- feat: Introduced `saipen goal <text>` (RFC.md §2.4) -- an explicit, session-scoped autonomous mode that runs SCOUT->BUILD->VERIFY->REVIEW across successive tickets and waves without pausing to ask "shall I continue?". SHIP auto-pushes to an existing `origin` under `goal_mode`; first publish of a brand-new repository still requires explicit confirmation. VERIFY and REVIEW gates, and all existing caps (3 dead hypotheses / 2 fix cycles / 2 review passes), are never skipped. New safety valve: max 3 waves / 20 tickets per invocation before a mandatory checkpoint-and-report.
+
 ## 7.2.1 -- 2026-07-18
 - docs: Refined the Industrial Completion Rule (`RFC.md` §2.3, `phases/add.md`). Replaced "functional cluster" with "user workflow" throughout for a clearer mental model. Added the "Complete before you extend" maxim: finish the requested workflow before proposing a different one, because agents should preserve user expectations before introducing new capabilities.
 
