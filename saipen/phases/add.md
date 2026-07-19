@@ -29,6 +29,8 @@ Activate this mode to systematically expand the software's capabilities. SAIPEN 
    - Otherwise, create a `TODO` ticket in `BOARD.md` describing the feature.
    - Transition to `PLAN` or `SCOUT` phase to begin immediate implementation.
 
-4. **The "etc" Convention:**
-   - If the user's prompt includes the word `etc` (e.g., "Add an Apply button etc"), you MUST carefully expand the feature with standard industrial functionality (e.g., adding "Save" and "Cancel" alongside "Apply"). It must reasonably extend user control without harming the software.
+4. **The Industrial Completion Rule:**
+   - When the user requests one element of a functional cluster, you MUST evaluate what else is needed to make the feature industrially complete.
+   - You MUST implement the *minimal coherent set* (e.g., adding "Cancel" and "Save" if asked for "Apply").
+   - The smallest complete solution wins. Do not build massive epics (e.g., do not add Cloud Sync when asked for Export).
    - Every addition MUST pass full `VERIFY` before another `HUNT` begins. Only if `HUNT` is clean may another `ADD` begin.

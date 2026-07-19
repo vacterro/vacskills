@@ -81,8 +81,8 @@ When the Core state machine reaches a halt (no pending tickets), the Maintenance
   
   After every ADD implementation, agent MUST transition to VERIFY, then HUNT. Only if HUNT is clean may another ADD begin.
 
-### 2.3 The "etc" Convention (Implied Extension)
-When a user provides an instruction containing the keyword `etc` (e.g., "Add an Apply button etc"), the agent MUST interpret this as a strict directive to thoughtfully expand the requested feature with all complementary basic functionality to meet industrial standards.
-- If the user asks for "Apply", the agent SHOULD evaluate if "Save" or "Cancel" are contextually required.
-- If the user asks for "Export", the agent SHOULD consider "Import" or "Backup".
-- The agent MUST NOT harm existing functionality. The extension MUST strictly follow the Evolutionary ADD priorities (complementary features, workflow steps, platform conventions) to reasonably extend the user's ability to control the software.
+### 2.3 The Industrial Completion Rule
+When the user requests one element of a well-known functional cluster, the agent SHOULD evaluate whether the remaining elements are expected by modern software conventions. If so, it SHOULD implement the minimal coherent set rather than the isolated feature.
+
+- **Evaluate over blindly adding**: If asked for "Apply", the agent evaluates "Save", "Cancel", and "OK". It rejects irrelevant additions (e.g., "Save As").
+- **The smallest complete solution wins**: The agent MUST add the minimal functional cluster to make the feature coherent. It MUST NOT expand into massive related epics (e.g., "Export" justifies "Import", but does NOT justify building "Cloud Sync").
