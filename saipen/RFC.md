@@ -54,7 +54,7 @@ The protocol lives in the SAIPEN home; the project holds work, not protocol copi
 - Phase transitions MUST load the authoritative Markdown files directly from the global `saipen/phases/` directory via absolute path.
 
 ### 1.8 Batch Input Parsing (The "No Rush" Rule)
-If the user provides a raw list or backlog of multiple features, tasks, or bug reports, the agent MUST NOT attempt to implement them all in a single pass. The agent MUST parse the list into individual `TODO` tickets on `BOARD.md` and execute them surgically, strictly one by one.
+If the user provides a raw list or backlog of multiple features, tasks, or bug reports, the agent MUST NOT attempt to implement them all in a single pass. The agent MUST parse the list into individual `TODO` tickets on `BOARD.md` and execute them surgically, strictly one by one. "One by one" governs BUILD scope -- one ticket's changes per edit pass, never several tickets' code mixed into one -- not cadence. It does NOT mean pausing between tickets: under `goal_mode` (§ 2.4) tickets still flow without stopping; outside `goal_mode`, the normal per-ticket checkpoint (§ 1.5) still applies exactly as always.
 
 ---
 

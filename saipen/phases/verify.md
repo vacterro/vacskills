@@ -16,6 +16,11 @@ Reproduce exactly, quote decisive error line.
 Cheap suspects first (git log, config, env, named file).
 Hypothesis -> LOG -> test -> fix root cause, not symptom.
 Rejected hypotheses stay logged; never re-test without new evidence.
-**Cap: 3 dead hypotheses OR 2 failed fix cycles -> BLOCKED + facts.**
+**Cap: 3 dead hypotheses OR 2 failed fix cycles -> mark THIS ticket blocked
+on `BOARD.md` with the facts + dead ends, then check for another unblocked
+`TODO` ticket and work that instead.** `STATE.phase: BLOCKED` (which loads
+`phases/blocked.md` and stops for the user) is reserved for when no other
+ticket on the board is workable -- one stuck ticket MUST NOT halt a session
+that still has other work available, under `goal_mode` or otherwise.
 
 After VERIFY pass: tick BOARD, next ticket or STATE -> REVIEW.

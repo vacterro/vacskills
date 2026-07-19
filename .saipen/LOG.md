@@ -152,3 +152,10 @@
 - 19.07.26 03:16 [E-052] [parent: E-051] [T-none] DEC: Unicode flag emoji как universal baseline, SVG только если платформа умеет PASS
 - 19.07.26 03:20 [E-053] [parent: E-052] [T-none] H: Baseline Architectural Constraints жили внутри списка Industrial Completion Rule -> confirmed: разные правила, разное условие применения
 - 19.07.26 03:22 [E-053] [parent: E-052] [T-none] RUN: add.md переструктурирован, свой номер пункта, ship v7.4.4 -> pushed
+- 19.07.26 03:40 [E-054] [parent: E-053] [T-none] H: полный HUNT-проход по всем phases/*.md -> нашёл главное: verify.md/blocked.md/§2.4 расходятся в смысле BLOCKED
+- 19.07.26 03:42 [E-054] [parent: E-053] [T-none] DEC: verify.md 'BLOCKED + facts' ни слова про другие тикеты; blocked.md сразу спрашивает юзера без проверки доски -> один застрявший тикет мог убить весь goal_mode прогон
+- 19.07.26 03:45 [E-054] [parent: E-053] [T-none] RUN: verify.md -> следующий свободный тикет; blocked.md -> перепроверка доски первым шагом PASS
+- 19.07.26 03:48 [E-055] [parent: E-054] [T-none] H: init.md пишет asp_version:7 в свежий STATE -> confirmed единственный осколок старого имени во всей кодовой базе
+- 19.07.26 03:49 [E-055] [parent: E-054] [T-none] RUN: init.md -> saipen_version PASS, каждый новый проект теперь с правильной схемой
+- 19.07.26 03:52 [E-056] [parent: E-055] [T-none] H: §1.8 'strictly one by one' двусмысленно — можно прочитать как 'пауза после тикета', ломает goal_mode
+- 19.07.26 03:53 [E-056] [parent: E-055] [T-none] RUN: уточнил — это про scope BUILD, не про темп; проверил review.md отдельно, её капа корректна, не трогал; ship v7.4.5 -> pushed
