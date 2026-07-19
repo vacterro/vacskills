@@ -53,6 +53,9 @@ The protocol lives in the SAIPEN home; the project holds work, not protocol copi
 - `saipen set` in project root MUST NOT copy phases or scripts into the project. It MUST write a bootloader to `.saipen/STATE.md` pointing to the canonical `saipen/` home path.
 - Phase transitions MUST load the authoritative Markdown files directly from the global `saipen/phases/` directory via absolute path.
 
+### 1.8 Batch Input Parsing (The "No Rush" Rule)
+If the user provides a raw list or backlog of multiple features, tasks, or bug reports, the agent MUST NOT attempt to implement them all in a single pass. The agent MUST parse the list into individual `TODO` tickets on `BOARD.md` and execute them surgically, strictly one by one.
+
 ---
 
 ## Part 2: MAINTENANCE (Autonomous Evolution)
@@ -60,10 +63,11 @@ The protocol lives in the SAIPEN home; the project holds work, not protocol copi
 ### 2.1 Autonomous Transitions
 When the Core state machine reaches a halt (no pending tickets), the Maintenance layer MAY take over.
 
-- **DEFAULT BEHAVIOR**: The bare command `saipen` is an alias for `saipen continue`. If there are pending tickets on `BOARD.md`, the agent MUST resume work. If the user runs the protocol (e.g., `saipen` or `saipen continue`) and `BOARD.md` is empty (no open tickets), the agent MUST immediately transition to the `HUNT` phase to search for bugs. If `HUNT` finds nothing (clean), the agent MUST immediately transition to `ADD` to evolve the software.
+- **DEFAULT BEHAVIOR**: The bare command `saipen` is an alias for `saipen continue`. If there are pending tickets on `BOARD.md`, the agent MUST resume work.
+- **ZERO-PROMPT AUTO-TRANSITION**: If the user runs the protocol and `BOARD.md` is empty, the agent MUST NOT ask the user for instructions or permission (e.g., "Should I hunt or add?"). It MUST silently and autonomously transition to the `HUNT` phase. If `HUNT` finds nothing (clean), the agent MUST immediately transition to `ADD`.
 - **HUNT**: Transition to `HUNT` MUST occur strictly when `BOARD.md` has no open `TODO` tickets without blockers, or when explicitly signaled by a failed verification loop. Agent MUST NOT hallucinate tasks during `HUNT`.
 - **CLEAN**: Transition to `CLEAN` occurs when explicitly triggered by user via `saipen clean`. Agent MUST audit and prune stale tickets, orphaned files, and broken paths before returning to `DONE`.
-- **TRANSLATE**: Transition to `TRANSLATE` occurs when explicitly triggered by user via `saipen translate`. Agent MUST operate exclusively within `.saipen/kitchen/translation/` to build, maintain, and update the 22-language core translation system + bonus voice, without modifying the main software.
+- **TRANSLATE**: Transition to `TRANSLATE` occurs when explicitly triggered by user via `saipen translate`. Agent MUST operate exclusively within a `.saitranslate/` folder at the project root to build, maintain, and update the 22-language core translation system + bonus voice. It MUST treat the main software strictly as a read-only reference.
 
 ### 2.2 Evolutionary ADD
 - **ADD**: Agent MUST NOT invent speculative, experimental, or unrelated features. Agent MUST evaluate additions strictly using the following logic:

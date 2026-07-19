@@ -3,13 +3,13 @@
 Deep, isolated translation preparation system. This phase runs in a strictly quarantined environment and focuses exclusively on building a massive translation bundle without touching the main software.
 
 1. **Isolation Rule:**
-   - You MUST operate EXCLUSIVELY inside `.saipen/kitchen/translation/`.
-   - You MUST NOT touch, modify, or inject code into the main project files during this phase. Treat this as a background job for a separate, simultaneous agent.
+   - You MUST operate EXCLUSIVELY inside a `.saitranslate/` folder at the project root.
+   - You MUST NOT touch, modify, or inject code into the main project files during this phase. Treat the main project strictly as a read-only reference to understand what strings need translation.
 
 2. **Core Translation Build:**
-   - Establish a robust translation system infrastructure (e.g., JSON bundles, structured locales).
-   - You MUST translate the software strings into the following 22 languages: 
-     *English, Russian, Ukrainian, German, French, Spanish, Italian, Portuguese, Dutch, Polish, Swedish, Danish, Finnish, Norwegian, Japanese, Chinese, Korean, Thai, Vietnamese, Arabic, Hebrew, Estonian*.
+   - Establish a robust translation system infrastructure (e.g., JSON bundles, structured locales) inside `.saitranslate/`.
+   - You MUST translate the software strings into the following 22 languages, **prioritizing: English, Russian, Estonian, and Japanese**.
+   - The full list is: *English, Russian, Estonian, Japanese, Ukrainian, German, French, Spanish, Italian, Portuguese, Dutch, Polish, Swedish, Danish, Finnish, Norwegian, Chinese, Korean, Thai, Vietnamese, Arabic, Hebrew*.
    - **UI Assets:** For each language, you MUST associate or prepare a drawn flag icon and the configuration for live-switching in Settings.
    - **Bonus Voice:** You MUST also build a `«Дед»` (angry-grandpa) voice localization.
 
