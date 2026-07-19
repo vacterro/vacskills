@@ -143,3 +143,4 @@
 - 19.07.26 01:23 [E-047] [parent: E-046] [T-none] RUN: ship.md пофиксен, ship v7.4.1 -> pushed
 - 19.07.26 01:40 [E-048] [parent: E-047] [T-none] DEC: 'Optional acceleration' -> 'Optional Parallel Execution' — причина независимость, скорость лишь следствие PASS
 - 19.07.26 01:45 [E-048] [parent: E-047] [T-none] RUN: проверил три claim'а слоёв по факту в RFC -> все три подтверждены, зафиксировано в SPEC.md Architecture PASS
+- 19.07.26 02:00 [E-049] [parent: E-048] [T-none] RUN: README ужат 79->65 строк, убрал воду и повторы, факты все на месте, версия-бейдж починен PASS

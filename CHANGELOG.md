@@ -1,5 +1,8 @@
 # Changelog
 
+## 7.4.3 -- 2026-07-19
+- docs: README trimmed 79 -> 65 lines -- cut redundant/flavor prose (two intro paragraphs saying the same thing twice, decorative asides in the Evolution section), kept every fact intact (GOAL Mode safety valve, auto-push scope, VERIFY/REVIEW guarantee, install commands). Also fixed a stale version badge (was still showing v7.2.0).
+
 ## 7.4.2 -- 2026-07-19
 - docs: Renamed "Optional acceleration" to "Optional Parallel Execution" in RFC.md §1.3 -- independence of the 6 HUNT categories is the trigger, speed is only the consequence. SPEC.md's Architecture section now states the verified layer independence explicitly: Core (correctness/continuation) works with zero Maintenance; Maintenance (unattended evolution) works identically with or without Goal Mode; Goal Mode and Subagents are both confirmed opt-in with no downstream dependency pointing back at them.
 
