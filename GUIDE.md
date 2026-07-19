@@ -24,7 +24,7 @@ While agents interact with the file system directly, you just type normal chat m
 | `saipen continue` | Wakes up, reads the state, and executes the very next action. |
 | `saipen stop` | Forces the agent to checkpoint its work and hand control back to you. |
 | `saipen status` | Reads `.saipen/BOARD.md` and tells you what's currently going on without doing work. |
-| `saipen GOAL <text>` | Overrides current tasks and sets a new high-level plan. |
+| `saipen GOAL <text>` | Demotes (never deletes) current tasks, plans the new objective, and drives it to completion autonomously -- including auto-push on ship -- capped at 3 waves / 20 tickets per run. |
 | `saipen clean` | Forces the agent to scrub the workspace, prune old done tickets, remove orphaned files, fix bad paths, and ensure everything is updated. |
 
 ## Project Knowledge & Kitchen

@@ -1,5 +1,8 @@
 # Changelog
 
+## 7.3.1 -- 2026-07-18
+- fix: Merged `saipen GOAL <text>` with the pre-existing (undocumented-in-RFC) "pivot" semantics already promised in the guides -- entering GOAL mode now demotes (never deletes) the current board and inserts the new objective's tickets on top, before running them to completion. Normalized casing to `saipen GOAL` everywhere (was inconsistently `goal` in RFC/phases/README, matching the pre-existing `saipen SET` convention). Updated README, GUIDE.md, GUIDE_EN.md, GUIDE_RU.md to describe the full merged behavior.
+
 ## 7.3.0 -- 2026-07-18
 - feat: Introduced `saipen goal <text>` (RFC.md §2.4) -- an explicit, session-scoped autonomous mode that runs SCOUT->BUILD->VERIFY->REVIEW across successive tickets and waves without pausing to ask "shall I continue?". SHIP auto-pushes to an existing `origin` under `goal_mode`; first publish of a brand-new repository still requires explicit confirmation. VERIFY and REVIEW gates, and all existing caps (3 dead hypotheses / 2 fix cycles / 2 review passes), are never skipped. New safety valve: max 3 waves / 20 tickets per invocation before a mandatory checkpoint-and-report.
 
