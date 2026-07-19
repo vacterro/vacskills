@@ -168,3 +168,9 @@
 - 19.07.26 04:28 [E-119] [parent: E-118] [T-none] RUN: set -e ловушка на пустом grep -v -> исправлена; regex обоих валидаторов чинен, phase whitelist дополнен
 - 19.07.26 04:30 [E-120] [parent: E-119] [T-none] RUN: clean.md ужесточён, [E-CLEAN] переформатирован в [E-115] без потери смысла PASS
 - 19.07.26 04:32 [E-120] [parent: E-119] [T-none] RUN: оба валидатора эмпирически прошли по-настоящему -> bash EXIT 0, powershell EXIT 0, ship v7.4.6 -> pushed
+- 19.07.26 05:10 [E-121] [parent: E-120] [T-none] H: посмотрел 3 живых проекта (FastPrompter, Wintage, WildRift) -> формат LOG нигде не совпадает со STYLE.md примером
+- 19.07.26 05:12 [E-121] [parent: E-120] [T-none] H: WildRift 57 строк с буквальным 'XX' вместо минут, 0 из 85 строк с числовым [E-###] -> confirmed grep-ом, не догадкой
+- 19.07.26 05:15 [E-122] [parent: E-121] [T-none] DEC: корень — скелет LOG жил только в STYLE.md (голос), не в RFC (норма); даже собственный пример STYLE.md не содержал [E-###]
+- 19.07.26 05:20 [E-122] [parent: E-121] [T-none] RUN: RFC §1.2 -> строгий скелет + закрытая таксономия RUN|DEC|H впервые названа явно; STYLE.md пример синхронизирован PASS
+- 19.07.26 05:25 [E-123] [parent: E-122] [T-none] H: init.md ссылался на templates/, которого никогда не существовало -> confirmed, только extensions/templates/
+- 19.07.26 05:27 [E-123] [parent: E-122] [T-none] RUN: init.md переписан, extensions/templates/STATE.md дополнен saipen_version/schema_version/goal_mode, оба валидатора PASS -> ship v7.5.0

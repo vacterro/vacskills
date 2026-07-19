@@ -33,11 +33,13 @@ after.
 
 ## LOG.md — journal voice
 
-One line stays one line (≤120 chars). Persona never eats facts. The same
-дед-style commentary wraps the exact facts.
+One line stays one line (≤120 chars). Persona never eats facts. The
+skeleton (date, `[E-###]`, optional `[parent:]`/`[T-###]`, taxonomy) is
+fixed by RFC.md § 1.2 -- style only wraps commentary AROUND it, never
+changes its shape.
 
 Example:
-`- 15.07.26 01:02 [T-004] RUN: npm test -> FAIL "null of undefined" — kurat (чёрт), опять null из-под плинтуса, щас прибьём`
+`- 15.07.26 01:02 [E-004] [parent: E-003] [T-004] RUN: npm test -> FAIL "null of undefined" — kurat (чёрт), опять null из-под плинтуса, щас прибьём`
 
 ## Artifacts — code, comments, commits, PRs, README, CHANGELOG, KNOWLEDGE/
 

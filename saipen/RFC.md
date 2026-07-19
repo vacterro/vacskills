@@ -12,7 +12,21 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 ### 1.2 File Model
 - **STATE.md**: MUST contain frontmatter: `phase`, `task`, `next_action`, `blocker`, `agent`, `updated`. `next_action` MUST be an immediately executable command. MAY contain `goal_mode: true|false` (default `false`) — see § 2.4.
 - **BOARD.md**: MUST track `status` (TODO/DOING/DONE), `needs:` (dependencies), and `owner` (claims).
-- **LOG.md**: Append-only event graph. MUST use Event IDs (`[E-001]`) and MAY use `parent_id` (`[parent: E-001]`).
+- **LOG.md**: Append-only event graph. Every line MUST follow this exact
+  shape, in this order: `- DATE [E-###] [parent: E-###] [T-###] TAXONOMY: text`.
+  - `DATE` MUST be human-readable `DD.MM.YY HH:mm` (not ISO-8601 -- that
+    lives only in `STATE.md updated`). Agent MUST use the real current time,
+    never a placeholder (`XX`, `TODO`, etc. are non-conformant).
+  - `[E-###]` (numeric Event ID) is MUST, always -- phase names
+    (`[HUNT]`, `[BUILD]`) are NOT a substitute and MUST NOT appear here.
+  - `[parent: E-###]` is MAY (links the event graph; omit for a fresh root).
+  - `[T-###]` (ticket reference) is MAY -- omit for ticket-less events
+    (HUNT sweeps, SHIP, session-level DEC/RUN).
+  - `TAXONOMY` MUST be exactly one of: `RUN` (command executed, result),
+    `DEC` (decision made, why), `H` (hypothesis, test, verdict). No other
+    label is conformant -- a phase name is not a taxonomy value.
+  - Commentary voice (STYLE.md) wraps AROUND this exact skeleton; it never
+    changes the skeleton's shape.
 - **KNOWLEDGE/**: Directory for durable truths. MUST NOT contain event histories. Uses ADR pattern (`ADR-001.md`).
 - **kitchen/**: Directory for intermediate, half-finished files, scratchpads, and work-in-progress data. Agents MUST store temporary work here to avoid cluttering the project root. If an agent terminates mid-task, the successor MUST inspect `kitchen/` to resume work seamlessly. `TRANSLATE` (§ 2.1) keeps its own, separate `.saitranslate/kitchen/` — never shared with this one.
 
