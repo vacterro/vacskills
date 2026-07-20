@@ -69,7 +69,7 @@ tests/                      <- CONFORMANCE LAYER
 
 ## Two-Way Capability Negotiation
 Agents do not simply declare what they can do; the protocol demands what is required.
-The project defines `requires: [filesystem, git, python]` in its state. The agent cross-references its host capabilities and locks into a `mode` (e.g., `full`, `read-only`).
+The project defines `requires: [filesystem, git, shell, python]` in its state. The agent cross-references its host capabilities and locks into a `mode` (e.g., `full`, `read-only`).
 
 ## Graph-Based Event Logging
 Logs in SAIPEN are not linear strings. They form an acyclic graph of decisions using Event IDs (`E-001`). This permits complex branching, agent merging, and precise audit trails.

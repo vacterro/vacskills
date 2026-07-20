@@ -26,6 +26,9 @@ While agents interact with the file system directly, you just type normal chat m
 | `saipen status` | Reads `.saipen/BOARD.md` and tells you what's currently going on without doing work. |
 | `saipen goal <text>` | Demotes (never deletes) current tasks, plans the new objective, and drives it to completion autonomously -- including auto-push on ship -- capped at 3 waves / 20 tickets per run. |
 | `saipen clean` | Forces the agent to scrub the workspace, prune old done tickets, remove orphaned files, fix bad paths, and ensure everything is updated. |
+| `saipen translate` | Builds/updates a 22-language translation bundle in an isolated `.saitranslate/` folder, never touching your actual source. |
+| `saipen ship` | Explicitly triggers a release (version bump, changelog, tag, push) even outside the normal ticket flow. |
+| `saipen validate` | Runs the conformance check on `.saipen/` and fixes any structural corruption it finds. |
 
 ## Project Knowledge & Kitchen
 Don't put project-specific rules in the global agent prompts. Put them in `.saipen/KNOWLEDGE/`!

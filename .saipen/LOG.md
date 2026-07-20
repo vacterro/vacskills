@@ -370,3 +370,12 @@
 - 20.07.26 18:28 [E-313] [parent: E-312] [T-none] RUN: RFC § 1.9 -> extension present-но-broken (degrade если Core safe, BLOCKED если реально unsafe, extension не может ослаблять Core) PASS
 - 20.07.26 18:30 [E-314] [parent: E-313] [T-none] RUN: не стал добавлять новую tests/scenarios/ фикстуру для extension-broken -- вне файлового скоупа T-013, это T-011 территория
 - 20.07.26 18:32 [E-315] [parent: E-314] [T-none] RUN: bash + powershell validate -> оба PASS; GAP_MATRIX T-013 -> CLOSED; ship v7.15.0 -> T-013 закрыт, pushed
+- 20.07.26 18:38 [E-316] [parent: E-315] [T-none] H: user 'Execute T-014 Only' -- последний тикет директивы
+- 20.07.26 18:40 [E-317] [parent: E-316] [T-none] RUN: RFC § 1.1 -> destructive-ops rule (force-push/branch delete/history rewrite/schema drop/mass delete/user data delete/irreversible migration, confirmation required) + secrets rule расширен на kitchen/ PASS
+- 20.07.26 18:45 [E-318] [parent: E-317] [T-none] H: docs sweep -- перечитал README/GUIDE/GUIDE_EN/GUIDE_RU/SPEC свежим глазом против текущего RFC
+- 20.07.26 18:48 [E-319] [parent: E-318] [T-none] H: GUIDE.md/GUIDE_EN.md/GUIDE_RU.md -- ВСЕ ТРИ пропускают saipen translate/ship/validate -- 3 из 9 реальных команд отсутствуют в человеческой таблице, одна и та же дыра во всех трёх независимо
+- 20.07.26 18:52 [E-320] [parent: E-319] [T-none] RUN: 3 команды добавлены во все 3 гайда, каждая в своём стиле (терсе GUIDE.md, персона-стиль EN/RU) PASS
+- 20.07.26 18:55 [E-321] [parent: E-320] [T-none] H: README.md version badge снова протух до v7.6.0 (реально 7.15.0) -- ВТОРОЙ раз за жизнь протокола, тот же баг что чинил на v7.6.1
+- 20.07.26 18:58 [E-322] [parent: E-321] [T-none] RUN: README badge -> 7.15.0; SPEC.md requires: пример -> добавлен shell PASS
+- 20.07.26 19:00 [E-323] [parent: E-322] [T-none] RUN: repo-wide grep на другие стухшие v7.x -- чисто, только свежий фикс остался
+- 20.07.26 19:05 [E-324] [parent: E-323] [T-none] RUN: bash + powershell validate -> оба PASS; GAP_MATRIX T-014 -> CLOSED; ship v7.16.0 -> T-014 закрыт, ВСЯ директива resolved, pushed

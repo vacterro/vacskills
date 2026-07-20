@@ -1,7 +1,7 @@
 ---
 phase: DONE
 task: none
-next_action: "T-013 done (CLEAN safety floor, extension present-but-broken handling, TRANSLATE confirmed already-satisfied). Only T-014 remains open in SAIPEN_SPEC_DIRECTIVE.md (no destructive-ops rule in RFC.md, secrets rule doesn't cover kitchen dirs). Everything else (T-002/T-004/T-005/T-006/T-007/T-008/T-009/T-010/T-012) is CLOSED or REJECTED -- do not reopen without new evidence. Next: T-014."
+next_action: "SAIPEN_SPEC_DIRECTIVE.md fully resolved -- T-000 through T-014 all shipped or explicitly rejected with evidence (.saipen/kitchen/SAIPEN_GAP_MATRIX.md). No open tickets remain from that directive. saipen (hunt)"
 blocker: none
 saipen_version: 7
 schema_version: 1
@@ -11,5 +11,5 @@ requires:
   - git
 mode: full
 goal_mode: false
-updated: 2026-07-20T18:32:00Z
+updated: 2026-07-20T19:05:00Z
 ---
