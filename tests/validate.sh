@@ -24,6 +24,17 @@ grep -q "updated:" .saipen/STATE.md || { echo -e "${RED}FAIL: STATE.md missing u
 grep -qE "mode:[[:space:]]+(full|read-only|no-publish|manual-verify)" .saipen/STATE.md || { echo -e "${RED}FAIL: STATE.md missing mode, or mode isn't one of full|read-only|no-publish|manual-verify${NC}"; exit 1; }
 echo -e "${GREEN}PASS: STATE.md schema valid${NC}"
 
+# 1b2. mode/phase basic compatibility (RFC § 1.3) -- not the full matrix,
+# just the two restrictions already stated normatively in prose.
+if grep -qE "mode:[[:space:]]+no-publish" .saipen/STATE.md && grep -qE "phase:[[:space:]]+SHIP" .saipen/STATE.md; then
+    echo -e "${RED}FAIL: mode: no-publish MUST NOT transition to SHIP (RFC § 1.3)${NC}"
+    exit 1
+fi
+if grep -qE "mode:[[:space:]]+read-only" .saipen/STATE.md && grep -qE "phase:[[:space:]]+(BUILD|SHIP|CLEAN|TRANSLATE)" .saipen/STATE.md; then
+    echo -e "${RED}FAIL: mode: read-only MUST NOT enter BUILD/SHIP/CLEAN/TRANSLATE (RFC § 1.3)${NC}"
+    exit 1
+fi
+
 # 1b. goal_mode: true requires the persisted safety-valve counters (RFC § 2.4)
 if grep -qE "goal_mode:[[:space:]]+true" .saipen/STATE.md; then
     grep -qE "goal_waves:[[:space:]]*[0-9]+" .saipen/STATE.md || { echo -e "${RED}FAIL: goal_mode: true but goal_waves counter missing -- safety valve can't survive a restart without it${NC}"; exit 1; }
@@ -62,6 +73,14 @@ if [ -n "$DANGLING" ]; then
     exit 1
 fi
 echo -e "${GREEN}PASS: BOARD.md no dangling needs: references${NC}"
+
+# 2d. Check BOARD.md has all four required section headings (RFC § 1.2) --
+# the ticket-shape/dangling/cycle checks above never verified the headings
+# they scan under actually exist.
+for heading in "## DOING" "## TODO" "## DONE" "## BLOCKED"; do
+    grep -qxF "$heading" .saipen/BOARD.md || { echo -e "${RED}FAIL: BOARD.md missing required section heading: $heading${NC}"; exit 1; }
+done
+echo -e "${GREEN}PASS: BOARD.md has all required section headings${NC}"
 
 # 3. Check LOG.md -- every non-empty, non-comment line MUST match (date
 # prefix is optional to allow pre-STYLE.md history; new entries carry one).

@@ -327,3 +327,14 @@
 - 20.07.26 15:50 [E-270] [parent: E-269] [T-none] RUN: оба валидатора -> detect добавлен, синтетика с T-002 needs T-999 (призрак) + T-001 needs T-003 (реальный) -> только призрак поймался PASS
 - 20.07.26 15:52 [E-271] [parent: E-270] [T-none] RUN: regression sweep всех фикстур -> ноль новых поломок
 - 20.07.26 15:55 [E-272] [parent: E-271] [T-none] RUN: ship v7.11.1 -> dangling needs: закрыт, найден на честном re-check, pushed
+- 20.07.26 16:05 [E-273] [parent: E-272] [T-none] H: SAIPEN_SPEC_DIRECTIVE.md появился в корне репо -- untracked, git status его никогда раньше не показывал
+- 20.07.26 16:08 [E-274] [parent: E-273] [T-none] H: переупакованный внешний аудит, жёсткий execution-протокол (один тикет = один патч = EVIDENCE PACKAGE), T-007 goal_exit: objective по умолчанию -- отменяет решение юзера этой же сессии
+- 20.07.26 16:10 [E-275] [parent: E-274] [T-none] DEC: T-000 безопасен (audit-only, явно 'do NOT modify normative files') -- выполняю его, остальное флагаю юзеру, не выполняю молча
+- 20.07.26 16:15 [E-276] [parent: E-275] [T-none] H: BOARD.md section headings сами никогда не проверялись -- только shape тикетов внутри них, реальная дыра из T-000 checklist
+- 20.07.26 16:20 [E-277] [parent: E-276] [T-none] RUN: heading-check добавлен в оба валидатора, синтетика без ## BLOCKED -> оба честно упали PASS
+- 20.07.26 16:25 [E-278] [parent: E-277] [T-none] RUN: mode/phase basic compat (no-publish+SHIP, read-only+BUILD/SHIP/CLEAN/TRANSLATE) добавлен -- не полная матрица (та отклонена), только 2 уже нормативных правила
+- 20.07.26 16:30 [E-279] [parent: E-278] [T-none] RUN: 3 negative + 1 positive синтетических теста на обеих платформах -> все верно PASS
+- 20.07.26 16:35 [E-280] [parent: E-279] [T-none] RUN: SAIPEN_GAP_MATRIX.md собран -- перепроверил каждую evidence команду руками, одна не совпала (subagent quote), поймал и исправил до отгрузки
+- 20.07.26 16:40 [E-281] [parent: E-280] [T-none] H: заодно нашёл 3 честных новых OPEN пункта -- destructive-ops confirmation нигде в RFC, secrets rule не упоминает kitchen/, extension present-но-broken не определено -- залогировал, не чиню молча (T-000 scope)
+- 20.07.26 16:45 [E-282] [parent: E-281] [T-none] RUN: bash + powershell validate -> оба PASS; ship v7.11.2 -> T-000 закрыт, GAP_MATRIX evidence-backed, pushed
+- 20.07.26 16:45 [E-283] [parent: E-282] [T-none] DEC: SAIPEN_SPEC_DIRECTIVE.md НЕ коммичу -- T-001/002/004/006/012 переоткрывают уже отклонённое, T-007 отменяет явное решение юзера -- флагаю, жду ответа, не выполняю дальше

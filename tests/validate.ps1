@@ -23,6 +23,15 @@ Assert-Format ($stateContent -match "updated:") "STATE.md missing updated"
 Assert-Format ($stateContent -match "mode:\s+(full|read-only|no-publish|manual-verify)") "STATE.md missing mode, or mode isn't one of full|read-only|no-publish|manual-verify"
 Write-Host "PASS: STATE.md schema valid" -ForegroundColor Green
 
+# 1b2. mode/phase basic compatibility (RFC § 1.3) -- not the full matrix,
+# just the two restrictions already stated normatively in prose.
+if ($stateContent -match "mode:\s+no-publish" -and $stateContent -match "phase:\s+SHIP") {
+    Assert-Format $false "mode: no-publish MUST NOT transition to SHIP (RFC § 1.3)"
+}
+if ($stateContent -match "mode:\s+read-only" -and $stateContent -match "phase:\s+(BUILD|SHIP|CLEAN|TRANSLATE)") {
+    Assert-Format $false "mode: read-only MUST NOT enter BUILD/SHIP/CLEAN/TRANSLATE (RFC § 1.3)"
+}
+
 # 1b. goal_mode: true requires the persisted safety-valve counters (RFC § 2.4)
 if ($stateContent -match "goal_mode:\s+true") {
     Assert-Format ($stateContent -match "goal_waves:\s*\d+") "goal_mode: true but goal_waves counter missing -- safety valve can't survive a restart without it"
@@ -102,6 +111,14 @@ foreach ($entry in $deps.GetEnumerator()) {
 }
 Assert-Format ($danglingRefs.Count -eq 0) "BOARD.md has dangling needs: reference(s): $($danglingRefs -join ', ') -- referenced ticket doesn't exist anywhere on the board"
 Write-Host "PASS: BOARD.md no dangling needs: references" -ForegroundColor Green
+
+# 2d. Check BOARD.md has all four required section headings (RFC § 1.2) --
+# the ticket-shape/dangling/cycle checks above never verified the headings
+# they scan under actually exist.
+foreach ($heading in @("## DOING", "## TODO", "## DONE", "## BLOCKED")) {
+    Assert-Format (($boardLines | Where-Object { $_.Trim() -eq $heading }).Count -gt 0) "BOARD.md missing required section heading: $heading"
+}
+Write-Host "PASS: BOARD.md has all required section headings" -ForegroundColor Green
 
 # 3. Check LOG.md -- date prefix is optional (pre-STYLE.md history has none,
 # current entries carry one), everything else is mandatory.
