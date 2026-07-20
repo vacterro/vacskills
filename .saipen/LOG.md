@@ -363,3 +363,10 @@
 - 20.07.26 18:08 [E-306] [parent: E-305] [T-none] RUN: CONFORMANCE.md -> Scenario Coverage таблица, все 15 концептов из директивы явно закрыты (фикстура / уже покрыто / explicitly N/A с причиной)
 - 20.07.26 18:10 [E-307] [parent: E-306] [T-none] RUN: полный regression sweep 13 директорий tests/scenarios/ -- ноль неожиданных поломок, новые invalid фикстуры честно падают
 - 20.07.26 18:12 [E-308] [parent: E-307] [T-none] RUN: bash + powershell validate -> оба PASS; GAP_MATRIX T-011 -> CLOSED; ship v7.14.0 -> T-011 закрыт полностью, pushed
+- 20.07.26 18:18 [E-309] [parent: E-308] [T-none] H: user 'Execute T-013 Only' -- перечитал clean.md/translate.md свежим глазом, не по памяти
+- 20.07.26 18:20 [E-310] [parent: E-309] [T-none] H: TRANSLATE reconciliation -- все 5 пунктов директивы уже удовлетворены дословно (v7.10.0 фикс), ничего нового не нужно, просто подтвердил
+- 20.07.26 18:22 [E-311] [parent: E-310] [T-none] H: CLEAN реально не имел explicit 'не удалять user data без confirmation' и 'unsafe -> BLOCKED' -- настоящие дыры
+- 20.07.26 18:25 [E-312] [parent: E-311] [T-none] RUN: clean.md -> Safety floor добавлен (user data protection, BLOCKED-on-unsafe, DONE-ticket pruning не теряет историю т.к. LOG.md уже всё хранит) PASS
+- 20.07.26 18:28 [E-313] [parent: E-312] [T-none] RUN: RFC § 1.9 -> extension present-но-broken (degrade если Core safe, BLOCKED если реально unsafe, extension не может ослаблять Core) PASS
+- 20.07.26 18:30 [E-314] [parent: E-313] [T-none] RUN: не стал добавлять новую tests/scenarios/ фикстуру для extension-broken -- вне файлового скоупа T-013, это T-011 территория
+- 20.07.26 18:32 [E-315] [parent: E-314] [T-none] RUN: bash + powershell validate -> оба PASS; GAP_MATRIX T-013 -> CLOSED; ship v7.15.0 -> T-013 закрыт, pushed

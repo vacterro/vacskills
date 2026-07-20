@@ -2,8 +2,20 @@
 
 Deep repository scrub. Execute strictly in order.
 
+**Safety floor, applies to every step below:** CLEAN MUST NOT delete user data
+(anything the user created or would recognize as their own work) without
+explicit confirmation -- "obviously safe to remove" (§1/§2/§4 below) means
+scaffolding, cache, and orphaned build artifacts, never something a user
+might have meant to keep. If any step turns out unsafe to complete --
+ambiguous ownership, a deletion candidate that might be load-bearing,
+anything CLEAN can't confidently reason about -- STOP that step, ticket it
+for human review same as an ambiguous orphan (§2), and if that leaves the
+repository in a state CLEAN can't safely finish auditing, transition
+`STATE.phase: BLOCKED` instead of pushing through. CLEAN returns `DONE` only
+when it actually finished safely, not by default.
+
 1. **Board Scrub:** 
-   - Remove `[x]` DONE tasks from `BOARD.md` that are older than the current active work.
+   - Remove `[x]` DONE tasks from `BOARD.md` that are older than the current active work. This prunes `BOARD.md`, not history -- every one of those tickets' real events (created, built, verified, shipped) already lives permanently in `LOG.md`'s append-only graph; nothing is lost, just no longer cluttering the active board.
    - Prune stale or abandoned `TODO` tickets.
    - Re-check every `## BLOCKED` ticket: blocker resolved elsewhere since it
      landed there? Move it back to `## TODO`. Still stuck and genuinely
