@@ -379,3 +379,8 @@
 - 20.07.26 18:58 [E-322] [parent: E-321] [T-none] RUN: README badge -> 7.15.0; SPEC.md requires: пример -> добавлен shell PASS
 - 20.07.26 19:00 [E-323] [parent: E-322] [T-none] RUN: repo-wide grep на другие стухшие v7.x -- чисто, только свежий фикс остался
 - 20.07.26 19:05 [E-324] [parent: E-323] [T-none] RUN: bash + powershell validate -> оба PASS; GAP_MATRIX T-014 -> CLOSED; ship v7.16.0 -> T-014 закрыт, ВСЯ директива resolved, pushed
+- 20.07.26 19:10 [E-325] [parent: E-324] [T-none] H: user -- "никакие ASP и VAC больше не нужны, миграции удали, теперь только SAIPEN, другого нет" -- директива на удаление всего legacy-migration кода
+- 20.07.26 19:12 [E-326] [parent: E-325] [T-none] RUN: repo-wide grep VAC|ASP|vacskill вне LOG.md/CHANGELOG.md -> 5 hits; decisions.md (ADR v2.1.0 про .vac/metrics.md) и CONFORMANCE.md footnote (vac->vacskill->SAIPEN rename context) -> это history, не код, не трогаю, тот же принцип что весь session
+- 20.07.26 19:15 [E-327] [parent: E-326] [T-none] RUN: inject.ps1 + inject.sh полный rewrite -> Remove-LegacyBlock/strip_legacy_block, Remove-LegacySkill/rm_legacy, $legacy параметр из Copy-Skill/copy_skill и всех call sites, Aider vac/vacskill path-migration branch, осиротевший "(short alias \"vac ...\")" (никогда не был в § 1.10 Command Surface), "migrates pre-3.0 VAC" комментарий -- всё убрано
+- 20.07.26 19:18 [E-328] [parent: E-327] [T-none] RUN: оба скрипта x2 запуска каждый (powershell + bash) -> RUN1 "block refreshed" везде (текст блока изменился, vac alias пропал), RUN2 "already" везде -> идемпотентность держится после упрощения PASS
+- 20.07.26 19:20 [E-329] [parent: E-328] [T-none] RUN: ship v7.16.1 -> legacy ASP/VAC/vacskill убран из bootstrap-скриптов, только SAIPEN остаётся, pushed
