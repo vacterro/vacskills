@@ -30,7 +30,7 @@ Activate this mode to systematically expand the software's capabilities. SAIPEN 
    - Transition to `PLAN` or `SCOUT` phase to begin immediate implementation.
 
 4. **The Industrial Completion Rule:**
-   - When the user requests one step of a well-known user workflow, you MUST evaluate what else is needed to make the feature industrially complete.
+   - When the user requests one step of a well-known user workflow, you SHOULD evaluate what else is needed to make the feature industrially complete -- a judgment call, not mechanical (RFC § 2.3).
    - You MUST implement the *minimal coherent set* (e.g., adding "Cancel" and "Save" if asked for "Apply").
    - The smallest complete solution wins. Do not build massive epics (e.g., do not add Cloud Sync when asked for Export).
    - Complete before you extend: finish the requested workflow before proposing a different one (e.g., "Login" implies "Logout" — not OAuth or SSO). The agent SHOULD preserve user expectations before introducing new capabilities.

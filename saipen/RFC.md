@@ -11,7 +11,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ### 1.2 File Model
 - **STATE.md**: MUST contain frontmatter: `phase`, `task`, `next_action`, `blocker`, `agent`, `updated`. `next_action` MUST be an immediately executable command. MAY contain `goal_mode: true|false` (default `false`) — see § 2.4.
-- **BOARD.md**: MUST track ticket status via section headings `## DOING` / `## TODO` / `## DONE` / `## BLOCKED`, plus `needs:` (dependencies) and `owner` (claims) per ticket. `## BLOCKED` holds ticket-level blocks only (§ VERIFY debug cap: facts + dead ends noted on the ticket) — distinct from session-level `STATE.phase: BLOCKED` (§ 1.6, `phases/blocked.md`), which is reserved for when no ticket anywhere on the board is workable. The Pick Rule (§ 1.6) only ever selects from `## TODO`, so a `## BLOCKED` ticket is automatically excluded without extra filtering logic.
+- **BOARD.md**: MUST track ticket status via section headings `## DOING` / `## TODO` / `## DONE` / `## BLOCKED`, plus `needs:` (dependencies) and `owner` (claims) per ticket. `## BLOCKED` holds ticket-level blocks only (`phases/verify.md`'s debug cap: facts + dead ends noted on the ticket) — distinct from session-level `STATE.phase: BLOCKED` (§ 1.6, `phases/blocked.md`), which is reserved for when no ticket anywhere on the board is workable. The Pick Rule (§ 1.6) only ever selects from `## TODO`, so a `## BLOCKED` ticket is automatically excluded without extra filtering logic.
 - **LOG.md**: Append-only event graph. Every line MUST follow this exact
   shape, in this order: `- DATE [E-###] [parent: E-###] [T-###] TAXONOMY: text`.
   - `DATE` MUST be human-readable `DD.MM.YY HH:mm` (not ISO-8601 -- that
@@ -57,7 +57,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 ### 1.6 Core State Machine & Ticket DAG
 `INIT → PLAN → SCOUT → BUILD → VERIFY → REVIEW → SHIP → DONE | BLOCKED`
 
-- **Ticket DAG**: Tickets MUST define dependencies using `needs: [T-XXX]`. Agents MUST NOT pick `TODO` tickets unless all `needs:` are marked `DONE`.
+- **Ticket DAG**: Tickets MUST define dependencies using `needs: [T-XXX]`. **Pick Rule**: Agents MUST NOT pick a `TODO` ticket unless all its `needs:` are marked `DONE`.
 - **VERIFY**: MUST be executed. Failure loops back to `BUILD` (max 2 loops) or `SCOUT`. Success transitions to `REVIEW`.
 - **MANUAL-VERIFY**: If `mode: manual-verify`, `VERIFY` MUST block and await human confirmation. Agent MUST NOT auto-transition to `REVIEW`.
 - **DONE**: A ticket MUST NOT be marked `DONE` without a successful `VERIFY` (or human `MANUAL-VERIFY`).
@@ -78,7 +78,7 @@ If the user provides a raw list or backlog of multiple features, tasks, or bug r
 ### 1.10 Command Surface
 The complete set of recognized user-facing commands. Phase-affecting ones are defined in full where cited; `status` and `stop` are defined here because they are meta/control operations, not phase transitions -- they can be invoked from any phase and MUST NOT be treated as work themselves.
 - `saipen set` / `saipen init` -- bootstrap `.saipen/` (§ 1.7, `phases/init.md`).
-- `saipen continue` / bare `saipen` -- read `STATE.md`/`BOARD.md`/tail of `LOG.md`, execute `next_action` immediately, no rebriefing (§ 1.1, `CONFORMANCE.md` TEST-001).
+- `saipen continue` / bare `saipen` -- read `STATE.md`/`BOARD.md`/tail of `LOG.md`, execute `next_action` immediately, no rebriefing (§ 1.1, § 2.1 DEFAULT BEHAVIOR, `CONFORMANCE.md` TEST-001).
 - `saipen goal <text>` -- pivot to a new objective, run to completion (§ 2.4).
 - `saipen clean` -- deep repository scrub (`phases/clean.md`).
 - `saipen translate` -- isolated translation build (`phases/translate.md`).
@@ -124,7 +124,7 @@ When the Core state machine reaches a halt (no pending tickets), the Maintenance
   After every ADD implementation, agent MUST transition to VERIFY, then HUNT. Only if HUNT is clean may another ADD begin.
 
 ### 2.3 The Industrial Completion Rule
-When the user requests one step of a well-known user workflow, the agent SHOULD evaluate whether the remaining steps are expected by modern software conventions. If so, it SHOULD implement the minimal coherent set rather than the isolated feature.
+When the user requests one step of a well-known user workflow, the agent SHOULD evaluate whether the remaining steps are expected by modern software conventions -- this evaluation is a judgment call, not mechanical. If the evaluation concludes yes, the agent MUST implement the minimal coherent set rather than the isolated feature -- once triggered, this is a discipline requirement, not optional.
 
 - **Evaluate over blindly adding**: If asked for "Apply", the agent evaluates "Save", "Cancel", and "OK". It rejects irrelevant additions (e.g., "Save As").
 - **The smallest complete solution wins**: The agent MUST complete the minimal coherent set for the requested workflow. It MUST NOT expand into massive related epics (e.g., "Export" justifies "Import", but does NOT justify building "Cloud Sync").

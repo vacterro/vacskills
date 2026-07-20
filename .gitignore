@@ -1,6 +1,3 @@
-.asp/tmp/
-.asp/history/
-.vac/tmp/
 *.bak
 .DS_Store
 Thumbs.db

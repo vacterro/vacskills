@@ -230,3 +230,20 @@
 - 20.07.26 09:28 [E-173] [parent: E-172] [T-none] RUN: § 1.10 -> status/stop нормативно определены (MUST read-only, MUST checkpoint+halt, stop переигрывает goal_mode), остальные команды cross-ref на существующие секции
 - 20.07.26 09:30 [E-174] [parent: E-173] [T-none] RUN: bash + powershell validate -> оба PASS; non-ascii sweep RFC.md -> только § (c2 a7), чисто
 - 20.07.26 09:33 [E-175] [parent: E-174] [T-none] RUN: ship v7.7.0 -> RFC § 1.10 Command Surface (status/stop formalized), pushed
+- 20.07.26 09:40 [E-176] [parent: E-175] [T-none] H: user велел 'полный нормальный обзор, контрольный' -> перечитал RFC.md целиком с нуля, свежим глазом
+- 20.07.26 09:45 [E-177] [parent: E-176] [T-none] H: § 2.3 сам себе противоречит -- открывающий абзац SHOULD implement, через 2 строки MUST complete, та же самая обязанность двумя разными словами RFC 2119, kurat
+- 20.07.26 09:48 [E-178] [parent: E-177] [T-none] DEC: разделил на два разных обязательства -- оценка (SHOULD, судейское решение) и исполнение после триггера (MUST, дисциплина) -- add.md тоже поправил в ту же сторону
+- 20.07.26 09:52 [E-179] [parent: E-178] [T-none] H: § 1.2 цитирует '§ VERIFY debug cap' -- параграфа с таким номером нет, VERIFY живёт в phases/verify.md, не в RFC-секции
+- 20.07.26 09:54 [E-180] [parent: E-179] [T-none] RUN: цитата исправлена на прямую ссылку на файл; заодно 'Pick Rule' формально назван в § 1.6, а не просто подразумевается PASS
+- 20.07.26 09:58 [E-181] [parent: E-180] [T-none] RUN: § 1.10 continue -- добавлена ссылка на § 2.1 DEFAULT BEHAVIOR, реальное определение, не только § 1.1
+- 20.07.26 10:05 [E-182] [parent: E-181] [T-none] H: repo-wide non-ascii grep поймал style/default.md и style/grandpa.md -- та же mojibake болезнь; папка style/ вообще нигде в живом протоколе не упомянута, призрачный механизм переключения голосов
+- 20.07.26 10:12 [E-183] [parent: E-182] [T-none] H: заподозрил CRLF порчу в 4 .sh скриптах -- od -c grep метод дал 125/9/44/35 совпадений, испугался
+- 20.07.26 10:18 [E-184] [parent: E-183] [T-none] RUN: sed + tr на inject.sh -- счётчик не изменился ни на единицу, значит метод детекта врёт, не файлы
+- 20.07.26 10:22 [E-185] [parent: E-184] [T-none] RUN: честная проверка -- od -An -tx1 grep '^0d$' на git HEAD blob -> 0 CR байт во всех 4 файлах, ложная тревога, sürgama метод был кривой с самого начала
+- 20.07.26 10:25 [E-186] [parent: E-185] [T-none] DEC: .gitattributes eol=lf для *.sh оставляю как защиту на будущее (не вредит), а не как фикс несуществующей поломки -- честно об этом и в CHANGELOG
+- 20.07.26 10:28 [E-187] [parent: E-186] [T-none] H: .gitignore тащит мёртвые .asp/tmp .asp/history .vac/tmp -- ничего с такими именами больше не создаётся
+- 20.07.26 10:30 [E-188] [parent: E-187] [T-none] RUN: .gitignore почищен PASS
+- 20.07.26 10:35 [E-189] [parent: E-188] [T-none] DEC: спросил юзера на счёт style/ (переключаемые голоса, нигде не подключены) -- три опции, юзер выбрал удалить как мёртвый код
+- 20.07.26 10:38 [E-190] [parent: E-189] [T-none] RUN: git rm -r style/ -> 4 файла удалены, repo-wide grep подтвердил ноль живых ссылок PASS
+- 20.07.26 10:42 [E-191] [parent: E-190] [T-none] RUN: bash + powershell validate -> оба PASS финально
+- 20.07.26 10:45 [E-192] [parent: E-191] [T-none] RUN: ship v7.7.1 -> control review: § 2.3 SHOULD/MUST fix, цитаты, gitattributes/gitignore hygiene, style/ removed, pushed
