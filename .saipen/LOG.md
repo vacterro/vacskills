@@ -277,3 +277,8 @@
 - 20.07.26 12:28 [E-220] [parent: E-219] [T-none] DEC: RFC 'Uses ADR pattern (ADR-001.md)' смягчаю -- называю оба стиля валидными, фиксирую то что реально происходит, а не то что почти никто не делает
 - 20.07.26 12:30 [E-221] [parent: E-220] [T-none] RUN: RFC § 1.2 KNOWLEDGE/ строка переписана PASS; extensions/templates/KNOWLEDGE/ADR-001.md не трогаю -- честный шаблон для формального случая
 - 20.07.26 12:32 [E-222] [parent: E-221] [T-none] RUN: bash + powershell validate -> оба PASS; ship v7.8.1 -> меньше прошлого раунда, честно об этом в CHANGELOG, pushed
+- 20.07.26 12:38 [E-223] [parent: E-222] [T-none] H: user 'го дальше' -> UI.md вообще ни разу за сессию не читан, а на него глобальная инструкция юзера ссылается постоянно
+- 20.07.26 12:40 [E-224] [parent: E-223] [T-none] H: UI.md -- та же PowerShell mojibake болезнь: em-dash, 640Г—480 (х), в‰¤/в‰Ґ в accessibility floor -- CSS токены сами чистые, порча только в прозе
+- 20.07.26 12:42 [E-225] [parent: E-224] [T-none] RUN: Edit replace_all по каждому битому паттерну -> все 4 запроса совпали с первого раза (не как со стрелкой раньше), PASS чистый ASCII
+- 20.07.26 12:45 [E-226] [parent: E-225] [T-none] RUN: non-ascii sweep UI.md -> 0, no BOM; assets/ проверены -> все 4 картинки на месте, битых ссылок нет
+- 20.07.26 12:48 [E-227] [parent: E-226] [T-none] RUN: bash + powershell validate -> оба PASS; ship v7.8.2 -> UI.md mojibake fix, pushed
