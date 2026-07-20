@@ -14,6 +14,12 @@ unopted project. Needs 100% green.
 6. First publish (no `origin` yet): confirm name + public/private with user
    -- ALWAYS, even under `goal_mode`. New public artifact is a one-way door.
 7. LOG: `RUN: ship vX.Y.Z -> pushed HASH`.
+8. Push rejected or fails (auth, network, non-fast-forward, hook failure):
+   LOG `RUN: ship vX.Y.Z -> push FAILED <reason>` -- never claim success on
+   a failed push. Commit/tag stay local. Transient (network/auth)? Retry
+   once. Still failing, or non-transient (diverged history, rejected)?
+   `STATE.phase: BLOCKED` -- pushing is the one SHIP step an agent must not
+   guess its way through.
 
 After SHIP: STATE -> DONE. `goal_mode: true`? Do not treat this as a
 stopping point even momentarily -- `next_action` MUST already name the

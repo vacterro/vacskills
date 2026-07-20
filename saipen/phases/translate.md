@@ -3,7 +3,7 @@
 Deep, isolated translation preparation system. This phase runs in a strictly quarantined environment and focuses exclusively on building a massive translation bundle without touching the main software.
 
 1. **Isolation Rule:**
-   - You MUST operate EXCLUSIVELY inside a `.saitranslate/` folder at the project root.
+   - "Exclusively inside `.saitranslate/`" scopes the *translation work itself* -- the software's source and assets. It does NOT suspend normal SAIPEN bookkeeping: `.saipen/STATE.md`/`BOARD.md`/`LOG.md` still get checkpointed exactly as every other phase requires (§ 1.5). Isolation and protocol discipline are not in tension.
    - You MUST NOT touch, modify, or inject code into the main project files during this phase. Treat the main project strictly as a read-only reference to understand what strings need translation.
    - `.saitranslate/` has its own `kitchen/` for scratch and half-finished work -- separate from `.saipen/kitchen/`, never shared with it. Nothing from this phase's scratch work belongs in the main project's kitchen.
 

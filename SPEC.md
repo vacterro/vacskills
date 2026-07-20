@@ -59,8 +59,8 @@ extensions/                 <- THE ADAPTIVE LAYER
   adapters/                 per-model instruction bridges
   schemas/                  reference file schemas (not machine-enforced, see schemas/README.md)
   templates/                fresh .saipen/ boilerplate
-  security/                 security scanning hooks (RFC § 1.9, attaches to VERIFY)
-  performance/              performance benchmark hooks (RFC § 1.9, attaches to REVIEW)
+  security/                 EXAMPLE hook to copy into a project (RFC § 1.9, attaches to VERIFY)
+  performance/              EXAMPLE hook to copy into a project (RFC § 1.9, attaches to REVIEW)
 
 tests/                      <- CONFORMANCE LAYER
   validate.ps1 / .sh        protocol self-check validator

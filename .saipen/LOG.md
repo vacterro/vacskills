@@ -291,3 +291,17 @@
 - 20.07.26 13:12 [E-234] [parent: E-233] [T-none] H: перепроверил VERIFY 3/2 и REVIEW 2-pass капы на ту же болезнь -- нет, они per-ticket, LOG сам их восстанавливает, рестарт терпим
 - 20.07.26 13:14 [E-235] [parent: E-234] [T-none] H: bare HUNT<->ADD без goal_mode -- намеренно без числового капа, ADD сам решает 'продукт зрелый', это дизайн, не дыра
 - 20.07.26 13:16 [E-236] [parent: E-235] [T-none] RUN: bash + powershell validate -> оба PASS; ship v7.9.0 -> goal_mode safety valve теперь реально reliable через рестарты, pushed
+- 20.07.26 13:25 [E-237] [parent: E-236] [T-none] H: user принёс здоровенный внешний ревью от другого агента -- разобрал по пунктам, не копирую вслепую
+- 20.07.26 13:35 [E-238] [parent: E-237] [T-none] DEC: половина реальные дыры, половина уже закрыто (не подтянул phase-доки), половина оверинжиниринг против уже принятых решений (lock file против SPEC.md, маркер-грамматика против 'текст это проза')
+- 20.07.26 13:40 [E-239] [parent: E-238] [T-none] H: goal_exit objective/mature -- концептуальный вопрос, отменяет WildRift-фикс этой же сессии -- спросил юзера, не решил сам
+- 20.07.26 13:42 [E-240] [parent: E-239] [T-none] DEC: юзер подтвердил -- оставить как есть, board-empty никогда не exit
+- 20.07.26 13:48 [E-241] [parent: E-240] [T-none] H: САМАЯ ценная находка -- мой же § 1.9 (v7.6.0) 'extensions/ at project root' указывает в никуда, init.md/инжектор никогда туда ничего не копируют, только SAIPEN home имеет живые копии
+- 20.07.26 13:52 [E-242] [parent: E-241] [T-none] RUN: § 1.9 переписан -- SAIPEN home копии = examples для копирования, project root = где реально ищет агент PASS
+- 20.07.26 13:55 [E-243] [parent: E-242] [T-none] RUN: security/performance README.md помечены EXAMPLE, SPEC.md дерево тоже PASS
+- 20.07.26 14:00 [E-244] [parent: E-243] [T-none] RUN: STATE.md mode в MUST-список, read-only явный запрет фаз, cycle->BLOCKED процедура, LOG E-ID unique+monotonic, parent must exist, BOARD ID unique + pipe-escape PASS
+- 20.07.26 14:05 [E-245] [parent: E-244] [T-none] RUN: checkpoint write order (STATE последним), Recovery бэкапит битый STATE перед перезаписью PASS
+- 20.07.26 14:08 [E-246] [parent: E-245] [T-none] RUN: 'saipen ship' добавлен в § 1.10 (сам себя нарушал), unknown-command правило добавлено PASS
+- 20.07.26 14:10 [E-247] [parent: E-246] [T-none] RUN: translate.md изоляция уточнена (не блокирует .saipen/ checkpoint), ship.md failed-push обработка добавлена PASS
+- 20.07.26 14:15 [E-248] [parent: E-247] [T-none] RUN: tests/scenarios/dependency-cycle создан -- вручную проверил cycle-detection логику на фикстуре, T-001/T-002 цикл найден, T-003 корректно вне цикла
+- 20.07.26 14:18 [E-249] [parent: E-248] [T-none] RUN: bash + powershell validate -> оба PASS; полный перечит RFC.md целиком -- когерентно, противоречий нет
+- 20.07.26 14:22 [E-250] [parent: E-249] [T-none] RUN: ship v7.10.0 -> внешний аудит разобран и триажирован, extensions/ location bug закрыт, pushed

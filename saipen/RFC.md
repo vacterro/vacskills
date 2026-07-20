@@ -10,8 +10,8 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 - Agent MUST degrade capabilities if host tools are missing.
 
 ### 1.2 File Model
-- **STATE.md**: MUST contain frontmatter: `phase`, `task`, `next_action`, `blocker`, `agent`, `updated`. `next_action` MUST be an immediately executable command. MAY contain `goal_mode: true|false` (default `false`) — see § 2.4. While `goal_mode: true`, MUST also carry `goal_waves` and `goal_tickets` (integers, both start at `0`) — the persisted safety-valve counters § 2.4 defines; absent/cleared once `goal_mode` returns to `false`.
-- **BOARD.md**: MUST track ticket status via section headings `## DOING` / `## TODO` / `## DONE` / `## BLOCKED`. Every ticket line MUST follow this exact shape: `- [ ] T-### description`, checkbox `[ ]` open / `[x]` done / `[/]` in-progress, optionally followed by any of ` | needs: T-###,T-###`, ` | owner: AgentID`, ` | claim_time: ISO8601`, ` | blocker: facts + dead ends` as space-pipe-separated fields -- only the fields that apply, in any order. **Changing a ticket's status MUST move its line: cut from the old heading, paste under the new one. A ticket MUST NOT appear under two headings at once, and MUST NOT be left duplicated under its old section.** `## BLOCKED` holds ticket-level blocks only (`phases/verify.md`'s debug cap: facts + dead ends noted via the `| blocker:` field) — distinct from session-level `STATE.phase: BLOCKED` (§ 1.6, `phases/blocked.md`), which is reserved for when no ticket anywhere on the board is workable. The Pick Rule (§ 1.6) only ever selects from `## TODO`, so a `## BLOCKED` ticket is automatically excluded without extra filtering logic.
+- **STATE.md**: MUST contain frontmatter: `phase`, `task`, `next_action`, `blocker`, `agent`, `mode`, `updated`. `next_action` MUST be an immediately executable command. `mode` is written per § 1.3 capability negotiation. MAY contain `goal_mode: true|false` (default `false`) — see § 2.4. While `goal_mode: true`, MUST also carry `goal_waves` and `goal_tickets` (integers, both start at `0`) — the persisted safety-valve counters § 2.4 defines; absent/cleared once `goal_mode` returns to `false`.
+- **BOARD.md**: MUST track ticket status via section headings `## DOING` / `## TODO` / `## DONE` / `## BLOCKED`. Every ticket line MUST follow this exact shape: `- [ ] T-### description`, checkbox `[ ]` open / `[x]` done / `[/]` in-progress, optionally followed by any of ` | needs: T-###,T-###`, ` | owner: AgentID`, ` | claim_time: ISO8601`, ` | blocker: facts + dead ends` as space-pipe-separated fields -- only the fields that apply, in any order. **Changing a ticket's status MUST move its line: cut from the old heading, paste under the new one. A ticket MUST NOT appear under two headings at once, and MUST NOT be left duplicated under its old section.** `T-###` IDs MUST be unique and MUST NOT be reused once assigned, even after the ticket is `DONE` or pruned. A literal `|` inside `description` MUST be escaped as `\|` -- unescaped, it is indistinguishable from a field separator. `## BLOCKED` holds ticket-level blocks only (`phases/verify.md`'s debug cap: facts + dead ends noted via the `| blocker:` field) — distinct from session-level `STATE.phase: BLOCKED` (§ 1.6, `phases/blocked.md`), which is reserved for when no ticket anywhere on the board is workable. The Pick Rule (§ 1.6) only ever selects from `## TODO`, so a `## BLOCKED` ticket is automatically excluded without extra filtering logic. **Cyclic `needs:`** (CONFORMANCE.md requires the graph stay acyclic): on detection, the agent MUST move every ticket in the cycle to `## BLOCKED` with `| blocker: dependency cycle: T-###,T-###,...`, LOG a `DEC` line, and continue with other workable tickets -- never pick from inside a known cycle.
 - **LOG.md**: Append-only event graph. Every line MUST follow this exact
   shape, in this order: `- DATE [E-###] [parent: E-###] [T-###] TAXONOMY: text`.
   - `DATE` MUST be human-readable `DD.MM.YY HH:mm` (not ISO-8601 -- that
@@ -19,7 +19,9 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
     never a placeholder (`XX`, `TODO`, etc. are non-conformant).
   - `[E-###]` (numeric Event ID) is MUST, always -- phase names
     (`[HUNT]`, `[BUILD]`) are NOT a substitute and MUST NOT appear here.
-  - `[parent: E-###]` is MAY (links the event graph; omit for a fresh root).
+    IDs MUST be unique and MUST increase monotonically -- never reused,
+    never assigned out of order.
+  - `[parent: E-###]` is MAY (links the event graph; omit for a fresh root). When present, it MUST reference an `E-###` that already exists earlier in the file -- a dangling parent breaks the graph Recovery (§ 1.5) depends on.
   - `[T-###]` (ticket reference) is MAY -- omit for ticket-less events
     (HUNT sweeps, SHIP, session-level DEC/RUN).
   - `TAXONOMY` MUST be exactly one of: `RUN` (command executed, result),
@@ -36,7 +38,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 3. **Mode Lock**: Agent MUST write operating mode to `STATE.md` (`mode: full | read-only | no-publish | manual-verify`).
    - Missing Git: `mode: no-publish`. Agent MUST NOT transition to `SHIP`.
    - Missing Shell: `mode: manual-verify`.
-   - Missing Filesystem Write: `mode: read-only`.
+   - Missing Filesystem Write: `mode: read-only`. Agent MUST NOT transition to `BUILD`, `SHIP`, `CLEAN`, `TRANSLATE`, or make any `ADD`/`HUNT` change beyond reporting findings -- every phase that would write to disk is out of reach. The agent MAY still read, analyze, and report; it advises, it does not act.
 4. **Optional Parallel Execution**: `subagents` (parallel task/agent
    spawning) is never required and never gates a phase or sets `mode`.
    Its trigger is independence, not speed -- `HUNT`'s 6 signal categories
@@ -51,8 +53,8 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 - Conflicting writes: First successful filesystem commit wins.
 
 ### 1.5 Checkpointing & Recovery
-- **Checkpointing**: MUST checkpoint after every ticket or before session termination. Update `BOARD.md`, set `STATE.md` explicit `next_action`, flush `LOG.md`. On-disk state MUST be atomic.
-- **Recovery**: If `STATE.md` is stale but `LOG.md` or `BOARD.md` is newer, `git status` is ground truth. Rebuild `STATE.md` based on latest `LOG.md` entry and open DOING ticket. If the recovered `STATE.md` shows (or `LOG.md` shows a `DEC` pivot line for) `goal_mode: true`, `goal_waves`/`goal_tickets` MUST be rebuilt too -- count wave/ticket-completion events in `LOG.md` since that pivot line, never assume `0`. Losing the count on recovery is exactly the failure § 2.4's safety valve exists to prevent.
+- **Checkpointing**: MUST checkpoint after every ticket or before session termination. Three separate files cannot be written as one atomic transaction, so order stands in for atomicity: **(1)** append the `LOG.md` event, **(2)** write `BOARD.md` (temp file + rename), **(3)** write `STATE.md` (temp file + rename) *last* -- `STATE.md` is the commit pointer. A crash between any two steps always leaves `STATE.md` truthfully behind `LOG.md`/`BOARD.md`, never ahead of them, which is exactly the condition Recovery below already knows how to fix. Writing `STATE.md` first (or in any other order) can leave it claiming something `BOARD.md` doesn't yet reflect -- a crash Recovery would not reliably catch.
+- **Recovery**: If `STATE.md` is stale but `LOG.md` or `BOARD.md` is newer, `git status` is ground truth. Before overwriting a corrupt or stale `STATE.md`, copy it to `.saipen/recovery/<timestamp>-STATE.md` -- Recovery reconstructs from evidence, it does not destroy evidence. Rebuild `STATE.md` based on latest `LOG.md` entry and open DOING ticket. If the recovered `STATE.md` shows (or `LOG.md` shows a `DEC` pivot line for) `goal_mode: true`, `goal_waves`/`goal_tickets` MUST be rebuilt too -- count wave/ticket-completion events in `LOG.md` since that pivot line, never assume `0`. Losing the count on recovery is exactly the failure § 2.4's safety valve exists to prevent.
 
 ### 1.6 Core State Machine & Ticket DAG
 `INIT → PLAN → SCOUT → BUILD → VERIFY → REVIEW → SHIP → DONE | BLOCKED`
@@ -71,8 +73,9 @@ The protocol lives in the SAIPEN home; the project holds work, not protocol copi
 If the user provides a raw list or backlog of multiple features, tasks, or bug reports, the agent MUST NOT attempt to implement them all in a single pass. The agent MUST parse the list into individual `TODO` tickets on `BOARD.md` and execute them surgically, strictly one by one. "One by one" governs BUILD scope -- one ticket's changes per edit pass, never several tickets' code mixed into one -- not cadence. It does NOT mean pausing between tickets: under `goal_mode` (§ 2.4) tickets still flow without stopping; outside `goal_mode`, the normal per-ticket checkpoint (§ 1.5) still applies exactly as always.
 
 ### 1.9 Extension Discovery
-- `extensions/<name>/` at the project root is an optional, project-attached phase hook (e.g. `security`, `performance`). Each extension's own `README.md` states which phase it attaches to and what it requires there.
-- On entering a phase, the agent MUST check whether `extensions/<name>/` exists for that phase before proceeding. If it exists, its README's instructions apply for that phase. If it is absent, the phase proceeds exactly as its `phases/*.md` doc describes, with zero extension overhead. Absence MUST NOT block a phase transition -- extensions layer on top of Core, they never gate it.
+- `extensions/<name>/` **in the consuming project's own root** (not the SAIPEN home) is an optional, project-attached phase hook (e.g. `security`, `performance`) that the project's own author creates and maintains -- `saipen set` / `init.md` and the injector do NOT auto-populate it, the same way they never auto-populate a project's `tests/`. Each extension's own `README.md` states which phase it attaches to and what it requires there.
+- On entering a phase, the agent MUST check whether the *project's* `extensions/<name>/` exists for that phase before proceeding. If it exists, its README's instructions apply for that phase. If it is absent, the phase proceeds exactly as its `phases/*.md` doc describes, with zero extension overhead. Absence MUST NOT block a phase transition -- extensions layer on top of Core, they never gate it.
+- The `extensions/security/` and `extensions/performance/` folders inside the SAIPEN home itself are reference *examples* for a project author to copy and adapt -- the same role `extensions/templates/` plays for `.saipen/` boilerplate. They are not live hooks the SAIPEN home reads on its own behalf; nothing discovers them unless a project author has replicated the pattern into their own project root.
 - `extensions/schemas/` is a distinct, non-behavioral case: descriptive JSON Schemas held for a future external validator, explicitly not read by any agent today (see `extensions/schemas/README.md`). It is not a phase hook and this section does not apply to it.
 
 ### 1.10 Command Surface
@@ -82,10 +85,11 @@ The complete set of recognized user-facing commands. Phase-affecting ones are de
 - `saipen goal <text>` -- pivot to a new objective, run to completion (§ 2.4).
 - `saipen clean` -- deep repository scrub (`phases/clean.md`).
 - `saipen translate` -- isolated translation build (`phases/translate.md`).
+- `saipen ship` -- explicit SHIP trigger (`phases/ship.md`); SHIP also fires implicitly per that phase's other stated conditions.
 - `saipen status` -- MUST read `BOARD.md` and `STATE.md` and report current phase, the in-flight ticket, and what's queued next. MUST NOT write to any file or perform any work -- read-only, no exceptions, regardless of `goal_mode`.
 - `saipen stop` -- MUST checkpoint immediately per § 1.5 (flush `LOG.md`, update `BOARD.md`, set an explicit resumable `next_action`), then halt and return control to the user. MUST NOT leave a ticket mid-edit. Overrides `goal_mode` -- it is the user's manual brake and always wins.
 
-Any command not listed here that appears in a `phases/*.md` doc without a matching definition in this section is non-conformant; add it here before relying on it.
+Any command not listed here that appears in a `phases/*.md` doc without a matching definition in this section is non-conformant; add it here before relying on it. If the user types `saipen <word>` and `<word>` matches none of the above and isn't plausibly free-text for `goal`/bare `continue`, the agent MUST NOT invent behavior for it -- list the recognized commands and stop.
 
 ---
 
