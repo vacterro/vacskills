@@ -21,7 +21,15 @@ grep -q "next_action:" .saipen/STATE.md || { echo -e "${RED}FAIL: STATE.md missi
 grep -q "blocker:" .saipen/STATE.md || { echo -e "${RED}FAIL: STATE.md missing blocker${NC}"; exit 1; }
 grep -q "agent:" .saipen/STATE.md || { echo -e "${RED}FAIL: STATE.md missing agent${NC}"; exit 1; }
 grep -q "updated:" .saipen/STATE.md || { echo -e "${RED}FAIL: STATE.md missing updated${NC}"; exit 1; }
+grep -qE "mode:[[:space:]]+(full|read-only|no-publish|manual-verify)" .saipen/STATE.md || { echo -e "${RED}FAIL: STATE.md missing mode, or mode isn't one of full|read-only|no-publish|manual-verify${NC}"; exit 1; }
 echo -e "${GREEN}PASS: STATE.md schema valid${NC}"
+
+# 1b. goal_mode: true requires the persisted safety-valve counters (RFC § 2.4)
+if grep -qE "goal_mode:[[:space:]]+true" .saipen/STATE.md; then
+    grep -qE "goal_waves:[[:space:]]*[0-9]+" .saipen/STATE.md || { echo -e "${RED}FAIL: goal_mode: true but goal_waves counter missing -- safety valve can't survive a restart without it${NC}"; exit 1; }
+    grep -qE "goal_tickets:[[:space:]]*[0-9]+" .saipen/STATE.md || { echo -e "${RED}FAIL: goal_mode: true but goal_tickets counter missing -- safety valve can't survive a restart without it${NC}"; exit 1; }
+    echo -e "${GREEN}PASS: goal_mode counters present${NC}"
+fi
 
 # 2. Check BOARD.md (cycles are complex in pure bash, doing basic syntax check)
 if [ ! -f ".saipen/BOARD.md" ]; then

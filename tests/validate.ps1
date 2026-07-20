@@ -20,7 +20,15 @@ Assert-Format ($stateContent -match "next_action:") "STATE.md missing next_actio
 Assert-Format ($stateContent -match "blocker:") "STATE.md missing blocker"
 Assert-Format ($stateContent -match "agent:") "STATE.md missing agent"
 Assert-Format ($stateContent -match "updated:") "STATE.md missing updated"
+Assert-Format ($stateContent -match "mode:\s+(full|read-only|no-publish|manual-verify)") "STATE.md missing mode, or mode isn't one of full|read-only|no-publish|manual-verify"
 Write-Host "PASS: STATE.md schema valid" -ForegroundColor Green
+
+# 1b. goal_mode: true requires the persisted safety-valve counters (RFC § 2.4)
+if ($stateContent -match "goal_mode:\s+true") {
+    Assert-Format ($stateContent -match "goal_waves:\s*\d+") "goal_mode: true but goal_waves counter missing -- safety valve can't survive a restart without it"
+    Assert-Format ($stateContent -match "goal_tickets:\s*\d+") "goal_mode: true but goal_tickets counter missing -- safety valve can't survive a restart without it"
+    Write-Host "PASS: goal_mode counters present" -ForegroundColor Green
+}
 
 # 2. Check BOARD.md (cycles)
 $boardLines = Get-Content ".saipen\BOARD.md"

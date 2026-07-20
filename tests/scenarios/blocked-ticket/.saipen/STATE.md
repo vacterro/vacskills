@@ -6,5 +6,6 @@ blocker: none
 saipen_version: 7
 schema_version: 1
 agent: me
+mode: full
 updated: 2026-07-17T00:00:00Z
 ---

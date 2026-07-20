@@ -305,3 +305,18 @@
 - 20.07.26 14:15 [E-248] [parent: E-247] [T-none] RUN: tests/scenarios/dependency-cycle создан -- вручную проверил cycle-detection логику на фикстуре, T-001/T-002 цикл найден, T-003 корректно вне цикла
 - 20.07.26 14:18 [E-249] [parent: E-248] [T-none] RUN: bash + powershell validate -> оба PASS; полный перечит RFC.md целиком -- когерентно, противоречий нет
 - 20.07.26 14:22 [E-250] [parent: E-249] [T-none] RUN: ship v7.10.0 -> внешний аудит разобран и триажирован, extensions/ location bug закрыт, pushed
+- 20.07.26 14:30 [E-251] [parent: E-250] [T-none] H: user 'выполнил всё-всё-всё?' -- честно перепроверил себя, нашёл 6 реально не тронутых пунктов + пропуски в отчёте
+- 20.07.26 14:35 [E-252] [parent: E-251] [T-none] H: заново нашёл '| verify:' -- уже typed в board.schema.json, уже в фикстуре blocked-ticket, никогда не попал в § 1.2 скелет строки тикета
+- 20.07.26 14:38 [E-253] [parent: E-252] [T-none] DEC: user 'добивай' -> закрываю все 6 честно, не только удобные
+- 20.07.26 14:42 [E-254] [parent: E-253] [T-none] RUN: RFC § 1.1 -> .saipen/ корень явно назван один раз, security baseline (no secrets в STATE/BOARD/LOG/KNOWLEDGE) добавлен PASS
+- 20.07.26 14:45 [E-255] [parent: E-254] [T-none] RUN: § 1.2 BOARD -> '| verify:' поле добавлено, cross-ref на plan.md PASS
+- 20.07.26 14:48 [E-256] [parent: E-255] [T-none] DEC: goal_anchor -- новое поле не нужно, board order уже несёт это; вместо этого Final Report строка требует различать 'юзерский ask' от 'подобрано по пути'
+- 20.07.26 14:52 [E-257] [parent: E-256] [T-none] H: перед тем как хардкодить E-### uniqueness в валидатор -- проверил собственный LOG.md на дубликаты, нашёл реальные resets (vac->vacskill->SAIPEN эпохи) и false-positive от прозы, цитирующей [E-001] как текст
+- 20.07.26 14:55 [E-258] [parent: E-257] [T-none] DEC: E-### uniqueness/parent-exists как enforcing validator check -- не безопасно против реальной истории, оставляю RFC-правило как guidance, не автоматизирую
+- 20.07.26 15:00 [E-259] [parent: E-258] [T-none] RUN: mode enum + goal_mode counter check в оба валидатора -- добавлены, эмпирически проверены в обе стороны (missing/present) на обеих платформах PASS
+- 20.07.26 15:05 [E-260] [parent: E-259] [T-none] H: mode: стал MUST, а 3 старые фикстуры (blocked-ticket/resume-after-crash/stale-state) его не имели -- добавил mode: full в каждую
+- 20.07.26 15:10 [E-261] [parent: E-260] [T-none] RUN: regression sweep всех tests/scenarios/* против ужесточённого валидатора -- ноль новых поломок, только ожидаемые partial-fixture fails
+- 20.07.26 15:15 [E-262] [parent: E-261] [T-none] RUN: tests/scenarios/goal-counter-recovery создан -- STATE stale ДО pivot, LOG показывает pivot + 2 волны, PASS
+- 20.07.26 15:18 [E-263] [parent: E-262] [T-none] RUN: tests/scenarios/extension-absence создан (README-only, по образцу fresh-init)
+- 20.07.26 15:22 [E-264] [parent: E-263] [T-none] RUN: bash + powershell validate -> оба PASS; non-ascii sweep -> только § (c2 a7), чисто
+- 20.07.26 15:25 [E-265] [parent: E-264] [T-none] RUN: ship v7.11.0 -> все пункты триажа закрыты явно, ни один не пропущен молча, pushed
