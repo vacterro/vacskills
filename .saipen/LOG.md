@@ -184,3 +184,12 @@
 - 20.07.26 06:35 [E-130] [parent: E-129] [T-none] RUN: byte-scan оставшихся 5 (aider/deepseek/gemini/openai/qwen) -> non-ascii только E2 80 94, это правильный UTF-8 em-dash, не мусор -- трогать не надо
 - 20.07.26 06:38 [E-130] [parent: E-129] [T-none] RUN: BOM check все 9 файлов -> нет BOM нигде, PASS
 - 20.07.26 06:40 [E-131] [parent: E-130] [T-none] RUN: ship v7.5.1 -> adapters PROTOCOL.md dead-link fix + mojibake cleanup, pushed
+- 20.07.26 06:50 [E-132] [parent: E-131] [T-none] H: re-ран inject.ps1 после шипа -> Claude/OpenCode/Codex/Gemini все как один 'migrated from VAC' -> подозрительно, эти блоки уже давно свежие
+- 20.07.26 06:55 [E-133] [parent: E-132] [T-none] DEC: Remove-LegacyBlock рвёт ЛЮБОЙ SAIPEN:BEGIN блок, даже актуальный, ДО проверки 'уже стоит' -> та ветка мертва, kurat, каждый ре-ран тихо переписывает файлы и врёт в отчёте
+- 20.07.26 06:58 [E-134] [parent: E-133] [T-none] H: та же болезнь в inject.sh -> strip_legacy_block вообще всегда return 0, даже свежесозданный файл получает 'migrated from VAC'
+- 20.07.26 07:05 [E-135] [parent: E-134] [T-none] DEC: content-compare вместо unconditional strip -- SAIPEN:BEGIN блок теперь сверяется с каноном, легаси ASP/VACSKILL логика не тронута
+- 20.07.26 07:08 [E-136] [parent: E-135] [T-none] H: Edit точечно на inject.ps1/inject.sh -> FAIL, та же byte-level mojibake болезнь что и в адаптерах, sürgama ремонт бесполезен
+- 20.07.26 07:10 [E-137] [parent: E-136] [T-none] RUN: полный Write обоих файлов чистым ASCII -> PASS, non-ascii-lines=0, no BOM
+- 20.07.26 07:15 [E-138] [parent: E-137] [T-none] RUN: inject.ps1 два раза подряд -> run1 'block refreshed', run2 'already' везде -- 本当に idempotent (по-настоящему), не на словах
+- 20.07.26 07:20 [E-139] [parent: E-138] [T-none] RUN: bash -n inject.sh syntax OK; inject.sh два раза подряд -> та же картина, run2 чисто 'already'
+- 20.07.26 07:25 [E-140] [parent: E-139] [T-none] RUN: ship v7.5.2 -> injector idempotency fix, pushed

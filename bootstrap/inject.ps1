@@ -1,4 +1,4 @@
-# saipen injector Р В Р’В Р В РІР‚В Р В Р’В Р Р†Р вЂљРЎв„ўР В Р вЂ Р В РІР‚С™Р РЋРЎС™ installs saipen as default protocol on every agentic system found.
+# saipen injector -- installs saipen as default protocol on every agentic system found.
 # Run from the clone dir:  powershell -ExecutionPolicy Bypass -File .\inject.ps1
 # Idempotent: safe to re-run any time (skips what's already installed).
 # Also migrates pre-3.0 installs named "VAC".
@@ -32,16 +32,15 @@ UI work: also obey $SkillHome\UI.md (Win95 dark golden, Verdana, no AA).
 <!-- SAIPEN:END -->
 "@
 
-# Strip a pre-3.0 <!-- SAIPEN:BEGIN -->..<!-- SAIPEN:END --> block: it points at the
-# old VAC\ folder, which no longer exists.
+# Strip a genuinely legacy <!-- ASP:BEGIN --> / <!-- VACSKILL:BEGIN --> block.
+# Current <!-- SAIPEN:BEGIN --> blocks are handled separately by Add-Block,
+# which compares content instead of stripping unconditionally -- otherwise
+# every re-run would strip+rewrite an already-current block and misreport
+# it as "migrated from VAC".
 function Remove-LegacyBlock([string]$file) {
   if (-not (Test-Path $file)) { return $false }
   $text = Get-Content $file -Raw -Encoding utf8
   $changed = $false
-  if ($text -match '<!-- SAIPEN:BEGIN -->') {
-    $text = [regex]::Replace($text, '(?s)\s*<!-- SAIPEN:BEGIN -->.*?<!-- SAIPEN:END -->\s*', "`n")
-    $changed = $true
-  }
   if ($text -match '<!-- ASP:BEGIN -->') {
     $text = [regex]::Replace($text, '(?s)\s*<!-- ASP:BEGIN -->.*?<!-- ASP:END -->\s*', "`n")
     $changed = $true
@@ -57,16 +56,16 @@ function Remove-LegacyBlock([string]$file) {
 }
 
 function Add-Block([string]$file) {
-  $migrated = Remove-LegacyBlock $file
   if (Test-Path $file) {
-    if (Select-String -Path $file -Pattern "SAIPEN:BEGIN" -Quiet) {
-      if (Select-String -Path $file -Pattern "PROTOCOL\.md" -Quiet) { return "already" }
-      # 3.x block points at SKILL.md Р В Р’В Р В РІР‚В Р В Р’В Р Р†Р вЂљРЎв„ўР В Р вЂ Р В РІР‚С™Р РЋРЎС™ replace with RFC.md block
-      $text = Get-Content $file -Raw -Encoding utf8
+    $text = Get-Content $file -Raw -Encoding utf8
+    if ($text -match '(?s)<!-- SAIPEN:BEGIN -->.*?<!-- SAIPEN:END -->') {
+      $existing = $Matches[0]
+      if ($existing.Trim() -eq $block.Trim()) { return "already" }
       $clean = [regex]::Replace($text, '(?s)\s*<!-- SAIPEN:BEGIN -->.*?<!-- SAIPEN:END -->\s*', "`n")
       Write-NoBom $file ($clean.TrimEnd() + $block + "`n")
-      return "block upgraded to RFC.md"
+      return "block refreshed"
     }
+    $migrated = Remove-LegacyBlock $file
     $text = Get-Content $file -Raw -Encoding utf8
     Write-NoBom $file ($text.TrimEnd() + $block + "`n")
     return $(if ($migrated) { "migrated from VAC" } else { "block added" })

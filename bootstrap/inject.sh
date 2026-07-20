@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# saipen injector (macOS/Linux) Р В Р’В Р В РІР‚В Р В Р’В Р Р†Р вЂљРЎв„ўР В Р вЂ Р В РІР‚С™Р РЋРЎС™ installs saipen as default on every agentic system found.
+# saipen injector (macOS/Linux) -- installs saipen as default on every agentic system found.
 # Run from clone dir:  bash inject.sh
 # Idempotent: re-run safe. Also migrates pre-3.0 installs named "VAC".
 
@@ -23,26 +23,33 @@ Path missing (new machine)? clone github.com/vacterro/saipen.
 UI work: also obey $SKILL_HOME/UI.md (Win95 dark golden, Verdana, no AA).
 <!-- SAIPEN:END -->"
 
-# Pre-3.0 block points at the old VAC/ folder Р В Р’В Р В РІР‚В Р В Р’В Р Р†Р вЂљРЎв„ўР В Р вЂ Р В РІР‚С™Р РЋРЎС™ strip it before adding the new one.
-strip_legacy_block()  # Strip old SAIPEN, ASP, and VACSKILL blocks
-{
+# Strip a genuinely legacy ASP/VACSKILL block. Reports via return code whether
+# anything was actually found+removed -- a no-match run must return failure,
+# or every fresh file would get misreported as "migrated from VAC" too.
+strip_legacy_block() { # $1=file
+  [ -f "$1" ] || return 1
+  grep -qE '<!-- (ASP|VACSKILL):BEGIN -->' "$1" || return 1
   backup_file "$1"
-  sed -i.bak '/<!-- SAIPEN:BEGIN -->/,/<!-- SAIPEN:END -->/d' "$1" 2>/dev/null || sed -i '' '/<!-- SAIPEN:BEGIN -->/,/<!-- SAIPEN:END -->/d' "$1"
   sed -i.bak '/<!-- ASP:BEGIN -->/,/<!-- ASP:END -->/d' "$1" 2>/dev/null || sed -i '' '/<!-- ASP:BEGIN -->/,/<!-- ASP:END -->/d' "$1"
   sed -i.bak '/<!-- VACSKILL:BEGIN -->/,/<!-- VACSKILL:END -->/d' "$1" 2>/dev/null || sed -i '' '/<!-- VACSKILL:BEGIN -->/,/<!-- VACSKILL:END -->/d' "$1"
   return 0
 }
 
 add_block() { # $1=file
-  local migrated=1
-  strip_legacy_block "$1" && migrated=0
+  # Current SAIPEN:BEGIN block: compare content instead of stripping
+  # unconditionally, or every re-run would rewrite an already-current
+  # block and misreport it as a migration.
   if [ -f "$1" ] && grep -q "SAIPEN:BEGIN" "$1"; then
-    if grep -q "PROTOCOL\.md" "$1"; then echo "already"; return; fi
-    # 3.x block points at SKILL.md Р В Р’В Р В РІР‚В Р В Р’В Р Р†Р вЂљРЎв„ўР В Р вЂ Р В РІР‚С™Р РЋРЎС™ replace with RFC.md block
+    local existing canonical
+    existing=$(sed -n '/<!-- SAIPEN:BEGIN -->/,/<!-- SAIPEN:END -->/p' "$1")
+    canonical=$(printf '%s\n' "$BLOCK" | sed -n '/<!-- SAIPEN:BEGIN -->/,/<!-- SAIPEN:END -->/p')
+    if [ "$existing" = "$canonical" ]; then echo "already"; return; fi
     backup_file "$1"
     sed -i.bak '/<!-- SAIPEN:BEGIN -->/,/<!-- SAIPEN:END -->/d' "$1" 2>/dev/null || sed -i '' '/<!-- SAIPEN:BEGIN -->/,/<!-- SAIPEN:END -->/d' "$1"
-    printf '%s\n' "$BLOCK" >> "$1"; echo "block upgraded to RFC.md"; return
+    printf '%s\n' "$BLOCK" >> "$1"; echo "block refreshed"; return
   fi
+  local migrated=1
+  strip_legacy_block "$1" && migrated=0
   backup_file "$1"
   mkdir -p "$(dirname "$1")"; printf '%s\n' "$BLOCK" >> "$1"
   [ $migrated -eq 0 ] && echo "migrated from VAC" || echo "block added"
@@ -93,7 +100,7 @@ if command -v aider >/dev/null 2>&1; then
     sed -i.bak "s#.*/\(VAC\|saipen\)/SKILL\.md#  - $P#" "$A" 2>/dev/null || sed -i '' "s#.*/\(VAC\|saipen\)/SKILL\.md#  - $P#" "$A"
     printf '%-28s %s\n' "Aider conf" "migrated to RFC.md"
   elif grep -qF "$P" "$A"; then printf '%-28s %s\n' "Aider conf" "already"
-  elif ! grep -q "^read:" "$A"; then 
+  elif ! grep -q "^read:" "$A"; then
     backup_file "$A"
     printf '\n# saipen protocol auto-loaded\nread:\n  - %s\n' "$P" >> "$A"; printf '%-28s %s\n' "Aider conf" "read: appended"
   else printf '%-28s %s\n' "Aider conf" "has own read: - add manually: $P"; fi
