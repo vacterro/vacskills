@@ -269,3 +269,11 @@
 - 20.07.26 11:58 [E-212] [parent: E-211] [T-none] RUN: собрал специально битый BOARD.md (копия WildRift паттерна) -> оба валидатора честно упали FAIL PASS
 - 20.07.26 12:00 [E-213] [parent: E-212] [T-none] RUN: оба валидатора против собственного чистого BOARD.md -> PASS без ложных срабатываний
 - 20.07.26 12:05 [E-214] [parent: E-213] [T-none] RUN: ship v7.8.0 -> BOARD.md ticket-line skeleton, clean.md structural repair, validators catch duplicate tickets, pushed
+- 20.07.26 12:10 [E-215] [parent: E-214] [T-none] H: user 'прекрасно, го дальше' -> regression-test собственного нового дубликат-чека против всех tests/scenarios/*, прежде чем копать дальше
+- 20.07.26 12:15 [E-216] [parent: E-215] [T-none] H: multi-agent-claim-conflict/resume-after-crash 'FAIL missing STATE/BOARD' -- ложная тревога, эти фикстуры намеренно частичные, не полный .saipen/, не тот инструмент для теста
+- 20.07.26 12:18 [E-217] [parent: E-216] [T-none] H: stale-state-reconciliation LOG.md -- одна строка вообще без [E-###], настоящий баг, chinю
+- 20.07.26 12:20 [E-218] [parent: E-217] [T-none] RUN: [E-001] добавлен в фикстуру, validate.sh против неё -> PASS
+- 20.07.26 12:25 [E-219] [parent: E-218] [T-none] H: KNOWLEDGE/ 3 живых проекта + свой -- контент чист везде, ноль event-history утечек, но naming: только Wintage ADR-001.md, остальные 3 из 4 (включая этот репо) описательные имена
+- 20.07.26 12:28 [E-220] [parent: E-219] [T-none] DEC: RFC 'Uses ADR pattern (ADR-001.md)' смягчаю -- называю оба стиля валидными, фиксирую то что реально происходит, а не то что почти никто не делает
+- 20.07.26 12:30 [E-221] [parent: E-220] [T-none] RUN: RFC § 1.2 KNOWLEDGE/ строка переписана PASS; extensions/templates/KNOWLEDGE/ADR-001.md не трогаю -- честный шаблон для формального случая
+- 20.07.26 12:32 [E-222] [parent: E-221] [T-none] RUN: bash + powershell validate -> оба PASS; ship v7.8.1 -> меньше прошлого раунда, честно об этом в CHANGELOG, pushed

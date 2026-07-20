@@ -27,7 +27,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
     label is conformant -- a phase name is not a taxonomy value.
   - Commentary voice (STYLE.md) wraps AROUND this exact skeleton; it never
     changes the skeleton's shape.
-- **KNOWLEDGE/**: Directory for durable truths. MUST NOT contain event histories. Uses ADR pattern (`ADR-001.md`).
+- **KNOWLEDGE/**: Directory for durable truths. MUST NOT contain event histories -- that is the actual constraint, not the filename. Two valid shapes, pick whichever fits the content: a living reference doc with a descriptive name (`architecture.md`, `traps.md`) that gets edited in place as understanding improves, or a numbered ADR (`ADR-001.md`, `ADR-002.md`, ...) recording one immutable decision + its reasoning, never edited once written. Either way: durable truth, never a log of events.
 - **kitchen/**: Directory for intermediate, half-finished files, scratchpads, and work-in-progress data. Agents MUST store temporary work here to avoid cluttering the project root. If an agent terminates mid-task, the successor MUST inspect `kitchen/` to resume work seamlessly. `TRANSLATE` (§ 2.1) keeps its own, separate `.saitranslate/kitchen/` — never shared with this one.
 
 ### 1.3 Capability Negotiation (Two-Way Handshake)
