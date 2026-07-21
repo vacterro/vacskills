@@ -41,7 +41,7 @@ when it actually finished safely, not by default.
 4. **Trash Removal:**
    - Delete temporary files, caches, and scaffold leftovers (e.g., `__pycache__`, `.tmp`, outdated `.bak` files).
    - Clear out empty directories.
-   - **DO NOT** delete files in `.saipen/kitchen/` unless they are explicitly stale or the project is fully completed.
+   - **DO NOT** delete files in `.saipen/kitchen/` unless they are stale or the project is fully completed. Stale, concretely: the file's owning ticket is `DONE` and no longer on `BOARD.md` (its reasoning already folded into `LOG.md`/`CHANGELOG.md`), or its content is fully superseded by what those now record. `phases/hunt.md` checks this same definition every autonomous pass, not just when a user explicitly runs `saipen clean` -- kitchen/ MUST NOT wait indefinitely for a manual trigger to stop growing.
 
 5. **Freshness Check:**
    - Ensure the repository is up to date with correct paths.

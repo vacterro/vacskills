@@ -24,6 +24,15 @@ would recognize as their own work -- same floor `phases/clean.md` states
 explicitly). More than that in one pass is mass-deletion territory (RFC
 § 1.1) regardless of how obvious each file looks individually -- ticket
 the rest for confirmation instead of free-deleting past the cap.
+
+`.saipen/kitchen/` is in scope for this sweep too, not just orphan code --
+use `phases/clean.md`'s stale definition (owning ticket `DONE` and off
+`BOARD.md`, or content fully superseded by `LOG.md`/`CHANGELOG.md`). This
+is what actually keeps kitchen/ bounded: `CLEAN` only runs when a user
+explicitly asks for it, `HUNT` runs every autonomous pass with no tasking
+required, so a kitchen file can't outlive its usefulness for more than one
+maintenance cycle.
+
 Ambiguous -> ticket + user confirms.
 Findings ticketed (not clean)? STATE -> `PLAN` (or straight to `SCOUT` if
 a finding is small/obvious enough to skip planning, same judgment call as

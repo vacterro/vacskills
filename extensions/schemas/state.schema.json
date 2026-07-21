@@ -20,11 +20,8 @@
       "type": "string"
     },
     "saipen_version": {
-      "type": "integer"
-    },
-    "schema_version": {
       "type": "integer",
-      "description": "MAY be absent on state written before this field existed -- RFC § 1.2 treats absence as 0 and upgrades at the next checkpoint. Not in the required list for that reason."
+      "description": "Records which protocol version wrote this state, and doubles as the version guard (RFC § 1.2) -- one field, not split into a separate schema_version (collapsed in v7.23.0)."
     },
     "requires": {
       "type": "array",

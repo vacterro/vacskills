@@ -8,7 +8,7 @@ matching exactly:
   "WAIT: provide the first project goal or raw backlog"` (RFC § 1.2's
   narrow INIT-bootstrap `WAIT:` exception -- ask for the goal/backlog
   only, nothing else), `blocker: none`, `agent: none`, `saipen_version: 7`,
-  `schema_version: 1`, `mode:` (per § 1.3 capability negotiation, `full`
+  `mode:` (per § 1.3 capability negotiation, `full`
   unless something's actually missing), `goal_mode: false`, `updated:`
   (ISO-8601 UTC now).
 - `BOARD.md`: `## DOING` / `## TODO` / `## DONE` / `## BLOCKED`, no tickets yet.
