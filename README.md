@@ -6,7 +6,7 @@
 
 # SAIPEN
 
-**v7.22.1** | [Spec](SPEC.md) | [Guide](GUIDE.md) | plain markdown | zero deps | MIT
+**v7.22.2** | [Spec](SPEC.md) | [Guide](GUIDE.md) | plain markdown | zero deps | MIT
 
 **One command. Zero amnesia.**
 
@@ -39,7 +39,7 @@ Memory lives in the project, not in a model's head. `Project -> Memory -> LLM` b
 
 **GOAL Mode.** `/saipen goal <what you want>` pivots the board (old tickets demoted, never deleted) and runs the new objective forward -- no "shall I continue?" between tickets, VERIFY/REVIEW never skipped. SHIP auto-pushes to an existing remote; a brand-new repo still asks once. Shipping the objective isn't the stopping point either -- it falls straight into autonomous HUNT/ADD maintenance until the product is mature, blocked, or the run hits its cap (3 waves / 20 tickets, then checkpoints and reports).
 
-**Multi-Agent Coordination.** Running 2+ agents on the same project at once needs an Integrator, not luck -- `extensions/multi-agent/` is a copy-in example: git worktree + branch per ticket, one Integrator as the sole writer of STATE/BOARD/LOG, a merge queue in front of trunk. Opt-in, not Core -- plain SAIPEN alone still handles the single-agent case correctly.
+**Multi-Agent Coordination.** Running 2+ agents on the same project at once needs an Integrator, not luck -- `extensions/multi-agent/` is a copy-in example: git worktree + branch per ticket, one Integrator as the sole writer of STATE/BOARD/LOG, a merge queue in front of trunk. Opt-in, not Core -- plain SAIPEN alone still handles the single-agent case correctly. No `/saipen` subcommand for this -- copy the files in, then drive it by hand: [`extensions/multi-agent/README.md`](extensions/multi-agent/README.md) has the setup, roles, and starter prompts.
 
 ## Quick Start
 

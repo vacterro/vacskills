@@ -1,5 +1,8 @@
 # Changelog
 
+## 7.22.2 -- 2026-07-21 -- README: multi-agent section points at the setup doc
+- docs: README's Multi-Agent Coordination bullet named the mechanics but gave no link to actually start -- user asked "what command do I run", answer is "none, it's copy-in + manual roles", so the bullet now says that explicitly and links straight to `extensions/multi-agent/README.md` (setup, roles, starter prompts). No behavior change.
+
 ## 7.22.1 -- 2026-07-21 -- STYLE.md language-inference fix (real incident)
 - fix: `STYLE.md`'s "Base language = user's session language" rule never specified what "session language" means when the user's actual FIRST message carries zero language signal at all -- a bare command like `saipen hunt`, no prose. A real, observed incident: a session responded fully in German off exactly that kind of bare command, with no German anywhere in what the user had actually typed -- the agent evidently inferred language from some ambient signal (IDE/OS locale, platform UI, unrelated context) instead of the user's own words. Clarified: "user's session language" means language evident in what the user actually typed, never inferred from ambient signals; a bare first message with no language signal defaults to English until the user's own words say otherwise.
 - Docs-only clarification of existing behavior's intent, not new normative rule -- hence patch tier.
