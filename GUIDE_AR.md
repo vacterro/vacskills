@@ -24,4 +24,13 @@ bash bootstrap/inject.sh                                            # macOS / Li
 
 ## الأوامر
 
-| الأمر | الإجراء |\n|---|---|\n| `saipen set` | تهيئة مجلد الذاكرة `.saipen/` |\n| `saipen continue` | استئناف العمل من الملاحظات |\n| `saipen stop` | حفظ التقدم والتوقف |\n| `saipen status` | قراءة اللوحة والحالة |\n| `saipen goal <text>` | التحول إلى هدف جديد |\n| `saipen clean` | تنظيف عميق للمستودع |\n| `saipen translate` | بناء ترجمة معزول بـ 22 لغة |\n| `saipen ship` | بدء تدفق الإصدار |
+| الأمر | الإجراء |
+|---|---|
+| `saipen set` | تهيئة مجلد الذاكرة `.saipen/` |
+| `saipen continue` | استئناف العمل من الملاحظات |
+| `saipen stop` | حفظ التقدم والتوقف |
+| `saipen status` | قراءة اللوحة والحالة |
+| `saipen goal <text>` | التحول إلى هدف جديد |
+| `saipen clean` | تنظيف عميق للمستودع |
+| `saipen translate` | بناء ترجمة معزول بـ 22 لغة |
+| `saipen ship` | بدء تدفق الإصدار |

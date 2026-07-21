@@ -26,4 +26,13 @@ bash bootstrap/inject.sh                                            # macOS / Li
 
 ## Perintah
 
-| Perintah | Aksi |\n|---|---|\n| `saipen set` | Inisialisasi folder memori |\n| `saipen continue` | Lanjutkan pekerjaan dari catatan |\n| `saipen stop` | Simpan kemajuan & berhenti |\n| `saipen status` | Baca papan |\n| `saipen goal <text>` | Beralih ke tujuan baru |\n| `saipen clean` | Bersihkan repositori |\n| `saipen translate` | Bangun terjemahan |\n| `saipen ship` | Picu aliran rilis |
+| Perintah | Aksi |
+|---|---|
+| `saipen set` | Inisialisasi folder memori |
+| `saipen continue` | Lanjutkan pekerjaan dari catatan |
+| `saipen stop` | Simpan kemajuan & berhenti |
+| `saipen status` | Baca papan |
+| `saipen goal <text>` | Beralih ke tujuan baru |
+| `saipen clean` | Bersihkan repositori |
+| `saipen translate` | Bangun terjemahan |
+| `saipen ship` | Picu aliran rilis |

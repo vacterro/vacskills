@@ -24,4 +24,13 @@ bash bootstrap/inject.sh                                            # macOS / Li
 
 ## Kommandoer
 
-| Kommando | Handling |\n|---|---|\n| `saipen set` | Initialiser hukommelsesmappe `.saipen/` |\n| `saipen continue` | Genoptag arbejde fra noter |\n| `saipen stop` | Gem fremskridt & stop |\n| `saipen status` | Læs tavle & status |\n| `saipen goal <text>` | Skift til nyt mål |\n| `saipen clean` | Dybdegående oprydning af repository |\n| `saipen translate` | Isoleret 22-sproget oversættelsesbyg |\n| `saipen ship` | Udløs udgivelsesflow |
+| Kommando | Handling |
+|---|---|
+| `saipen set` | Initialiser hukommelsesmappe `.saipen/` |
+| `saipen continue` | Genoptag arbejde fra noter |
+| `saipen stop` | Gem fremskridt & stop |
+| `saipen status` | Læs tavle & status |
+| `saipen goal <text>` | Skift til nyt mål |
+| `saipen clean` | Dybdegående oprydning af repository |
+| `saipen translate` | Isoleret 22-sproget oversættelsesbyg |
+| `saipen ship` | Udløs udgivelsesflow |

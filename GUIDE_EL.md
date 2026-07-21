@@ -26,4 +26,13 @@ bash bootstrap/inject.sh                                            # macOS / Li
 
 ## Εντολές
 
-| Εντολή | Ενέργεια |\n|---|---|\n| `saipen set` | Αρχικοποίηση φακέλου μνήμης |\n| `saipen continue` | Συνέχιση εργασίας από σημειώσεις |\n| `saipen stop` | Αποθήκευση & διακοπή |\n| `saipen status` | Ανάγνωση πίνακα |\n| `saipen goal <text>` | Αλλαγή σε νέο στόχο |\n| `saipen clean` | Καθαρισμός αποθετηρίου |\n| `saipen translate` | Δημιουργία μετάφρασης |\n| `saipen ship` | Εκκίνηση ροής έκδοσης |
+| Εντολή | Ενέργεια |
+|---|---|
+| `saipen set` | Αρχικοποίηση φακέλου μνήμης |
+| `saipen continue` | Συνέχιση εργασίας από σημειώσεις |
+| `saipen stop` | Αποθήκευση & διακοπή |
+| `saipen status` | Ανάγνωση πίνακα |
+| `saipen goal <text>` | Αλλαγή σε νέο στόχο |
+| `saipen clean` | Καθαρισμός αποθετηρίου |
+| `saipen translate` | Δημιουργία μετάφρασης |
+| `saipen ship` | Εκκίνηση ροής έκδοσης |

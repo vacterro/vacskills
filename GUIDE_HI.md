@@ -26,4 +26,13 @@ bash bootstrap/inject.sh                                            # macOS / Li
 
 ## कमांड
 
-| कमांड | कार्रवाई |\n|---|---|\n| `saipen set` | मेमोरी फ़ोल्डर प्रारंभ करें |\n| `saipen continue` | नोट्स से काम फिर से शुरू करें |\n| `saipen stop` | प्रगति सहेजें और रुकें |\n| `saipen status` | बोर्ड पढ़ें |\n| `saipen goal <text>` | नए लक्ष्य की ओर बढ़ें |\n| `saipen clean` | रिपॉजिटरी साफ़ करें |\n| `saipen translate` | अनुवाद निर्माण |\n| `saipen ship` | रिलीज़ प्रवाह ट्रिगर करें |
+| कमांड | कार्रवाई |
+|---|---|
+| `saipen set` | मेमोरी फ़ोल्डर प्रारंभ करें |
+| `saipen continue` | नोट्स से काम फिर से शुरू करें |
+| `saipen stop` | प्रगति सहेजें और रुकें |
+| `saipen status` | बोर्ड पढ़ें |
+| `saipen goal <text>` | नए लक्ष्य की ओर बढ़ें |
+| `saipen clean` | रिपॉजिटरी साफ़ करें |
+| `saipen translate` | अनुवाद निर्माण |
+| `saipen ship` | रिलीज़ प्रवाह ट्रिगर करें |

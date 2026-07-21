@@ -26,4 +26,13 @@ bash bootstrap/inject.sh                                            # macOS / Li
 
 ## Parancsok
 
-| Parancs | Művelet |\n|---|---|\n| `saipen set` | Memóriamappa inicializálása |\n| `saipen continue` | Munka folytatása jegyzetekből |\n| `saipen stop` | Folyamat mentése és leállítás |\n| `saipen status` | Tábla olvasása |\n| `saipen goal <text>` | Váltás új célra |\n| `saipen clean` | Adattár tisztítása |\n| `saipen translate` | Fordítás készítése |\n| `saipen ship` | Kiadási folyamat elindítása |
+| Parancs | Művelet |
+|---|---|
+| `saipen set` | Memóriamappa inicializálása |
+| `saipen continue` | Munka folytatása jegyzetekből |
+| `saipen stop` | Folyamat mentése és leállítás |
+| `saipen status` | Tábla olvasása |
+| `saipen goal <text>` | Váltás új célra |
+| `saipen clean` | Adattár tisztítása |
+| `saipen translate` | Fordítás készítése |
+| `saipen ship` | Kiadási folyamat elindítása |

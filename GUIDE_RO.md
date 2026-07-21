@@ -26,4 +26,13 @@ bash bootstrap/inject.sh                                            # macOS / Li
 
 ## Comenzi
 
-| Comandă | Acțiune |\n|---|---|\n| `saipen set` | Inițializați folderul de memorie |\n| `saipen continue` | Reluați lucrul din note |\n| `saipen stop` | Salvați progresul și opriți |\n| `saipen status` | Citiți panoul |\n| `saipen goal <text>` | Treceți la noul obiectiv |\n| `saipen clean` | Curățați depozitul |\n| `saipen translate` | Construcție traducere |\n| `saipen ship` | Declanșați fluxul de lansare |
+| Comandă | Acțiune |
+|---|---|
+| `saipen set` | Inițializați folderul de memorie |
+| `saipen continue` | Reluați lucrul din note |
+| `saipen stop` | Salvați progresul și opriți |
+| `saipen status` | Citiți panoul |
+| `saipen goal <text>` | Treceți la noul obiectiv |
+| `saipen clean` | Curățați depozitul |
+| `saipen translate` | Construcție traducere |
+| `saipen ship` | Declanșați fluxul de lansare |

@@ -24,4 +24,13 @@ bash bootstrap/inject.sh                                            # macOS / Li
 
 ## Commando's
 
-| Commando | Actie |\n|---|---|\n| `saipen set` | Geheugenmap `.saipen/` initialiseren |\n| `saipen continue` | Werk hervatten vanuit notities |\n| `saipen stop` | Voortgang opslaan & stoppen |\n| `saipen status` | Bord & status lezen |\n| `saipen goal <text>` | Draaien naar nieuw doel |\n| `saipen clean` | Diepe opschoning van repository |\n| `saipen translate` | Geïsoleerde vertaling build voor 22 talen |\n| `saipen ship` | Release flow activeren |
+| Commando | Actie |
+|---|---|
+| `saipen set` | Geheugenmap `.saipen/` initialiseren |
+| `saipen continue` | Werk hervatten vanuit notities |
+| `saipen stop` | Voortgang opslaan & stoppen |
+| `saipen status` | Bord & status lezen |
+| `saipen goal <text>` | Draaien naar nieuw doel |
+| `saipen clean` | Diepe opschoning van repository |
+| `saipen translate` | Geïsoleerde vertaling build voor 22 talen |
+| `saipen ship` | Release flow activeren |

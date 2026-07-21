@@ -26,4 +26,13 @@ bash bootstrap/inject.sh                                            # macOS / Li
 
 ## Príkazy
 
-| Príkaz | Akcia |\n|---|---|\n| `saipen set` | Inicializovať priečinok pamäte |\n| `saipen continue` | Obnoviť prácu z poznámok |\n| `saipen stop` | Uložiť pokrok a zastaviť |\n| `saipen status` | Čítať nástenku |\n| `saipen goal <text>` | Prepnúť na nový cieľ |\n| `saipen clean` | Vyčistiť repozitár |\n| `saipen translate` | Zostavenie prekladu |\n| `saipen ship` | Spustiť tok vydania |
+| Príkaz | Akcia |
+|---|---|
+| `saipen set` | Inicializovať priečinok pamäte |
+| `saipen continue` | Obnoviť prácu z poznámok |
+| `saipen stop` | Uložiť pokrok a zastaviť |
+| `saipen status` | Čítať nástenku |
+| `saipen goal <text>` | Prepnúť na nový cieľ |
+| `saipen clean` | Vyčistiť repozitár |
+| `saipen translate` | Zostavenie prekladu |
+| `saipen ship` | Spustiť tok vydania |

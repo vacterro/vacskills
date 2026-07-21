@@ -24,4 +24,13 @@ bash bootstrap/inject.sh                                            # macOS / Li
 
 ## פקודות
 
-| פקודה | פעולה |\n|---|---|\n| `saipen set` | אתחל תיקיית זיכרון `.saipen/` |\n| `saipen continue` | חדש עבודה מההערות |\n| `saipen stop` | שמור התקדמות ועצור |\n| `saipen status` | קרא את הלוח והמצב |\n| `saipen goal <text>` | עבור ליעד חדש |\n| `saipen clean` | ניקוי עמוק של המאגר |\n| `saipen translate` | בניית תרגום מבודדת ל-22 שפות |\n| `saipen ship` | הפעל תהליך שחרור |
+| פקודה | פעולה |
+|---|---|
+| `saipen set` | אתחל תיקיית זיכרון `.saipen/` |
+| `saipen continue` | חדש עבודה מההערות |
+| `saipen stop` | שמור התקדמות ועצור |
+| `saipen status` | קרא את הלוח והמצב |
+| `saipen goal <text>` | עבור ליעד חדש |
+| `saipen clean` | ניקוי עמוק של המאגר |
+| `saipen translate` | בניית תרגום מבודדת ל-22 שפות |
+| `saipen ship` | הפעל תהליך שחרור |

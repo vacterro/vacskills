@@ -26,4 +26,13 @@ bash bootstrap/inject.sh                                            # macOS / Li
 
 ## Käsud
 
-| Käsk | Tegevus |\n|---|---|\n| `saipen set` | Initsialiseeri mälukaust `.saipen/` |\n| `saipen continue` | Jätka tööd märkmete põhjal |\n| `saipen stop` | Salvesta progress ja peatu |\n| `saipen status` | Loe tahvlit ja olekut |\n| `saipen goal <text>` | Liigu uue eesmärgi juurde |\n| `saipen clean` | Puhasta repositoorium sügavalt |\n| `saipen translate` | Eraldatud 22-keelne tõlkeehitus |\n| `saipen ship` | Käivita väljalase |
+| Käsk | Tegevus |
+|---|---|
+| `saipen set` | Initsialiseeri mälukaust `.saipen/` |
+| `saipen continue` | Jätka tööd märkmete põhjal |
+| `saipen stop` | Salvesta progress ja peatu |
+| `saipen status` | Loe tahvlit ja olekut |
+| `saipen goal <text>` | Liigu uue eesmärgi juurde |
+| `saipen clean` | Puhasta repositoorium sügavalt |
+| `saipen translate` | Eraldatud 22-keelne tõlkeehitus |
+| `saipen ship` | Käivita väljalase |

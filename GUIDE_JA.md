@@ -26,4 +26,13 @@ bash bootstrap/inject.sh                                            # macOS / Li
 
 ## コマンド
 
-| コマンド | アクション |\n|---|---|\n| `saipen set` | メモリフォルダ `.saipen/` の初期化 |\n| `saipen continue` | ノートから作業を再開 |\n| `saipen stop` | 進捗を保存して停止 |\n| `saipen status` | ボードと状態を読み取る |\n| `saipen goal <text>` | 新しい目標へピボット |\n| `saipen clean` | リポジトリのディープクリーン |\n| `saipen translate` | 分離された22言語の翻訳ビルド |\n| `saipen ship` | リリースフローのトリガー |
+| コマンド | アクション |
+|---|---|
+| `saipen set` | メモリフォルダ `.saipen/` の初期化 |
+| `saipen continue` | ノートから作業を再開 |
+| `saipen stop` | 進捗を保存して停止 |
+| `saipen status` | ボードと状態を読み取る |
+| `saipen goal <text>` | 新しい目標へピボット |
+| `saipen clean` | リポジトリのディープクリーン |
+| `saipen translate` | 分離された22言語の翻訳ビルド |
+| `saipen ship` | リリースフローのトリガー |

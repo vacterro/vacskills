@@ -26,4 +26,13 @@ bash bootstrap/inject.sh                                            # macOS / Li
 
 ## Komutlar
 
-| Komut | Eylem |\n|---|---|\n| `saipen set` | Bellek klasörünü başlat |\n| `saipen continue` | Notlardan çalışmaya devam et |\n| `saipen stop` | İlerlemeyi kaydet & dur |\n| `saipen status` | Panoyu oku |\n| `saipen goal <text>` | Yeni hedefe geç |\n| `saipen clean` | Depoyu temizle |\n| `saipen translate` | Çeviri derlemesi |\n| `saipen ship` | Yayın akışını tetikle |
+| Komut | Eylem |
+|---|---|
+| `saipen set` | Bellek klasörünü başlat |
+| `saipen continue` | Notlardan çalışmaya devam et |
+| `saipen stop` | İlerlemeyi kaydet & dur |
+| `saipen status` | Panoyu oku |
+| `saipen goal <text>` | Yeni hedefe geç |
+| `saipen clean` | Depoyu temizle |
+| `saipen translate` | Çeviri derlemesi |
+| `saipen ship` | Yayın akışını tetikle |

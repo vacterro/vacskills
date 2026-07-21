@@ -26,4 +26,13 @@ bash bootstrap/inject.sh                                            # macOS / Li
 
 ## Приказы
 
-| Команда | Чо делает |\n|---|---|\n| `saipen set` | Создать папку `.saipen/` (мозги) |\n| `saipen continue` | Прочитать мозги и пахать |\n| `saipen stop` | Тормознуть и записать где стал |\n| `saipen status` | Глянуть че там по плану |\n| `saipen goal <text>` | Закинуть новую хотелку |\n| `saipen clean` | Вынести мусор |\n| `saipen translate` | Отправить батрака переводить |\n| `saipen ship` | Выкатить в прод |
+| Команда | Чо делает |
+|---|---|
+| `saipen set` | Создать папку `.saipen/` (мозги) |
+| `saipen continue` | Прочитать мозги и пахать |
+| `saipen stop` | Тормознуть и записать где стал |
+| `saipen status` | Глянуть че там по плану |
+| `saipen goal <text>` | Закинуть новую хотелку |
+| `saipen clean` | Вынести мусор |
+| `saipen translate` | Отправить батрака переводить |
+| `saipen ship` | Выкатить в прод |

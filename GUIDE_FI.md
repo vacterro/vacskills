@@ -24,4 +24,13 @@ bash bootstrap/inject.sh                                            # macOS / Li
 
 ## Komennot
 
-| Komento | Toiminto |\n|---|---|\n| `saipen set` | Alusta muisti-kansio `.saipen/` |\n| `saipen continue` | Jatka työtä muistiinpanoista |\n| `saipen stop` | Tallenna edistyminen ja pysäytä |\n| `saipen status` | Lue taulu ja tila |\n| `saipen goal <text>` | Siirry uuteen tavoitteeseen |\n| `saipen clean` | Syvä tietovaraston siivous |\n| `saipen translate` | Eristetty 22 kielen käännöksen rakennus |\n| `saipen ship` | Käynnistä julkaisuvirta |
+| Komento | Toiminto |
+|---|---|
+| `saipen set` | Alusta muisti-kansio `.saipen/` |
+| `saipen continue` | Jatka työtä muistiinpanoista |
+| `saipen stop` | Tallenna edistyminen ja pysäytä |
+| `saipen status` | Lue taulu ja tila |
+| `saipen goal <text>` | Siirry uuteen tavoitteeseen |
+| `saipen clean` | Syvä tietovaraston siivous |
+| `saipen translate` | Eristetty 22 kielen käännöksen rakennus |
+| `saipen ship` | Käynnistä julkaisuvirta |

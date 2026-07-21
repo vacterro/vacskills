@@ -26,4 +26,13 @@ bash bootstrap/inject.sh                                            # macOS / Li
 
 ## Befehle
 
-| Befehl | Aktion |\n|---|---|\n| `saipen set` | Speicherordner `.saipen/` initialisieren |\n| `saipen continue` | Arbeit anhand von Notizen fortsetzen |\n| `saipen stop` | Fortschritt speichern & anhalten |\n| `saipen status` | Board & Status lesen |\n| `saipen goal <text>` | Zu neuem Ziel wechseln |\n| `saipen clean` | Tiefe Repository-Bereinigung |\n| `saipen translate` | Isolierter 22-Sprachen-Übersetzungs-Build |\n| `saipen ship` | Release-Flow auslösen |
+| Befehl | Aktion |
+|---|---|
+| `saipen set` | Speicherordner `.saipen/` initialisieren |
+| `saipen continue` | Arbeit anhand von Notizen fortsetzen |
+| `saipen stop` | Fortschritt speichern & anhalten |
+| `saipen status` | Board & Status lesen |
+| `saipen goal <text>` | Zu neuem Ziel wechseln |
+| `saipen clean` | Tiefe Repository-Bereinigung |
+| `saipen translate` | Isolierter 22-Sprachen-Übersetzungs-Build |
+| `saipen ship` | Release-Flow auslösen |

@@ -24,4 +24,13 @@ bash bootstrap/inject.sh                                            # macOS / Li
 
 ## Lệnh
 
-| Lệnh | Hành động |\n|---|---|\n| `saipen set` | Khởi tạo thư mục bộ nhớ `.saipen/` |\n| `saipen continue` | Tiếp tục công việc từ ghi chú |\n| `saipen stop` | Lưu tiến trình & dừng lại |\n| `saipen status` | Đọc bảng & trạng thái |\n| `saipen goal <text>` | Chuyển sang mục tiêu mới |\n| `saipen clean` | Dọn dẹp sâu kho lưu trữ |\n| `saipen translate` | Xây dựng bản dịch 22 ngôn ngữ cô lập |\n| `saipen ship` | Kích hoạt quy trình phát hành |
+| Lệnh | Hành động |
+|---|---|
+| `saipen set` | Khởi tạo thư mục bộ nhớ `.saipen/` |
+| `saipen continue` | Tiếp tục công việc từ ghi chú |
+| `saipen stop` | Lưu tiến trình & dừng lại |
+| `saipen status` | Đọc bảng & trạng thái |
+| `saipen goal <text>` | Chuyển sang mục tiêu mới |
+| `saipen clean` | Dọn dẹp sâu kho lưu trữ |
+| `saipen translate` | Xây dựng bản dịch 22 ngôn ngữ cô lập |
+| `saipen ship` | Kích hoạt quy trình phát hành |

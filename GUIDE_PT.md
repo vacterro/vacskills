@@ -24,4 +24,13 @@ bash bootstrap/inject.sh                                            # macOS / Li
 
 ## Comandos
 
-| Comando | Ação |\n|---|---|\n| `saipen set` | Inicializar pasta de memória `.saipen/` |\n| `saipen continue` | Retomar trabalho das notas |\n| `saipen stop` | Salvar progresso e parar |\n| `saipen status` | Ler quadro e estado |\n| `saipen goal <text>` | Mudar para novo objetivo |\n| `saipen clean` | Limpeza profunda do repositório |\n| `saipen translate` | Construção isolada de tradução em 22 idiomas |\n| `saipen ship` | Disparar fluxo de lançamento |
+| Comando | Ação |
+|---|---|
+| `saipen set` | Inicializar pasta de memória `.saipen/` |
+| `saipen continue` | Retomar trabalho das notas |
+| `saipen stop` | Salvar progresso e parar |
+| `saipen status` | Ler quadro e estado |
+| `saipen goal <text>` | Mudar para novo objetivo |
+| `saipen clean` | Limpeza profunda do repositório |
+| `saipen translate` | Construção isolada de tradução em 22 idiomas |
+| `saipen ship` | Disparar fluxo de lançamento |

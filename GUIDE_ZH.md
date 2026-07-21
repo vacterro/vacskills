@@ -26,4 +26,13 @@ bash bootstrap/inject.sh                                            # macOS / Li
 
 ## 命令
 
-| 命令 | 操作 |\n|---|---|\n| `saipen set` | 初始化记忆文件夹 `.saipen/` |\n| `saipen continue` | 从笔记恢复工作 |\n| `saipen stop` | 保存进度并停止 |\n| `saipen status` | 读取看板和状态 |\n| `saipen goal <text>` | 转向新目标 |\n| `saipen clean` | 深度清理仓库 |\n| `saipen translate` | 隔离的22种语言翻译构建 |\n| `saipen ship` | 触发发布流程 |
+| 命令 | 操作 |
+|---|---|
+| `saipen set` | 初始化记忆文件夹 `.saipen/` |
+| `saipen continue` | 从笔记恢复工作 |
+| `saipen stop` | 保存进度并停止 |
+| `saipen status` | 读取看板和状态 |
+| `saipen goal <text>` | 转向新目标 |
+| `saipen clean` | 深度清理仓库 |
+| `saipen translate` | 隔离的22种语言翻译构建 |
+| `saipen ship` | 触发发布流程 |

@@ -26,4 +26,13 @@ bash bootstrap/inject.sh                                            # macOS / Li
 
 ## Naredbe
 
-| Naredba | Akcija |\n|---|---|\n| `saipen set` | Inicijalizirajte mapu memorije |\n| `saipen continue` | Nastavi rad iz bilješki |\n| `saipen stop` | Spremi napredak i zaustavi |\n| `saipen status` | Pročitaj ploču |\n| `saipen goal <text>` | Prebaci na novi cilj |\n| `saipen clean` | Očisti repozitorij |\n| `saipen translate` | Izrada prijevoda |\n| `saipen ship` | Pokreni tok izdanja |
+| Naredba | Akcija |
+|---|---|
+| `saipen set` | Inicijalizirajte mapu memorije |
+| `saipen continue` | Nastavi rad iz bilješki |
+| `saipen stop` | Spremi napredak i zaustavi |
+| `saipen status` | Pročitaj ploču |
+| `saipen goal <text>` | Prebaci na novi cilj |
+| `saipen clean` | Očisti repozitorij |
+| `saipen translate` | Izrada prijevoda |
+| `saipen ship` | Pokreni tok izdanja |
