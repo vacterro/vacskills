@@ -12,7 +12,7 @@ and resumes work in under a minute -- no rebriefing, any vendor, any day.
 
 **One command. Zero amnesia.**
 
-**v7.31.0** | [Spec](SPEC.md) | [Guide](GUIDE.md) | plain markdown | zero deps | MIT
+**v7.31.0** | [Spec](SPEC.md) | [Guide](GUIDE.md) | [RFC](saipen/RFC.md) | [Style](saipen/STYLE.md) | [UI](saipen/UI.md) | [Conformance](saipen/CONFORMANCE.md) | plain markdown | zero deps | MIT
 
 [![Russian Guide](https://img.shields.io/badge/📖_ELI5_Guide-НА_РУССКОМ-red?style=for-the-badge)](GUIDE_RU.md)
 [![English Guide](https://img.shields.io/badge/📖_ELI5_Guide-IN_ENGLISH-blue?style=for-the-badge)](GUIDE_EN.md)
@@ -66,10 +66,13 @@ No install? Paste one line to any agent:
 Platform not in the list above (DeepSeek, Qwen, standalone OpenAI, etc.)?
 Per-platform notes live in `extensions/adapters/`.
 
-## Docs
-- **[SPEC.md](SPEC.md)** -- formal architecture, for framework builders.
-- **[RFC.md](saipen/RFC.md)** -- the ruleset agents actually execute.
-- **[GUIDE.md](GUIDE.md)** -- human tutorial with examples.
+## Documentation & Specification Links
+- **[SPEC.md](SPEC.md)** -- formal architecture, design goals, litmus test.
+- **[RFC.md](saipen/RFC.md)** -- normative specification executed by agents.
+- **[GUIDE.md](GUIDE.md)** -- human tutorial & ELI5 guide ([Русский](GUIDE_RU.md) | [English](GUIDE_EN.md)).
+- **[STYLE.md](saipen/STYLE.md)** -- agent communication style & voice definition.
+- **[UI.md](saipen/UI.md)** -- Dark Golden Win95 UI design guidelines.
+- **[CONFORMANCE.md](saipen/CONFORMANCE.md)** -- behavioral test scenarios & validator rules.
 
 <p align="center">
   <img src="assets/SAIPEN_design2_alpha.png" alt="SAIPEN Stamp" width="120"/>
