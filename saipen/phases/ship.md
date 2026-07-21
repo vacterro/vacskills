@@ -36,14 +36,25 @@ no-publish means git is missing and nearly every step here needs it.
 8. LOG one normal Event Graph line per RFC § 1.2 -- `- DATE [E-###]
    [parent: E-###] RUN: ship vX.Y.Z -> pushed HASH` (this exact text after
    the taxonomy).
-9. Push rejected or fails (auth, network, non-fast-forward, hook failure):
-   LOG one normal Event Graph line per RFC § 1.2 -- `- DATE [E-###]
-   [parent: E-###] RUN: ship vX.Y.Z -> push FAILED <reason>` (this exact
-   text after the taxonomy) -- never claim success on
-   a failed push. Commit/tag stay local. Transient (network/auth)? Retry
-   once. Still failing, or non-transient (diverged history, rejected)?
-   `STATE.phase: BLOCKED` -- pushing is the one SHIP step an agent must not
-   guess its way through.
+9. Push rejected or fails: LOG one normal Event Graph line per RFC § 1.2
+   -- `- DATE [E-###] [parent: E-###] RUN: ship vX.Y.Z -> push FAILED
+   <reason>` (this exact text after the taxonomy) -- never claim success
+   on a failed push. Commit/tag stay local. Then by failure class:
+   - Transient (network, auth hiccup)? Retry once, then `BLOCKED`.
+   - **Non-fast-forward (someone pushed meanwhile) is ROUTINE, not a
+     blocker** -- for a protocol built around multiple agents and
+     surfaces touching one project, "the remote moved" is expected life,
+     not an anomaly: `git fetch`, inspect what landed (it touches
+     `.saipen/` or files in this ship's own commits? -> read before
+     acting; unrelated files? -> proceed), rebase the local commits onto
+     the new remote tip, re-run the validator, delete and recreate the
+     tag on the rebased HEAD (verify `git rev-parse HEAD` ==
+     `git rev-parse vX.Y.Z^{commit}` -- a tag left on the pre-rebase
+     commit is a stale pointer), push again. Rebase conflicts -> stop,
+     `BLOCKED` with the conflicting files as facts. NEVER resolve a
+     rejected push with force-push (RFC § 1.1 destructive list).
+   - Anything else non-transient? `STATE.phase: BLOCKED` -- pushing is
+     the one SHIP step an agent must not guess its way through.
 
 After SHIP: STATE -> DONE. `goal_mode: true`? Do not treat this as a
 stopping point even momentarily -- `next_action` MUST already name the

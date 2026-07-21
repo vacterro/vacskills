@@ -22,7 +22,16 @@ MARKER = "# saipen pre-commit hook"
 home = Path(__file__).resolve().parent.parent
 hooks_dir = Path(".git/hooks")
 
-if not Path(".git").is_dir():
+git_path = Path(".git")
+if git_path.is_file():
+    # Linked worktree (multi-agent Workers live in these): .git is a
+    # pointer file and hooks live in the MAIN repo, shared by every
+    # worktree -- installing from here is neither possible nor needed.
+    print("FAIL: this is a linked git worktree (.git is a file) -- run "
+          "from the main checkout instead; worktrees share its hooks "
+          "automatically")
+    sys.exit(1)
+if not git_path.is_dir():
     print("FAIL: no .git here -- run from the project root of a git repo")
     sys.exit(1)
 if not Path(".saipen").is_dir():
