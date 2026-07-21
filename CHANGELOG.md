@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.22.1 -- 2026-07-21 -- STYLE.md language-inference fix (real incident)
+- fix: `STYLE.md`'s "Base language = user's session language" rule never specified what "session language" means when the user's actual FIRST message carries zero language signal at all -- a bare command like `saipen hunt`, no prose. A real, observed incident: a session responded fully in German off exactly that kind of bare command, with no German anywhere in what the user had actually typed -- the agent evidently inferred language from some ambient signal (IDE/OS locale, platform UI, unrelated context) instead of the user's own words. Clarified: "user's session language" means language evident in what the user actually typed, never inferred from ambient signals; a bare first message with no language signal defaults to English until the user's own words say otherwise.
+- Docs-only clarification of existing behavior's intent, not new normative rule -- hence patch tier.
+
 ## 7.22.0 -- 2026-07-21 -- PHASE_DOCS_FIX_DIRECTIVE_PART2 (T-100 through T-114)
 A user-supplied ticket-by-ticket directive, executed one ticket at a time with an evidence package per ticket, local-commit-only until this final ship (Prime Rule 7: no tag/release without operator confirmation). Every ticket was cross-checked against what earlier rounds this session (through v7.21.0) had already fixed before touching anything -- several tickets turned out fully or partially already satisfied, and are reported as such below rather than re-done.
 
