@@ -26,9 +26,27 @@ While agents interact with the file system directly, you just type normal chat m
 | `saipen status` | Reads `.saipen/BOARD.md` and tells you what's currently going on without doing work. |
 | `saipen goal <text>` | Demotes (never deletes) current tasks, plans the new objective, and drives it forward autonomously -- including auto-push on ship. Shipping the objective isn't the stopping point either: it falls straight into autonomous HUNT/ADD maintenance until the product is mature, blocked, or the run hits its cap (3 waves / 20 tickets). |
 | `saipen clean` | Forces the agent to scrub the workspace, prune old done tickets, remove orphaned files, fix bad paths, and ensure everything is updated. |
-| `saipen translate` | Builds/updates a 22-language translation bundle in an isolated `.saitranslate/` folder, never touching your actual source. |
+| `saipen translate` | Builds/updates a 32-language translation bundle in an isolated `.saitranslate/` folder, never touching your actual source. |
 | `saipen ship` | Explicitly triggers a release (version bump, changelog, tag, push) even outside the normal ticket flow. |
 | `saipen validate` | Runs the conformance check on `.saipen/` and fixes any structural corruption it finds. |
+
+## Multilingual Guides / Руководства на разных языках
+
+Read SAIPEN guides in your native language:
+
+| | | |
+|---|---|---|
+| 🇷🇺 [Русский](GUIDE_RU.md) | 🇺🇸 [English](GUIDE_EN.md) | 🇪🇪 [Eesti](GUIDE_EE.md) |
+| 🇯🇵 [日本語](GUIDE_JA.md) | 👴 [Версия Деда](GUIDE_DED.md) | 🇺🇦 [Українська](GUIDE_UK.md) |
+| 🇩🇪 [Deutsch](GUIDE_DE.md) | 🇫🇷 [Français](GUIDE_FR.md) | 🇪🇸 [Español](GUIDE_ES.md) |
+| 🇮🇹 [Italiano](GUIDE_IT.md) | 🇵🇹 [Português](GUIDE_PT.md) | 🇳🇱 [Nederlands](GUIDE_NL.md) |
+| 🇵🇱 [Polski](GUIDE_PL.md) | 🇸🇪 [Svenska](GUIDE_SV.md) | 🇩🇰 [Dansk](GUIDE_DA.md) |
+| 🇫🇮 [Suomi](GUIDE_FI.md) | 🇳🇴 [Norsk](GUIDE_NO.md) | 🇨🇳 [中文](GUIDE_ZH.md) |
+| 🇰🇷 [한국어](GUIDE_KO.md) | 🇹🇭 [ไทย](GUIDE_TH.md) | 🇻🇳 [Tiếng Việt](GUIDE_VI.md) |
+| 🇸🇦 [العربية](GUIDE_AR.md) | 🇮🇱 [עברית](GUIDE_HE.md) | 🇹🇷 [Türkçe](GUIDE_TR.md) |
+| 🇮🇳 [हिन्दी](GUIDE_HI.md) | 🇮🇩 [Bahasa Indonesia](GUIDE_ID.md) | 🇬🇷 [Ελληνικά](GUIDE_EL.md) |
+| 🇨🇿 [Čeština](GUIDE_CS.md) | 🇷🇴 [Română](GUIDE_RO.md) | 🇭🇺 [Magyar](GUIDE_HU.md) |
+| 🇧🇬 [Български](GUIDE_BG.md) | 🇸🇰 [Slovenčina](GUIDE_SK.md) | 🇭🇷 [Hrvatski](GUIDE_HR.md) |
 
 ## Project Knowledge & Kitchen
 Don't put project-specific rules in the global agent prompts. Put them in `.saipen/KNOWLEDGE/`!
