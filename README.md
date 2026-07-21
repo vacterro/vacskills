@@ -77,6 +77,8 @@ Per-platform notes live in `extensions/adapters/`.
   - 🇺🇦 [Українська](GUIDE_UK.md) | 🇩🇪 [Deutsch](GUIDE_DE.md) | 🇫🇷 [Français](GUIDE_FR.md) | 🇪🇸 [Español](GUIDE_ES.md) | 🇮🇹 [Italiano](GUIDE_IT.md)
   - 🇵🇹 [Português](GUIDE_PT.md) | 🇳🇱 [Nederlands](GUIDE_NL.md) | 🇵🇱 [Polski](GUIDE_PL.md) | 🇸🇪 [Svenska](GUIDE_SV.md) | 🇩🇰 [Dansk](GUIDE_DA.md)
   - 🇫🇮 [Suomi](GUIDE_FI.md) | 🇳🇴 [Norsk](GUIDE_NO.md) | 🇨🇳 [中文](GUIDE_ZH.md) | 🇰🇷 [한국어](GUIDE_KO.md) | 🇹🇭 [ไทย](GUIDE_TH.md) | 🇻🇳 [Tiếng Việt](GUIDE_VI.md) | 🇸🇦 [العربية](GUIDE_AR.md) | 🇮🇱 [עברית](GUIDE_HE.md)
+  - 🇹🇷 [Türkçe](GUIDE_TR.md) | 🇮🇳 [हिन्दी](GUIDE_HI.md) | 🇮🇩 [Bahasa Indonesia](GUIDE_ID.md) | 🇬🇷 [Ελληνικά](GUIDE_EL.md) | 🇨🇿 [Čeština](GUIDE_CS.md) | 🇷🇴 [Română](GUIDE_RO.md)
+  - 🇭🇺 [Magyar](GUIDE_HU.md) | 🇧🇬 [Български](GUIDE_BG.md) | 🇸🇰 [Slovenčina](GUIDE_SK.md) | 🇭🇷 [Hrvatski](GUIDE_HR.md)
 - **[STYLE.md](saipen/STYLE.md)** -- agent communication style & voice definition.
 - **[UI.md](saipen/UI.md)** -- Dark Golden Win95 UI design guidelines.
 - **[CONFORMANCE.md](saipen/CONFORMANCE.md)** -- behavioral test scenarios & validator rules.
