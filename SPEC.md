@@ -62,7 +62,9 @@ saipen/
 extensions/                 <- THE ADAPTIVE LAYER
   adapters/                 per-model instruction bridges, for platforms the
                              injector doesn't auto-detect (README.md points here)
-  schemas/                  reference file schemas (not machine-enforced, see schemas/README.md)
+  schemas/                  state.schema.json is machine-read by tools/validate.py
+                             (single source of truth for STATE's shape); board/log
+                             schemas stay reference-only (see schemas/README.md)
   templates/                fresh .saipen/ boilerplate
   security/                 EXAMPLE hook to copy into a project (RFC § 1.9, attaches to VERIFY)
   performance/              EXAMPLE hook to copy into a project (RFC § 1.9, attaches to REVIEW)
@@ -75,8 +77,15 @@ bootstrap/                  <- INSTALL/EXPORT/UNINSTALL, one machine at a time
   uninstall.ps1 / .sh       reverses inject -- removes blocks + skill copies
   export.ps1 / .sh          archives a project's .saipen/ for backup
 
+tools/                      <- CANONICAL VALIDATOR & REPO UTILITIES
+  validate.py               canonical conformance validator (stdlib Python, zero
+                             installs; validates STATE against state.schema.json
+                             directly, plus graph checks the shell pair can't do)
+  install_hook.py           installs a pre-commit hook running validate.py
+
 tests/                      <- CONFORMANCE LAYER
-  validate.ps1 / .sh        protocol self-check validator
+  validate.ps1 / .sh        frozen portable floor for hosts without Python --
+                             new checks land only in tools/validate.py
   scenarios/                mock states (crash-recovery, claim-conflicts, etc.)
 ```
 

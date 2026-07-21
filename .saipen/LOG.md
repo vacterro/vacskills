@@ -124,7 +124,7 @@
 - [E-123] [parent: E-122] [T-063] RUN: FastPrompter cleanup: backed up and removed localized phases/protocol files.
 - [E-124] [parent: E-123] [T-065] RUN: implement .saipen/kitchen/ as canonical intermediate storage for seamless continuation.
 
-- 18.07.26 22:57 [E-125] [parent: E-124] SYSTEM: executed saipen clean, scrubbed BOARD.md
+- 18.07.26 22:57 [E-125] [parent: E-124] RUN: SYSTEM: executed saipen clean, scrubbed BOARD.md
 - 18.07.26 23:15 [E-126] [parent: E-124] [T-none] RUN: RFC §2.3 refine -> user workflow (было functional cluster) + Complete-before-you-extend maxim, sync RFC+add.md PASS — kurat, два места сразу, одно забудешь — опять несоответствие
 - 18.07.26 23:40 [E-127] [parent: E-126] [T-none] RUN: RFC §2.4 GOAL Mode implemented -> ship-автопуш при goal_mode:true, потолок 3 волны/20 тикетов, VERIFY/REVIEW неприкосновенны PASS — как в Antigravity, только с тормозами
 - 18.07.26 23:55 [E-128] [parent: E-127] [T-none] RUN: readmes -> нашёл старый saipen GOAL в гайдах, смыслы слиты (pivot + автозавершение), регистр выровнен под SET PASS — два агента писали одно слово по-разному, вот и приплыли
@@ -508,3 +508,6 @@
 - 21.07.26 07:00 [E-506] [parent: E-505] [T-none] H: user включил ultracode -- цель: ноль логических дыр, мульти-агентная амнезия решена по-настоящему; адверсариальный проход по RFC как враг
 - 21.07.26 07:10 [E-507] [parent: E-506] [T-none] RUN: 6 дыр найдено, все в ядре -- Pick Rule с v1 не ссылался на claims (законно украсть свежезаклеймленный тикет); "actively writing LOG" undecidable + противоречил extension (Workers не пишут LOG вообще); concurrency boundary нигде не заявлен; zombie DOING без правила усыновления; проигравший claim-гонку без инструкции; RFC §2.2 pseudocode 6 версий противоречил своему же add.md (T-105 фикс не дошёл до RFC-копии)
 - 21.07.26 07:20 [E-508] [parent: E-507] [T-none] RUN: все 6 закрыты в §1.4/§1.6/§2.2 -- refresh-based claims (decidable), takeover/adoption процедуры с DEC+kitchen, границы Core vs extension явные (.saipen/lock остался rejected -- заявили границу, не добавили машинерию); fixture consistent, оба валидатора PASS, паритет 9/9; ship -> 7.28.0
+- 21.07.26 07:40 [E-509] [parent: E-508] [T-none] H: user -- доводим до совершенства в текущем состоянии; sweep: последний warn, мёртвые ссылки, доки против реальности
+- 21.07.26 07:50 [E-510] [parent: E-509] [T-none] RUN: SYSTEM-строка E-125 отремонтирована тем же санкционированным способом что 22 строки v7.24.0 (RUN: префикс, байты целы) -- первый в истории репо прогон с нулём warnings; 3 мёртвые ссылки на снесённый GAP_MATRIX пофикшены (CONFORMANCE 11/13 + invalid-phase-transition), причём строка 13 ещё и ВРАЛА что parent-резолюция не enforced
+- 21.07.26 07:55 [E-511] [parent: E-510] [T-none] RUN: SPEC.md догнал реальность (tools/ слой существует, schemas live, shell = frozen floor); CONFORMANCE +2 behavioral фикстуры (unclaimed-doing-adoption, blocked-ticket-clean-tree) для правил v7.27/v7.28; done.md цитата §2.4 -> §1.10; оба валидатора PASS чисто; ship -> 7.28.1

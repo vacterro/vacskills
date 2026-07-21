@@ -1,5 +1,12 @@
 # Changelog
 
+## 7.28.1 -- 2026-07-21 -- perfection sweep: zero warnings, zero dead references, docs caught up to reality
+- **The last validator warning is gone.** LOG.md's one remaining `SYSTEM:` taxonomy line (v1-era `saipen clean` event) repaired the same sanctioned way as v7.24.0's 22 lines -- legal `RUN:` prefixed, every original byte kept. First fully clean validation run in the repo's history: zero FAILs, zero WARNs.
+- **Three dead references to the deleted `SAIPEN_GAP_MATRIX.md` fixed** (deleted v7.26.0 by kitchen's own stale rule; its citations outlived it): CONFORMANCE row 11 now cites `KNOWLEDGE/decisions.md` + CHANGELOG for the goal_exit rejection; row 13 was stale AND wrong -- it still claimed parent-resolution/ID-uniqueness are "deliberately not validator-enforced" when v7.24.0 enforced both and the ledger repair killed the excuse; `invalid-phase-transition`'s README cites the CHANGELOG decision instead.
+- **SPEC.md caught up to v7.24.0+ reality**: the architecture tree had zero mentions of `tools/` (the canonical validator formally didn't exist), still called schemas "not machine-enforced", and described the shell validators without their frozen-floor status. All three fixed.
+- **Scenario coverage completed for the new normative rules**: rows 19-20 + behavioral README fixtures for unclaimed-DOING adoption (RFC § 1.4, v7.28.0) and the clean-tree-after-BLOCKED discipline (`phases/verify.md`, v7.27.0).
+- `done.md`'s "no separate fix subcommand" note pointed at RFC § 2.4 (Goal Mode); free text is § 1.10's command surface. Citation fixed.
+
 ## 7.28.0 -- 2026-07-21 -- adversarial logic audit: the multi-agent core actually holds now
 User asked for zero logical holes with the multi-agent amnesia promise as the target. Adversarial pass over RFC.md as a whole -- attacking the rules as written, not the wiring -- found six real holes, all in § 1.4/§ 1.6/§ 2.2:
 

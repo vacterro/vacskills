@@ -32,11 +32,13 @@ fixture state why, not silently.
 | 8 | No-publish restriction | `no-git-ship-denial` |
 | 9 | Read-only restriction | `read-only-restriction` |
 | 10 | Board-empty maintenance transition | `board-empty-maintenance-transition` -- behavioral, no fixture |
-| 11 | Goal objective exit | N/A -- `goal_exit` was evaluated and rejected (`.saipen/kitchen/SAIPEN_GAP_MATRIX.md`); `goal_mode` never exits on board-empty, so there is no "objective exit" behavior to test |
+| 11 | Goal objective exit | N/A -- `goal_exit` was evaluated and rejected three times (recorded in `.saipen/KNOWLEDGE/decisions.md` and CHANGELOG v7.13.1/v7.19.1); `goal_mode` never exits on board-empty, so there is no "objective exit" behavior to test |
 | 12 | Extension absence does not block | `extension-absence` |
-| 13 | Unresolved LOG parent | N/A -- deliberately not validator-enforced (same reasoning as Event ID uniqueness: this repo's own LOG.md has real historical numbering resets from the vac -> vacskill -> SAIPEN rename that a naive resolver would immediately misflag; see `SAIPEN_GAP_MATRIX.md` G-05/G-06) |
+| 13 | Unresolved LOG parent | Enforced by `tools/validate.py` since v7.24.0 (parent must resolve to an earlier `E-###`; IDs unique + monotonic). The old excuse -- historical numbering resets a naive resolver would misflag -- died with v7.24.0's user-approved ledger repair; this repo's own LOG.md now passes the check it once couldn't. |
 | 14 | Invalid phase transition | `invalid-phase-transition` -- conceptual only; `STATE.md` doesn't track phase history, so this can't be automated without new scope |
 | 15 | Invalid mode-phase combination | `invalid-mode-phase-combination` |
 | 16 | Ticket-level BLOCKED (non-cycle failure), work continues | `blocked-ticket` |
 | 17 | Fresh INIT bootstrap from `templates/` | `fresh-init` -- behavioral, no `.saipen/` yet by definition (that's what INIT creates) |
 | 18 | Evolutionary ADD feature symmetry (§ 2.2) | `add-feature-symmetry` -- behavioral, no fixture |
+| 19 | Unclaimed DOING adoption (RFC § 1.4, v7.28.0) | `unclaimed-doing-adoption` -- behavioral, README-only |
+| 20 | Clean tree after ticket-level BLOCKED (`phases/verify.md`, v7.27.0) | `blocked-ticket-clean-tree` -- behavioral, README-only |
