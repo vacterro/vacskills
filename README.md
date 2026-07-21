@@ -14,11 +14,13 @@ and resumes work in under a minute -- no rebriefing, any vendor, any day.
 
 **v7.31.0** | [Spec](SPEC.md) | [Guide](GUIDE.md) | [RFC](saipen/RFC.md) | [Style](saipen/STYLE.md) | [UI](saipen/UI.md) | [Conformance](saipen/CONFORMANCE.md) | plain markdown | zero deps | MIT
 
-[![Russian Guide](https://img.shields.io/badge/📖_ELI5_Guide-НА_РУССКОМ-red?style=for-the-badge)](GUIDE_RU.md)
-[![English Guide](https://img.shields.io/badge/📖_ELI5_Guide-IN_ENGLISH-blue?style=for-the-badge)](GUIDE_EN.md)
-[![Eesti Guide](https://img.shields.io/badge/📖_ELI5_Guide-EESTI-black?style=for-the-badge)](GUIDE_EE.md)
-[![Japanese Guide](https://img.shields.io/badge/📖_ELI5_Guide-日本語-red?style=for-the-badge)](GUIDE_JA.md)
-[![Ded Voice](https://img.shields.io/badge/👴_Guide-ВЕРСИЯ_ДЕДА-brown?style=for-the-badge)](GUIDE_DED.md)
+<p align="center">
+  [![Russian Guide](https://img.shields.io/badge/📖_ELI5_Guide-НА_РУССКОМ-red?style=for-the-badge)](GUIDE_RU.md)
+  [![English Guide](https://img.shields.io/badge/📖_ELI5_Guide-IN_ENGLISH-blue?style=for-the-badge)](GUIDE_EN.md)
+  [![Eesti Guide](https://img.shields.io/badge/📖_ELI5_Guide-EESTI-black?style=for-the-badge)](GUIDE_EE.md)
+  [![Japanese Guide](https://img.shields.io/badge/📖_ELI5_Guide-日本語-red?style=for-the-badge)](GUIDE_JA.md)
+  [![Ded Voice](https://img.shields.io/badge/👴_Guide-ВЕРСИЯ_ДЕДА-brown?style=for-the-badge)](GUIDE_DED.md)
+</p>
 
 ```text
 User  ->  /saipen continue
@@ -71,12 +73,20 @@ Per-platform notes live in `extensions/adapters/`.
 - **[SPEC.md](SPEC.md)** -- formal architecture, design goals, litmus test.
 - **[RFC.md](saipen/RFC.md)** -- normative specification executed by agents.
 - **[GUIDE.md](GUIDE.md)** -- human tutorial & ELI5 guides:
-  - 🇷🇺 [Русский](GUIDE_RU.md) | 🇺🇸 [English](GUIDE_EN.md) | 🇪🇪 [Eesti](GUIDE_EE.md) | 🇯🇵 [日本語](GUIDE_JA.md) | 👴 [Версия Деда](GUIDE_DED.md)
-  - 🇺🇦 [Українська](GUIDE_UK.md) | 🇩🇪 [Deutsch](GUIDE_DE.md) | 🇫🇷 [Français](GUIDE_FR.md) | 🇪🇸 [Español](GUIDE_ES.md) | 🇮🇹 [Italiano](GUIDE_IT.md)
-  - 🇵🇹 [Português](GUIDE_PT.md) | 🇳🇱 [Nederlands](GUIDE_NL.md) | 🇵🇱 [Polski](GUIDE_PL.md) | 🇸🇪 [Svenska](GUIDE_SV.md) | 🇩🇰 [Dansk](GUIDE_DA.md)
-  - 🇫🇮 [Suomi](GUIDE_FI.md) | 🇳🇴 [Norsk](GUIDE_NO.md) | 🇨🇳 [中文](GUIDE_ZH.md) | 🇰🇷 [한국어](GUIDE_KO.md) | 🇹🇭 [ไทย](GUIDE_TH.md) | 🇻🇳 [Tiếng Việt](GUIDE_VI.md) | 🇸🇦 [العربية](GUIDE_AR.md) | 🇮🇱 [עברית](GUIDE_HE.md)
-  - 🇹🇷 [Türkçe](GUIDE_TR.md) | 🇮🇳 [हिन्दी](GUIDE_HI.md) | 🇮🇩 [Bahasa Indonesia](GUIDE_ID.md) | 🇬🇷 [Ελληνικά](GUIDE_EL.md) | 🇨🇿 [Čeština](GUIDE_CS.md) | 🇷🇴 [Română](GUIDE_RO.md)
-  - 🇭🇺 [Magyar](GUIDE_HU.md) | 🇧🇬 [Български](GUIDE_BG.md) | 🇸🇰 [Slovenčina](GUIDE_SK.md) | 🇭🇷 [Hrvatski](GUIDE_HR.md)
+
+  | | | |
+  |---|---|---|
+  | 🇷🇺 [Русский](GUIDE_RU.md) | 🇺🇸 [English](GUIDE_EN.md) | 🇪🇪 [Eesti](GUIDE_EE.md) |
+  | 🇯🇵 [日本語](GUIDE_JA.md) | 👴 [Версия Деда](GUIDE_DED.md) | 🇺🇦 [Українська](GUIDE_UK.md) |
+  | 🇩🇪 [Deutsch](GUIDE_DE.md) | 🇫🇷 [Français](GUIDE_FR.md) | 🇪🇸 [Español](GUIDE_ES.md) |
+  | 🇮🇹 [Italiano](GUIDE_IT.md) | 🇵🇹 [Português](GUIDE_PT.md) | 🇳🇱 [Nederlands](GUIDE_NL.md) |
+  | 🇵🇱 [Polski](GUIDE_PL.md) | 🇸🇪 [Svenska](GUIDE_SV.md) | 🇩🇰 [Dansk](GUIDE_DA.md) |
+  | 🇫🇮 [Suomi](GUIDE_FI.md) | 🇳🇴 [Norsk](GUIDE_NO.md) | 🇨🇳 [中文](GUIDE_ZH.md) |
+  | 🇰🇷 [한국어](GUIDE_KO.md) | 🇹🇭 [ไทย](GUIDE_TH.md) | 🇻🇳 [Tiếng Việt](GUIDE_VI.md) |
+  | 🇸🇦 [العربية](GUIDE_AR.md) | 🇮🇱 [עברית](GUIDE_HE.md) | 🇹🇷 [Türkçe](GUIDE_TR.md) |
+  | 🇮🇳 [हिन्दी](GUIDE_HI.md) | 🇮🇩 [Bahasa Indonesia](GUIDE_ID.md) | 🇬🇷 [Ελληνικά](GUIDE_EL.md) |
+  | 🇨🇿 [Čeština](GUIDE_CS.md) | 🇷🇴 [Română](GUIDE_RO.md) | 🇭🇺 [Magyar](GUIDE_HU.md) |
+  | 🇧🇬 [Български](GUIDE_BG.md) | 🇸🇰 [Slovenčina](GUIDE_SK.md) | 🇭🇷 [Hrvatski](GUIDE_HR.md) |
 - **[STYLE.md](saipen/STYLE.md)** -- agent communication style & voice definition.
 - **[UI.md](saipen/UI.md)** -- Dark Golden Win95 UI design guidelines.
 - **[CONFORMANCE.md](saipen/CONFORMANCE.md)** -- behavioral test scenarios & validator rules.
