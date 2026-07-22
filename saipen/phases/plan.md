@@ -8,7 +8,7 @@ If `PLAN` is triggered without a specific user prompt (bare `saipen plan`), the 
 1. Identify logical next workflow steps (§ 2.3 Industrial Completion Rule).
 2. Identify missing capabilities, refactoring, or architectural strengthening (§ 2.2 Evolutionary ADD).
 3. Populate `BOARD.md` with structured proposal tickets.
-4. Transition `STATE.phase` to `DONE` and halt to await user selection. MUST NOT proceed to `SCOUT`.
+4. Transition `STATE.phase` to `DONE` and halt to await user selection. MUST NOT proceed to `SCOUT`. Do NOT use a `WAIT:` prefix in `next_action` for this -- it violates RFC § 1.2. If the user subsequently issues a bare `saipen` (continue) without selecting a specific ticket, simply pick up the first `TODO` ticket from the board and transition to `SCOUT` per normal default behavior.
 
 Ticket shape: one goal, independently verifiable, `needs:` for deps.
 Every ticket SHOULD carry `| verify: <command or criterion>` (RFC § 1.2)
