@@ -1,7 +1,7 @@
 # Phase: BLOCKED
 
 The whole session is stuck, not just one ticket -- you only land here after
-confirming no other ticket on `BOARD.md` is workable (`phases/verify.md`).
+confirming no other ticket on `BOARD.md` is workable (`phases/verify.md` or `phases/done.md`).
 
 1. Check `blocker:` in STATE.md or recent LOG.md entries. Empty `blocker:`
    here is itself non-conformant (RFC § 1.2) -- determine the real reason
