@@ -522,3 +522,6 @@
 - 22.07.26 02:16 [E-520] [parent: E-519] [T-none] RUN: saipen translate all -- 23/23 locales built in .saitranslate/locales/
 - 22.07.26 02:31 [E-521] [parent: E-520] [T-none] RUN: clean -> done @a531751
 - 22.07.26 02:33 [E-522] [parent: E-521] [T-none] RUN: clean -> done @5bebddf
+- 22.07.26 09:30 [E-523] [parent: E-522] [T-none] H: user -- гайды скудные, обогати каждый на своём языке
+- 22.07.26 09:40 [E-524] [parent: E-523] [T-none] RUN: заметил репо ушёл вперёд без меня -- antigravity сессия (E-519..522, VERSION 7.31.0) уже перевела проект в public и снесла multi-agent extension целиком (не только с витрины -- физически удалила extensions/multi-agent/ + почистила RFC/SPEC/CONTRIBUTING), консистентно с CHANGELOG 7.31.0 "user cleared checklist, goes public"; заметил также что 5 коммитов той сессии (be44fdd..140f7ad) без единой LOG-строки -- логдисциплина провисла, не моя правка, просто зафиксировал факт
+- 22.07.26 09:45 [E-525] [parent: E-524] [T-none] RUN: GUIDE.md/GUIDE_EN.md/GUIDE_RU.md обогащены каждый в своём голосе -- dirty-tree правило, ADR-паттерн KNOWLEDGE/, capability degradation, install_hook колл-аут; validate PASS; ship -> 7.31.1

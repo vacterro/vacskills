@@ -1,5 +1,14 @@
 # Changelog
 
+## 7.31.1 -- 2026-07-22 -- GUIDE/GUIDE_EN/GUIDE_RU enriched, each in its own voice
+User's call: guides were thin. Added four real, previously-undocumented behaviors to all three guides, each written in its own established voice (GUIDE.md neutral, GUIDE_EN.md/GUIDE_RU.md caveman-дед) rather than flattened to one tone:
+- Dirty-tree-on-continuation (RFC § 1.5): uncommitted changes at cold-start are normal, not a red flag; agent attributes before touching, never auto-commits/reverts someone else's work.
+- KNOWLEDGE/ ADR pattern spelled out: numbered `ADR-001.md` or running `decisions.md`, both legal (RFC § 1.2).
+- Capability degradation made concrete: no git/shell means the agent says so plainly (`mode`, `WAIT:`) instead of guessing.
+- `tools/install_hook.py` given a one-line setup callout as an optional safety net.
+
+No new protocol behavior -- purely documenting what already shipped. Both validators green.
+
 ## 7.31.0 -- 2026-07-21 -- user cleared the pre-advertising checklist, project goes public
 - `STATE.md` no longer lists pre-advertising to-dos (cold-run, goal-mode, multi-agent dry-run, fresh release). Plan was user's own reminder, they marked it done. Clean `next_action` now just says "Board empty -- bare saipen -> HUNT".
 

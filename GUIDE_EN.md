@@ -42,6 +42,21 @@ Since there's no active work, the agent won't whine 'how can I help?'. It automa
 **Step 5. Spring Cleaning**
 Type `saipen clean`. The agent will roll up its sleeves, prune your old finished tickets, delete orphaned files, fix broken paths, and make sure the repo is crisp and fresh.
 
+**Step 6. Don't panic about the mess**
+You'll open the project one day and see a pile of uncommitted changes staring back at you. That's not a disaster, that's Tuesday -- the agent only actually commits at `ship`, so half-finished work sitting there is completely normal. It figures out whose mess it is before touching anything: its own unfinished ticket, it keeps going; somebody else's edits (yours, some other tool's), it doesn't lay a finger on them. No surprise commits, no surprise reverts.
+
+**Step 7. Make it remember house rules forever**
+Beyond the "tabs not spaces" trick -- if you want it to remember an actual architectural decision (why Postgres over Mongo, why that one module is cursed), drop it in `.saipen/KNOWLEDGE/` as either one running `decisions.md` or numbered files like `ADR-001.md`. Either way it gets read like scripture before planning starts.
+
+**When it can't do something, it says so**
+No git on this machine? It won't fake a push and lie to you. No shell? It'll hand you the exact command to run yourself and wait for the verdict. It checks what it's actually allowed to touch before it touches anything -- that's the whole point of a `WAIT: <question>` message. Answer it, it moves.
+
+**Paranoid? Lock the door**
+```bash
+python <saipen-clone>/tools/install_hook.py
+```
+Installs a pre-commit hook. Broken board, malformed log line -- caught before the commit, not three sessions later when you're trying to figure out who broke what.
+
 Any questions? No? Then get back to work.
 
 ## All Commands & Use Scenarios (Cheat Sheet)

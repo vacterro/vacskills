@@ -55,6 +55,21 @@ Don't put project-specific rules in the global agent prompts. Put them in `.saip
 
 The agent also has a `.saipen/kitchen/` directory. It uses this to store intermediate, half-finished files and scratchpads. If an agent dies mid-process, the next agent can just look into the `kitchen/` and immediately pick up where it left off.
 
+## Coming back to a messy folder
+If you (or a previous agent session) left uncommitted changes sitting in the project, that's not a red flag -- it's normal. SAIPEN treats work as committed at `saipen ship`, not after every small step, so mid-ticket edits sitting uncommitted are expected, not an accident. Before touching anything, the agent checks whose changes those are: its own unfinished ticket -- it continues; anyone else's edits (yours, another tool's) -- it leaves them exactly alone. No surprise auto-commits, no surprise reverts.
+
+## Recording decisions, not just rules
+`.saipen/KNOWLEDGE/` isn't only for "always use tabs" -- it's also the right place for actual architecture decisions, so they outlive any single agent's memory. Two accepted shapes: one running `decisions.md` you keep appending to, or numbered `ADR-001.md`, `ADR-002.md`... files, one immutable record per decision. Use whichever already fits how your team documents things.
+
+## When the agent genuinely can't do something
+Before doing any work, the agent checks what the host actually supports -- is git installed, is there a shell, can it write files at all -- and records that as `mode` in `STATE.md`. No git: it won't attempt a push, it'll say so. No shell: it'll hand you the exact command to run yourself and wait for your report. That's also why you'll sometimes see `next_action: WAIT: <a specific question>` -- it's not stalling, it's asking the one thing only you can answer. Answer it in chat and it proceeds immediately.
+
+## Locking it down before every commit (optional)
+On a git project and want a safety net? Run this once from the project root:
+```bash
+python <path-to-your-saipen-clone>/tools/install_hook.py
+```
+It installs a pre-commit hook that checks `.saipen/`'s structural integrity before every commit -- a broken board or a malformed log line gets caught right there, not three sessions later when you're trying to figure out who broke what.
 
 <p align="center">
   <img src="assets/SAIPEN_design2_alpha.png" alt="SAIPEN Stamp" width="120"/>
