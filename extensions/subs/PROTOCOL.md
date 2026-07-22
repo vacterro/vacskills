@@ -143,6 +143,8 @@ Legal only while `.saipen/extensions/subs/` (or legacy root `extensions/subs/`) 
 | `saipen sub collect` | Run the Handoff procedure (§ 4) against every active subSaipen. |
 | `saipen sub clean <name>` | Remove the `MANIFEST.md` line and the `.saipen/extensions/subs/<name>/` folder -- only once its `BOARD.md` is empty and its `OUTBOX.md` has nothing `ready` left unreviewed. |
 
+`saipen sub spawn` requires a project that already has `.saipen/` (i.e. `saipen set` already ran) -- a subSaipen attaches to a main project's continuation state, it isn't one on its own. No `.saipen/` at all yet? Tell the user to run `saipen set` first; don't silently trigger `INIT` as a side effect of an unrelated command.
+
 First `saipen sub spawn` in a project no `saipen_home` was ever recorded for (state written before v7.25.0, or a manual/degraded bootstrap)? Ask once -- `WAIT: path to the saipen clone to bootstrap subs from` -- never guess a path.
 
 ## 8. File shape for a subSaipen

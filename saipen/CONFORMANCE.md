@@ -44,3 +44,4 @@ fixture state why, not silently.
 | 20 | Clean tree after ticket-level BLOCKED (`phases/verify.md`, v7.27.0) | `blocked-ticket-clean-tree` -- behavioral, README-only |
 | 21 | Dirty tree on continuation (RFC § 1.5, v7.29.0) | `dirty-tree-continuation` -- behavioral, README-only |
 | 22 | Parallel TRANSLATE doesn't stomp shared STATE (RFC § 2.1, `phases/translate.md`, v7.34.0) | `parallel-translate-isolation` -- behavioral, README-only |
+| 23 | Dual-location extension conflict resolved, never merged/guessed (RFC § 1.9, v7.36.0) | `extension-dual-location-conflict` -- behavioral, README-only |

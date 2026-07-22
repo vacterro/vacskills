@@ -574,5 +574,8 @@
 - 23.07.26 01:50 [E-572] [parent: E-571] [T-none] H: user уточнил ещё раз -- не либо доки либо софт, а ОБА разом когда есть; плюс держать руку на пульсе изменений проекта, не разовая проверка
 - 23.07.26 01:55 [E-573] [parent: E-572] [T-none] RUN: translate.md §2 переписан -- (a) доки и (b) реальные UI-строки оба в скоупе одновременно, не exclusive ветки; §3 "Maintenance and Update" из пассивного "if exists, compare" в активный per-run drift scan -- каждый запуск пересканирует обе поверхности, ловит что изменилось с прошлого раза, честно репортит partial вместо round-up to done
 - 23.07.26 02:00 [E-574] [parent: E-573] [T-none] RUN: CHANGELOG heading опять слетел (третий раз за сессию, тот же паттерн) -- поймал и починил до коммита; оба валидатора PASS; ship -> 7.35.1
+- 23.07.26 02:10 [E-575] [parent: E-574] [T-none] H: user -- overview снова весь проект на логические дыры
+- 23.07.26 02:20 [E-576] [parent: E-575] [T-none] RUN: сфокусировался на самом свежем -- v7.35.0 консолидация под .saipen/, наименее обкатанная поверхность. 4 дыры: nested STATE.md/BOARD.md/LOG.md ambiguity (несколько файлов с тем же именем на разной глубине теперь под одним .saipen/); kitchen-буллет не disambiguated subSaipen kitchens как уже делал для TRANSLATE; "оба location существуют разом" не имел resolution rule; saipen sub spawn не проверял что .saipen/ вообще существует
+- 23.07.26 02:30 [E-577] [parent: E-576] [T-none] RUN: все 4 закрыты в RFC §1.1 (explicit unqualified=exact path) + kitchen-буллет + §1.9 dual-location conflict rule + PROTOCOL.md precondition; row 23 + extension-dual-location-conflict фикстура; проверил init.md на тот же класс -- чист, не авто-заполняет extensions/saitranslate; оба валидатора PASS; ship -> 7.36.0
 
 

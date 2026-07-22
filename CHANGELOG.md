@@ -1,5 +1,17 @@
 # Changelog
 
+## 7.36.0 -- 2026-07-23 -- adversarial pass over yesterday's own consolidation, four real holes
+User asked for another full logic-holes overview. Focused on the newest, least battle-tested surface: v7.35.0's `.saipen/` consolidation, since restructuring the file model is exactly the kind of change most likely to have introduced fresh ambiguity nobody stress-tested yet. Found four:
+
+- **Nested STATE.md/BOARD.md/LOG.md ambiguity.** Before v7.35.0, a subSaipen's or parallel-TRANSLATE's own STATE.md lived under a totally separate tree (`extensions/`, `.saitranslate/`) -- no risk of confusing it with the project's own. After consolidation, real files named `STATE.md` now exist at multiple depths under the same `.saipen/` root. RFC § 1.1 hardened: "STATE.md" unqualified always means the exact `.saipen/STATE.md` at project root; a nested one is a different instance entirely, distinguished by full path -- never `find`/glob for a bare filename and act on whatever turns up.
+- **Kitchen bullet didn't disambiguate subSaipen kitchens** the way it already did for TRANSLATE's. Added the same explicit callout: a crashed subSaipen's kitchen is that subSaipen's own resume concern (or the main agent's, via Handoff/OUTBOX), never something the main agent inspects hunting for its own crashed work.
+- **Both extension locations existing at once** (partial/failed migration, two agents disagreeing) had no resolution rule -- RFC § 1.9 only said "don't maintain both," not what to do on discovering it already happened. Added: `.saipen/extensions/<name>/` is authoritative, root-level is stale, ticket the cleanup, never silently merge or guess which is newer. Scenario row 23 + `extension-dual-location-conflict` fixture.
+- **`saipen sub spawn` had no precondition check** for a project with no `.saipen/` at all (never ran `saipen set`). A subSaipen attaches to a main project's continuation state -- it isn't one on its own. `extensions/subs/PROTOCOL.md` now requires `.saipen/` to already exist; tells the user to bootstrap first instead of silently triggering INIT as a side effect of an unrelated command.
+
+Swept `phases/init.md` for the same class of issue -- confirmed clean, it only ever touches `.saipen/STATE.md`/`BOARD.md`/`LOG.md` directly, never auto-populates `extensions/`/`saitranslate/`, consistent with RFC's own no-auto-populate rule.
+
+Both validators green.
+
 ## 7.35.1 -- 2026-07-23 -- TRANSLATE covers docs AND software together, actively tracks drift
 User's follow-up clarified intent further: v7.34.1's "docs-first projects / UI-bearing projects" wording read as an either/or choice -- pick one. The real intent is additive: TRANSLATE's job is everything translatable in the repo, docs and real software UI strings together whenever both exist, never a choice between them. `phases/translate.md` § 2 reworded -- documentation and real UI strings are now explicitly "(a)" and "(b)", both in scope simultaneously; a project just gets whichever of the two it actually has (most SAIPEN-managed projects: (a) only, never fabricate (b) to compensate).
 
