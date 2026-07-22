@@ -535,3 +535,7 @@
 - 22.07.26 10:35 [E-533] [parent: E-532] [T-none] H: user притащил reddit-комментарий -- "не вижу проблемы амнезии, у меня свой Obsidian vault + provenance logging"; попросил выжать зерно истины
 - 22.07.26 10:40 [E-534] [parent: E-533] [T-none] RUN: разбор -- он не опровергает проблему, он другая персона (уже решил её вручную дисциплиной). Реальный гэп: не сказано что .saipen/KNOWLEDGE/ уже Obsidian-совместим (голый markdown, нулевые доп-фичи нужны) -- добавил секцию в GUIDE.md; provenance logging уже покрыт DEC-таксономией, новую taxonomy НЕ завожу (closed enum, тот же барьер что весь сезон)
 - 22.07.26 10:42 [E-535] [parent: E-534] [T-none] RUN: CHANGELOG heading опечатка (# Changelog улетел вниз) поймана и починена до коммита; оба валидатора PASS; ship -> 7.32.1
+- 22.07.26 17:35 [E-536] [parent: E-535] [T-none] RUN: validate -> PASS (tools/validate.py conformant)
+- 22.07.26 17:39 [E-537] [parent: E-536] [T-none] RUN: clean -> done @dd6b613
+
+
