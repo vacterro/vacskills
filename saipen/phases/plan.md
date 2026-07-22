@@ -3,6 +3,12 @@
 Amplify user intent into tickets. <=8 lines of analysis: edge cases,
 callers, migrations, UI states. Safe defaults over interrogation.
 
+**Bare / Proposal Mode (`saipen plan` with no prompt):**
+If `PLAN` is triggered without a specific user prompt (bare `saipen plan`), the agent MUST evaluate the codebase, existing `KNOWLEDGE/`, and git log to generate an autonomous proposal plan:
+1. Identify logical next workflow steps (§ 2.3 Industrial Completion Rule).
+2. Identify missing capabilities, refactoring, or architectural strengthening (§ 2.2 Evolutionary ADD).
+3. Populate `BOARD.md` with structured proposal tickets for user review or execution.
+
 Ticket shape: one goal, independently verifiable, `needs:` for deps.
 Every ticket SHOULD carry `| verify: <command or criterion>` (RFC § 1.2)
 when known -- pin down how it'll be checked while the goal is still

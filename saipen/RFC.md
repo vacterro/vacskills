@@ -133,6 +133,7 @@ The complete set of recognized user-facing commands. Phase-affecting ones are de
 - `saipen set` / `saipen init` -- bootstrap `.saipen/` (§ 1.7, `phases/init.md`).
 - `saipen continue` / bare `saipen` -- read `STATE.md`/`BOARD.md`/tail of `LOG.md`, execute `next_action` immediately, no rebriefing (§ 1.1, § 2.1 DEFAULT BEHAVIOR, `CONFORMANCE.md` TEST-001).
 - `saipen goal <text>` -- pivot to a new objective, run to completion (§ 2.4).
+- `saipen plan [text]` -- explicit trigger for PLAN phase (`phases/plan.md`). If run bare without text, agent MUST generate an autonomous proposal plan (next steps, missing features, refactoring) and populate `BOARD.md` with tickets.
 - `saipen clean` -- deep repository scrub (`phases/clean.md`).
 - `saipen translate` -- isolated translation build (`phases/translate.md`).
 - `saipen ship` -- explicit SHIP trigger (`phases/ship.md`); SHIP also fires implicitly per that phase's other stated conditions.
