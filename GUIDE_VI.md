@@ -32,5 +32,11 @@ bash bootstrap/inject.sh                                            # macOS / Li
 | `saipen status` | Đọc bảng & trạng thái |
 | `saipen goal <text>` | Chuyển sang mục tiêu mới |
 | `saipen clean` | Dọn dẹp sâu kho lưu trữ |
-| `saipen translate` | Xây dựng bản dịch 22 ngôn ngữ cô lập |
+| `saipen translate` | Xây dựng bản dịch 32 ngôn ngữ cô lập |
 | `saipen ship` | Kích hoạt quy trình phát hành |
+
+## Điều nên biết
+- Có thay đổi chưa commit khi quay lại dự án? Bình thường thôi -- SAIPEN chỉ commit ở bước `ship`, không phải mỗi bước. Agent sẽ kiểm tra xem đó là thay đổi của ai trước khi động vào bất cứ thứ gì.
+- Muốn nó nhớ một quyết định kiến trúc thực sự? Đặt vào `.saipen/KNOWLEDGE/`, dưới dạng một file `decisions.md` hoặc các file đánh số `ADR-001.md`.
+- Máy này không có git hay shell? Agent sẽ nói thẳng (`mode`, `WAIT: <câu hỏi>`) thay vì đoán mò.
+- Muốn có lưới an toàn? `python <saipen-clone>/tools/install_hook.py` sẽ cài đặt kiểm tra trước khi commit.

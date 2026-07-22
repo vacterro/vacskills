@@ -34,5 +34,11 @@ bash bootstrap/inject.sh                                            # macOS / Li
 | `saipen status` | Citiți panoul |
 | `saipen goal <text>` | Treceți la noul obiectiv |
 | `saipen clean` | Curățați depozitul |
-| `saipen translate` | Construcție traducere |
+| `saipen translate` | Construcție izolată de traducere în 32 de limbi |
 | `saipen ship` | Declanșați fluxul de lansare |
+
+## Bine de știut
+- Modificări necomise când revii la proiect? Normal -- SAIPEN face commit doar la `ship`, nu la fiecare pas. Agentul verifică mai întâi ale cui sunt acele modificări înainte de a atinge ceva.
+- Vrei să rețină o decizie arhitecturală reală? Pune-o în `.saipen/KNOWLEDGE/`, fie ca un singur fișier `decisions.md`, fie ca fișiere numerotate `ADR-001.md`.
+- Nu ai git sau shell pe această mașină? Agentul spune asta clar (`mode`, `WAIT: <întrebare>`) în loc să ghicească.
+- Vrei o plasă de siguranță? `python <clonă-saipen>/tools/install_hook.py` instalează o verificare pre-commit.

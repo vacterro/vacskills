@@ -34,5 +34,11 @@ bash bootstrap/inject.sh                                            # macOS / Li
 | `saipen status` | Panoyu oku |
 | `saipen goal <text>` | Yeni hedefe geç |
 | `saipen clean` | Depoyu temizle |
-| `saipen translate` | Çeviri derlemesi |
+| `saipen translate` | İzole 32 dilde çeviri derlemesi |
 | `saipen ship` | Yayın akışını tetikle |
+
+## Bilmekte fayda var
+- Projeye geri döndüğünde commit edilmemiş değişiklikler mi var? Normal -- SAIPEN yalnızca `ship` sırasında commit yapar, her adımda değil. Ajan bir şeye dokunmadan önce bu değişikliklerin kime ait olduğunu kontrol eder.
+- Gerçek bir mimari kararı hatırlamasını mı istiyorsun? `.saipen/KNOWLEDGE/` klasörüne tek bir `decisions.md` dosyası veya numaralandırılmış `ADR-001.md` dosyaları olarak koy.
+- Bu makinede git veya shell yok mu? Ajan tahmin etmek yerine bunu açıkça söyler (`mode`, `WAIT: <soru>`).
+- Bir güvenlik ağı mı istiyorsun? `python <saipen-klonu>/tools/install_hook.py` commit öncesi bir kontrol kurar.

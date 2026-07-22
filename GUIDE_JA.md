@@ -34,5 +34,11 @@ bash bootstrap/inject.sh                                            # macOS / Li
 | `saipen status` | ボードと状態を読み取る |
 | `saipen goal <text>` | 新しい目標へピボット |
 | `saipen clean` | リポジトリのディープクリーン |
-| `saipen translate` | 分離された22言語の翻訳ビルド |
+| `saipen translate` | 分離された32言語の翻訳ビルド |
 | `saipen ship` | リリースフローのトリガー |
+
+## 知っておくと良いこと
+- プロジェクトに戻ったときに未コミットの変更があっても普通のことだ。SAIPENは`ship`の時にコミットする、毎ステップではない。エージェントは何かに触れる前に、それが誰の変更か確認する。
+- 本物のアーキテクチャ決定を覚えさせたいなら、`.saipen/KNOWLEDGE/`に`decisions.md`か番号付き`ADR-001.md`ファイルとして置け。
+- このマシンにgitやshellがないなら、エージェントは推測せず正直に言う(`mode`、`WAIT: <質問>`)。
+- 保険が欲しいか？`python <saipen-clone>/tools/install_hook.py`でコミット前チェックを導入できる。

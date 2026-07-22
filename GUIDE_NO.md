@@ -32,5 +32,11 @@ bash bootstrap/inject.sh                                            # macOS / Li
 | `saipen status` | Les tavle & status |
 | `saipen goal <text>` | Bytt til nytt mål |
 | `saipen clean` | Dyp repository-opprydding |
-| `saipen translate` | Isolert 22-språklig oversettelsesbygg |
+| `saipen translate` | Isolert 32-språklig oversettelsesbygg |
 | `saipen ship` | Utløs lanseringsflyt |
+
+## Greit å vite
+- Ikke-committede endringer når du kommer tilbake? Normalt -- SAIPEN committer først ved `ship`, ikke ved hvert steg. Agenten sjekker først hvem sine endringer det er, før den rører noe.
+- Vil du at den skal huske en ekte arkitekturbeslutning? Legg den i `.saipen/KNOWLEDGE/`, som en fil `decisions.md` eller nummererte `ADR-001.md`-filer.
+- Ingen git eller shell på denne maskinen? Agenten sier det rett ut (`mode`, `WAIT: <spørsmål>`) i stedet for å gjette.
+- Vil du ha et sikkerhetsnett? `python <saipen-klone>/tools/install_hook.py` installerer en pre-commit-sjekk.

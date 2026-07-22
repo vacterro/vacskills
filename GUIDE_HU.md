@@ -34,5 +34,11 @@ bash bootstrap/inject.sh                                            # macOS / Li
 | `saipen status` | Tábla olvasása |
 | `saipen goal <text>` | Váltás új célra |
 | `saipen clean` | Adattár tisztítása |
-| `saipen translate` | Fordítás készítése |
+| `saipen translate` | Elszigetelt fordítás készítése 32 nyelven |
 | `saipen ship` | Kiadási folyamat elindítása |
+
+## Jó tudni
+- Nem commitolt változtatások, amikor visszatérsz a projekthez? Normális -- a SAIPEN csak `ship`-nél commitol, nem minden lépésnél. Az ágens előbb ellenőrzi, kié ezek a változtatások, mielőtt bármihez hozzáérne.
+- Szeretnéd, hogy emlékezzen egy valódi architektúra döntésre? Tedd a `.saipen/KNOWLEDGE/` mappába, egyetlen `decisions.md` fájlként vagy számozott `ADR-001.md` fájlokként.
+- Nincs git vagy shell ezen a gépen? Az ágens ezt nyíltan megmondja (`mode`, `WAIT: <kérdés>`), ahelyett hogy találgatna.
+- Szeretnél biztonsági hálót? A `python <saipen-klón>/tools/install_hook.py` telepít egy commit előtti ellenőrzést.

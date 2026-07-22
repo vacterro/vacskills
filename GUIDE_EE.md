@@ -34,5 +34,11 @@ bash bootstrap/inject.sh                                            # macOS / Li
 | `saipen status` | Loe tahvlit ja olekut |
 | `saipen goal <text>` | Liigu uue eesmärgi juurde |
 | `saipen clean` | Puhasta repositoorium sügavalt |
-| `saipen translate` | Eraldatud 22-keelne tõlkeehitus |
+| `saipen translate` | Eraldatud 32-keelne tõlkeehitus |
 | `saipen ship` | Käivita väljalase |
+
+## Kasulik teada
+- Kui tuled projekti juurde tagasi ja leiad salvestamata muudatusi, on see normaalne -- SAIPEN teeb commiti alles `ship` käigus, mitte iga sammu järel. Agent kontrollib enne millegi puudutamist, kelle muudatused need on.
+- Kui tahad, et agent mäletaks päris arhitektuuriotsust, pane see kausta `.saipen/KNOWLEDGE/` kas ühe faili `decisions.md` või nummerdatud failidena `ADR-001.md`.
+- Kui masinas pole gitti ega shelli, ütleb agent seda otse (`mode`, `WAIT: <küsimus>`), selle asemel et arvata.
+- Turvavõrku tahad? `python <saipen-kloon>/tools/install_hook.py` paigaldab commit-eelse kontrolli.

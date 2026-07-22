@@ -34,5 +34,11 @@ bash bootstrap/inject.sh                                            # macOS / Li
 | `saipen status` | Číst nástěnku |
 | `saipen goal <text>` | Přepnout na nový cíl |
 | `saipen clean` | Vyčistit repozitář |
-| `saipen translate` | Sestavit překlady |
+| `saipen translate` | Izolované sestavení překladů do 32 jazyků |
 | `saipen ship` | Spustit tok vydání |
+
+## Dobré vědět
+- Necommitnuté změny, když se vrátíš k projektu? Normální -- SAIPEN commituje až při `ship`, ne při každém kroku. Agent nejdřív zkontroluje, čí jsou to změny, než se čehokoli dotkne.
+- Chceš, aby si pamatoval skutečné architektonické rozhodnutí? Ulož ho do `.saipen/KNOWLEDGE/`, buď jako jeden soubor `decisions.md`, nebo jako číslované soubory `ADR-001.md`.
+- Na tomto stroji není git ani shell? Agent to řekne rovnou (`mode`, `WAIT: <otázka>`), místo aby hádal.
+- Chceš záchrannou síť? `python <saipen-klon>/tools/install_hook.py` nainstaluje kontrolu před každým commitem.

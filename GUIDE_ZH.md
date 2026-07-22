@@ -34,5 +34,11 @@ bash bootstrap/inject.sh                                            # macOS / Li
 | `saipen status` | 读取看板和状态 |
 | `saipen goal <text>` | 转向新目标 |
 | `saipen clean` | 深度清理仓库 |
-| `saipen translate` | 隔离的22种语言翻译构建 |
+| `saipen translate` | 隔离的32种语言翻译构建 |
 | `saipen ship` | 触发发布流程 |
+
+## 须知
+- 回来时发现有未提交的更改？这很正常——SAIPEN 只在 `ship` 时提交，不是每一步都提交。代理会先确认这些改动是谁的，再采取行动。
+- 想让它记住真正的架构决策？把它放进 `.saipen/KNOWLEDGE/`，可以是一个 `decisions.md` 文件，也可以是编号的 `ADR-001.md` 文件。
+- 这台机器没有 git 或 shell？代理会直说（`mode`、`WAIT: <问题>`），而不是瞎猜。
+- 想要个安全网？运行 `python <saipen克隆目录>/tools/install_hook.py` 安装提交前检查。

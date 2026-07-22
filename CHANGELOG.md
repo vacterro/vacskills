@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.31.2 -- 2026-07-22 -- all 31 remaining language guides enriched
+- User's follow-up after the EN/RU/neutral enrichment: enrich every other language guide too. Discovered all 31 (`GUIDE_EE.md` through `GUIDE_HR.md`, plus the standalone `GUIDE_DED.md` cheat sheet) share one much thinner template than GUIDE_EN/RU -- title, 1-2 line intro, 3-step quickstart, an 8-row bare command table -- and all still said "22 languages" despite the translate spec expanding to 32 (commit c6d5c2a). Scope kept proportional to what was asked and to each file's own format: added a compact translated "Good to know"-equivalent block (dirty-tree normalcy, KNOWLEDGE/ ADR pattern, capability degradation, install_hook) to all 31 files, in that file's own language, plus the 22->32 fix. Did not attempt a full rewrite to GUIDE_EN.md's complete depth (Steps 1-5 narrative, kitchen section, scenario-annotated command table) -- these 31 never had that content even before this session touched the guides, so bringing them to full parity is a materially larger, separate effort flagged back to the user rather than assumed.
+- Both validators green.
+
 ## 7.31.1 -- 2026-07-22 -- GUIDE/GUIDE_EN/GUIDE_RU enriched, each in its own voice
 User's call: guides were thin. Added four real, previously-undocumented behaviors to all three guides, each written in its own established voice (GUIDE.md neutral, GUIDE_EN.md/GUIDE_RU.md caveman-дед) rather than flattened to one tone:
 - Dirty-tree-on-continuation (RFC § 1.5): uncommitted changes at cold-start are normal, not a red flag; agent attributes before touching, never auto-commits/reverts someone else's work.

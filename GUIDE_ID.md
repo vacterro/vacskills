@@ -34,5 +34,11 @@ bash bootstrap/inject.sh                                            # macOS / Li
 | `saipen status` | Baca papan |
 | `saipen goal <text>` | Beralih ke tujuan baru |
 | `saipen clean` | Bersihkan repositori |
-| `saipen translate` | Bangun terjemahan |
+| `saipen translate` | Bangun terjemahan terisolasi dalam 32 bahasa |
 | `saipen ship` | Picu aliran rilis |
+
+## Baik untuk diketahui
+- Ada perubahan yang belum di-commit saat kembali ke proyek? Normal -- SAIPEN hanya commit saat `ship`, bukan setiap langkah. Agen memeriksa dulu perubahan itu milik siapa sebelum menyentuh apa pun.
+- Ingin agar ia mengingat keputusan arsitektur yang sebenarnya? Taruh di `.saipen/KNOWLEDGE/`, sebagai satu file `decisions.md` atau file bernomor `ADR-001.md`.
+- Tidak ada git atau shell di mesin ini? Agen akan mengatakannya dengan jelas (`mode`, `WAIT: <pertanyaan>`) alih-alih menebak.
+- Ingin jaring pengaman? `python <klon-saipen>/tools/install_hook.py` memasang pemeriksaan pra-commit.

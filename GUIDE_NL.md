@@ -32,5 +32,11 @@ bash bootstrap/inject.sh                                            # macOS / Li
 | `saipen status` | Bord & status lezen |
 | `saipen goal <text>` | Draaien naar nieuw doel |
 | `saipen clean` | Diepe opschoning van repository |
-| `saipen translate` | Geïsoleerde vertaling build voor 22 talen |
+| `saipen translate` | Geïsoleerde vertaling build voor 32 talen |
 | `saipen ship` | Release flow activeren |
+
+## Goed om te weten
+- Niet-gecommitte wijzigingen als je terugkomt? Normaal -- SAIPEN commit alleen bij `ship`, niet bij elke stap. De agent controleert eerst van wie die wijzigingen zijn voordat hij iets aanraakt.
+- Wil je dat hij een echte architectuurbeslissing onthoudt? Zet het in `.saipen/KNOWLEDGE/`, als één bestand `decisions.md` of genummerde `ADR-001.md`-bestanden.
+- Geen git of shell op deze machine? De agent zegt het gewoon eerlijk (`mode`, `WAIT: <vraag>`) in plaats van te gokken.
+- Wil je een vangnet? `python <saipen-kloon>/tools/install_hook.py` installeert een pre-commit check.

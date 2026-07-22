@@ -32,5 +32,11 @@ bash bootstrap/inject.sh                                            # macOS / Li
 | `saipen status` | קרא את הלוח והמצב |
 | `saipen goal <text>` | עבור ליעד חדש |
 | `saipen clean` | ניקוי עמוק של המאגר |
-| `saipen translate` | בניית תרגום מבודדת ל-22 שפות |
+| `saipen translate` | בניית תרגום מבודדת ל-32 שפות |
 | `saipen ship` | הפעל תהליך שחרור |
+
+## טוב לדעת
+- שינויים לא מחויבים כשחוזרים לפרויקט? נורמלי -- SAIPEN מבצע commit רק ב-`ship`, לא בכל שלב. הסוכן בודק קודם למי שייכים השינויים לפני שהוא נוגע במשהו.
+- רוצה שהוא יזכור החלטת ארכיטקטורה אמיתית? שים אותה ב-`.saipen/KNOWLEDGE/`, כקובץ `decisions.md` אחד או כקבצים ממוספרים `ADR-001.md`.
+- אין git או shell במחשב הזה? הסוכן אומר את זה בפירוש (`mode`, `WAIT: <שאלה>`) במקום לנחש.
+- רוצה רשת ביטחון? `python <שכפול-saipen>/tools/install_hook.py` מתקין בדיקה לפני כל commit.

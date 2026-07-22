@@ -32,5 +32,11 @@ bash bootstrap/inject.sh                                            # macOS / Li
 | `saipen status` | Ler quadro e estado |
 | `saipen goal <text>` | Mudar para novo objetivo |
 | `saipen clean` | Limpeza profunda do repositório |
-| `saipen translate` | Construção isolada de tradução em 22 idiomas |
+| `saipen translate` | Construção isolada de tradução em 32 idiomas |
 | `saipen ship` | Disparar fluxo de lançamento |
+
+## Bom saber
+- Alterações não commitadas ao voltar ao projeto? Normal -- o SAIPEN só faz commit no `ship`, não a cada passo. O agente verifica primeiro de quem são essas alterações antes de tocar em qualquer coisa.
+- Quer que ele lembre uma decisão de arquitetura real? Coloque em `.saipen/KNOWLEDGE/`, como um arquivo `decisions.md` ou arquivos numerados `ADR-001.md`.
+- Sem git ou shell nesta máquina? O agente diz isso claramente (`mode`, `WAIT: <pergunta>`) em vez de adivinhar.
+- Quer uma rede de segurança? `python <clone-saipen>/tools/install_hook.py` instala uma verificação pré-commit.

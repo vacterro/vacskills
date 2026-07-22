@@ -34,5 +34,11 @@ bash bootstrap/inject.sh                                            # macOS / Li
 | `saipen status` | Pročitaj ploču |
 | `saipen goal <text>` | Prebaci na novi cilj |
 | `saipen clean` | Očisti repozitorij |
-| `saipen translate` | Izrada prijevoda |
+| `saipen translate` | Izolirana izrada prijevoda na 32 jezika |
 | `saipen ship` | Pokreni tok izdanja |
+
+## Dobro je znati
+- Necommitane promjene kad se vratiš na projekt? Normalno -- SAIPEN commita samo kod `ship`, ne kod svakog koraka. Agent prvo provjerava čije su te promjene prije nego što išta dotakne.
+- Želiš da pamti pravu arhitektonsku odluku? Stavi je u `.saipen/KNOWLEDGE/`, kao jednu datoteku `decisions.md` ili numerirane datoteke `ADR-001.md`.
+- Nema gita ni shella na ovom stroju? Agent to jasno kaže (`mode`, `WAIT: <pitanje>`) umjesto da nagađa.
+- Želiš sigurnosnu mrežu? `python <saipen-klon>/tools/install_hook.py` instalira provjeru prije svakog commita.
