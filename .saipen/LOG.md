@@ -590,5 +590,9 @@
 - 23.07.26 04:35 [E-588] [parent: E-587] [T-none] RUN: написан tools/uninstall_hook.py -- маркер-детект, восстанавливает бэкап если есть, чисто удаляет если нет, чужой хук без маркера не трогает вообще
 - 23.07.26 04:45 [E-589] [parent: E-588] [T-none] RUN: 3 сценария протестированы вживую на одноразовом репо в scratchpad -- fresh install/uninstall, foreign-hook backup+restore, marker-absent no-touch -- все три PASS
 - 23.07.26 04:50 [E-590] [parent: E-589] [T-none] RUN: задокументировано рядом с каждым упоминанием install_hook.py -- свой докстринг, validate.py manifest (11->12), SPEC.md, phases/validate.md, GUIDE.md, 4 флагманских гайда (EN/RU/EE/DED); остальные 29 гайдов -- в следующий saipen translate; оба валидатора PASS; ship -> 7.38.0
+- 23.07.26 05:10 [E-591] [parent: E-590] [T-none] H: юзер попросил ещё один continue сразу после v7.38.0
+- 23.07.26 05:15 [E-592] [parent: E-591] [T-none] RUN: HUNT снова, доска пуста, HEAD не совпадает с последней hunt->clean. Целился в самый свежий файл в репо -- собственный tools/uninstall_hook.py, написан прошлый цикл
+- 23.07.26 05:20 [E-593] [parent: E-592] [T-none] H: найдено -- install_hook.py явно проверяет .git shape (worktree-файл, отсутствие .git) перед работой, uninstall_hook.py не проверял вообще, шёл прямо в .git/hooks/pre-commit и рапортовал то же самое "clean" что и на реально чистом репо -- в случае worktree это вводит в заблуждение, общий хук в главном чекауте мог быть ещё живым
+- 23.07.26 05:30 [E-594] [parent: E-593] [T-none] RUN: добавлены те же 2 guard clause что у install_hook.py, под некатастрофичный always-exit-0 тон uninstall; протестировано 5 сценариев на одноразовом репо (2 новых + 3 регрессионных) -- все PASS; оба валидатора PASS; ship -> 7.39.0
 
 

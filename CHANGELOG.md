@@ -1,5 +1,14 @@
 # Changelog
 
+## 7.39.0 -- 2026-07-23 -- second HUNT in a row: uninstall_hook.py couldn't tell "clean" from "wrong directory"
+User asked for another `continue` right after v7.38.0 shipped. Board still empty -- HUNT again, this time aimed straight at the newest file in the repo: `tools/uninstall_hook.py` itself, written and shipped one cycle ago.
+
+- `install_hook.py` explicitly checks `.git` shape before doing anything: a linked worktree (`.git` is a file) gets a clear message and a stop, no `.git` at all gets a clear `FAIL`. `uninstall_hook.py` had neither check -- it went straight to `Path(".git/hooks/pre-commit")` and reported the exact same "clean" message whether the repo was genuinely clean, had no `.git` at all, or was a linked worktree whose *shared* hook (in the main checkout) might still be very much active. "Clean" in the worktree case was actively misleading, not just incomplete.
+- Added the same two guard clauses `install_hook.py` already has, worded for uninstall's non-destructive, always-exit-0 nature: a worktree gets pointed at the main checkout instead of a silent false "clean"; no `.git` at all gets its own distinct message instead of being indistinguishable from a real clean repo.
+- Tested both new paths plus re-ran all 3 previously-passing scenarios (fresh install/uninstall, foreign-hook backup+restore, marker-absent no-touch) against a throwaway repo -- all 5 green after the edit.
+
+Both validators green.
+
 ## 7.38.0 -- 2026-07-23 -- autonomous HUNT: install_hook.py had no uninstall
 Bare `saipen` with an empty board -- zero-prompt auto-transition to HUNT per RFC § 2.1. Ran the six signal categories directly (sequential, no subagent dispatch). One real, verified finding; one hypothesis that didn't survive checking:
 

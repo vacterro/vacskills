@@ -1,7 +1,7 @@
 ---
 phase: DONE
 task: none
-next_action: "v7.38.0 shipped -- bare `saipen` auto-transitioned to HUNT (board empty, zero-prompt per RFC § 2.1). Ran the six signal categories directly. Checked and ruled OUT one hypothesis (inject.ps1/uninstall.ps1 global skill-copy symmetry -- verified clean, all 7 targets mirrored). Found one real gap: tools/install_hook.py (per-project pre-commit hook) had no uninstall counterpart, unlike the global injector. Added tools/uninstall_hook.py (marker-detect, restores backed-up prior hook or removes cleanly, never touches a non-saipen hook), tested all 3 paths against a throwaway repo, documented next to every install_hook.py mention (manifest, SPEC.md, phases/validate.md, GUIDE.md, 4 flagship guides). No open tickets. Board empty -- bare `saipen` auto-transitions to HUNT per RFC § 2.1."
+next_action: "v7.39.0 shipped -- a second consecutive HUNT (board empty, zero-prompt per RFC § 2.1) aimed at the freshest file in the repo: tools/uninstall_hook.py, written the previous cycle. Found: it never checked .git's shape before assuming the naive relative path was correct, unlike install_hook.py's explicit guard clauses -- a linked worktree or a missing .git both silently produced the same falsely-reassuring 'clean' message a genuinely clean repo gives, even though a worktree's shared hook in the main checkout could still be active. Mirrored install_hook.py's two guard clauses (worktree note, no-.git note), non-destructive always-exit-0 tone kept. Tested 5 scenarios (2 new + 3 regression) against a throwaway repo -- all green. No open tickets. Board empty -- bare `saipen` auto-transitions to HUNT per RFC § 2.1."
 blocker: none
 saipen_version: 7
 saipen_home: "V:\\___VAC\\__K\\__CODE\\_AI_STUFF_AGENTIC\\_SAIPEN"
@@ -11,7 +11,7 @@ requires:
   - git
 mode: full
 goal_mode: false
-updated: 2026-07-23T04:50:00Z
+updated: 2026-07-23T05:30:00Z
 ---
 
 
