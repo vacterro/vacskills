@@ -556,5 +556,11 @@
 - 22.07.26 23:38 [E-554] [parent: E-553] [T-none] RUN: gh release create v7.33.4 -- заметки сгруппированы по темам (validator/distribution, multi-agent hardening, style, docs, extensions/subs, housekeeping) вместо построчного дампа 20+ версий CHANGELOG; latest release теперь v7.33.4 вместо годовалого v7.22.0; homepageUrl репо всё ещё пустой -- не мой звонок, нужен URL от юзера, просто зафиксировал
 - 22.07.26 23:45 [E-555] [parent: E-554] [T-none] H: user спросил что вписать в homepageUrl
 - 22.07.26 23:47 [E-556] [parent: E-555] [T-none] RUN: gh repo edit --homepage -> GUIDE.md (не выдумывал внешний сайт, которого нет); подтверждено gh repo view
+- 23.07.26 00:00 [E-557] [parent: E-556] [T-none] H: user -- сделай .saitranslate тоже субагентом subSaipen
+- 23.07.26 00:05 [E-558] [parent: E-557] [T-none] DEC: отклонил буквальную версию -- TRANSLATE пишет туеву хучу внутри своей песочницы (32 языка, JSON, флаги, дед-войс), subSaipen намертво read-only; TRANSLATE ещё и Core (закрытый 14-фазный enum, §1.10 command surface, phase-sync чек validate.py) -- утащить в extensions/subs/ это breaking change ради косметики
+- 23.07.26 00:10 [E-559] [parent: E-558] [T-none] H: user уточнил реальную цель -- не read-only, а параллелизм: отдельный полноценный агент строит весь translate не мешая основному строить проект
+- 23.07.26 00:15 [E-560] [parent: E-559] [T-none] RUN: реальный гэп найден -- translate.md уже 90% готов к этому (своя песочница, main project read-only, свой kitchen, integration только через будущий ADD/PLAN тикет), но предполагал что фазу гоняет ТОТ ЖЕ агент -- пишет phase:TRANSLATE прямо в общий .saipen/STATE.md, что при реальном параллельном агенте стопчет активную фазу главного (RFC §1.4 one-writer concurrency boundary)
+- 23.07.26 00:20 [E-561] [parent: E-560] [T-none] RUN: RFC §2.1 + phases/translate.md §1 получили parallel-instance правило -- отдельный агент держит свой .saitranslate/STATE.md, пишет свободно внутри своей песочницы (это НЕ read-only работа, не путать с subSaipen), трогает общий .saipen/LOG.md только один раз при завершении той же строкой что и обычный запуск; единоагентный кейс (уже реально прогнан -- 23 локали в прошлой сессии) не тронут
+- 23.07.26 00:22 [E-562] [parent: E-561] [T-none] RUN: CONFORMANCE row 22 + parallel-translate-isolation фикстура; оба валидатора PASS; ship -> 7.34.0
 
 

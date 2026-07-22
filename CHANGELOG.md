@@ -1,5 +1,14 @@
 # Changelog
 
+## 7.34.0 -- 2026-07-22 -- TRANSLATE gains an explicit parallel-agent mode
+User's real ask, clarified after an initial wrong framing: not "make .saitranslate a subSaipen" (declined -- TRANSLATE writes extensively inside its own sandbox, subSaipen is permanently read-only toward everything; TRANSLATE is also Core, in RFC's closed 14-phase enum and command surface, not something that can move to an extension without a breaking change) -- the actual goal was parallelism: send a separate, dedicated full agent to build the whole translation bundle without getting in the main agent's way.
+
+TRANSLATE already had almost everything needed for this (isolated `.saitranslate/`, main project treated read-only, its own `kitchen/`, completion sitting untouched until a later ADD/PLAN ticket integrates it) -- the one real gap: it assumed being run by the *same* agent phase-switching, so it wrote `phase: TRANSLATE` straight into the shared `.saipen/STATE.md`. A genuinely separate parallel agent doing that would stomp on whatever the main agent's own session has active -- exactly the one-writer concurrency boundary RFC § 1.4 already flags.
+
+Fixed with an explicit parallel-instance rule, `phases/translate.md` § 1 + RFC § 2.1: a dedicated agent sent to run TRANSLATE in parallel keeps its own `.saitranslate/STATE.md` (same shape as Core's, scoped to the build) instead of touching the shared one, writes freely inside `.saitranslate/` (this is not read-only work -- don't confuse it with `extensions/subs/`'s subSaipen, which never writes anywhere real), and touches the *shared* `.saipen/LOG.md` exactly once, at completion, with the same line the single-agent case already produces. The existing single-agent phase-switch case (already field-tested -- an earlier session ran a real 23-locale translate) is untouched, still checkpoints normally.
+
+Scenario row 22 + `parallel-translate-isolation` behavioral fixture. Both validators green.
+
 ## 7.33.4 -- 2026-07-22 -- full-project integrity pass: two real bugs found, both fixed
 User asked for a fresh whole-project look. Both validators green going in; the new finds were things automation doesn't check:
 - **`guides/GUIDE_EN.md` and `GUIDE_RU.md` still said "22 languages"** in their own command table's `saipen translate` row -- missed during the earlier 31-file batch fix because these two richer files phrase the sentence differently from the thin template the grep matched. Fixed to 32; swept the whole repo for any other live "22 language(s)" mention -- zero left outside history (LOG.md/CHANGELOG.md, correctly untouched).

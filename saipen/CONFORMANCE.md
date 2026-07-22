@@ -43,3 +43,4 @@ fixture state why, not silently.
 | 19 | Unclaimed DOING adoption (RFC § 1.4, v7.28.0) | `unclaimed-doing-adoption` -- behavioral, README-only |
 | 20 | Clean tree after ticket-level BLOCKED (`phases/verify.md`, v7.27.0) | `blocked-ticket-clean-tree` -- behavioral, README-only |
 | 21 | Dirty tree on continuation (RFC § 1.5, v7.29.0) | `dirty-tree-continuation` -- behavioral, README-only |
+| 22 | Parallel TRANSLATE doesn't stomp shared STATE (RFC § 2.1, `phases/translate.md`, v7.34.0) | `parallel-translate-isolation` -- behavioral, README-only |
