@@ -3,6 +3,10 @@
 ## TODO
 - [ ] T-153 [P2] doc-sync: backfill missing command coverage in guides (validate, plan, status, goal, stop, ship absent in most) across GUIDE.md + guides/GUIDE_*.md; per-file voice preserved, no persona flattening | verify: grep each command across every guide file OR the guide explicitly points to RFC §1.10 as the full list; deliberately deferred in v7.50.0 (LOG E-666), audit5 #13 re-raised it
 ## DONE
+- [x] T-154 subs/PROTOCOL.md § 9 fixer-type carve-out (patch-OUTBOX, pen sandbox, VERIFY-in-sandbox, PY- namespace, capability degrade, freshness) -- no BUILD, no validate.py change
+- [x] T-155 scaffold subs/saipython/ + mentor charter README (python-pro craft + teacher's charge: exact then exceed, surprise, grow)
+- [x] T-156 saipython registered in MANIFEST.md + subs/README.md (third example, the fixer)
+- [x] T-157 CONFORMANCE row 33 + tests/scenarios/fixer-subsaipen-patch-outbox/ stub; validate.py PASS (3 subs)
 ## BLOCKED
 - [ ] T-136 [MARKHUNT][P0] design_gap: MARKHUNT lacks verifiable thoroughness self-test | blocker: needs real design, not a quick doc-sync fix -- deliberately deferred; HUNT has a hash-match rule as a hard skip check, MARKHUNT has nothing analogous, progress file is self-reported with no external cross-verification | verify: Design a manifest-driven closure check before implementing -- what exactly must be recorded, what would VALIDATE cross-check it against, without building busywork ceremony
 - [ ] T-149 [MARKHUNT][P2] goal_tickets counts VERIFY-passes, not completed tickets | blocker: unvetted audit -- verify.md:63 increments goal_tickets on every VERIFY-pass; a ticket that fails REVIEW (review.md:18 P0/P1 back to BUILD) re-enters VERIFY and increments again, up to review.md:20's 2-pass cap. RFC §2.4:222 names the cap "20 tickets" and Exit §2.4:224 says "tickets done/verified", but the counter measures verify-passes. Fails SAFE (over-counts, valve trips earlier) yet counter semantics + exit-report accuracy mismatch the "tickets" framing -- RFC §2.4:221 itself half-admits it | verify: decide -- reframe as goal_verifies, OR only bump on ticket reaching ## DONE; align §2.4:221/222/224 wording either way

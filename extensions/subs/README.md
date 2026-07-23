@@ -63,12 +63,18 @@ saipen sub collect
 # everything else -> _shared/inbox.md for the next planning round
 ```
 
-## Two examples included
+## Three examples included
 
 - **saiwiki** -- reads the project, drafts wiki/documentation pages into
   its own `kitchen/`, hands off page-ready content via OUTBOX.
 - **saihunt** -- reads the project for bugs (null safety, exception
   handling, race conditions, resource leaks), tickets each finding.
+- **saipython** -- a **fixer** (PROTOCOL.md § 9), not just a researcher:
+  works the tail of a Python project (low-severity bugs, lint/type nits,
+  small correctness fixes), clones targets into its own `kitchen/pen/`,
+  fixes and tests the copy, and hands back a ready, already-verified patch.
+  Still never writes to the main tree -- the patch leaves through OUTBOX and
+  the main agent lands it through the normal gates.
 
 ## Commands
 

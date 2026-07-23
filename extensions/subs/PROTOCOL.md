@@ -87,6 +87,7 @@ File: `<name>/kitchen/OUTBOX.md`. The only channel back to the main agent.
 | `SYS-` | Cross-cutting / protocol-level tickets |
 | `WIKI-` | saiwiki |
 | `HUNT-` | saihunt |
+| `PY-` | saipython (fixer, § 9) |
 | `<NAME>-` | any other subSaipen (first 4 letters, uppercase) |
 
 Each subSaipen numbers its own tickets independently; the prefix is what
@@ -213,3 +214,77 @@ Identical to Core's own `.saipen/` shape (RFC § 1.2) -- `phase`, `task`,
 `next_action`, `blocker`, `agent`, `saipen_version`, `mode` (always
 `read-only`), `updated`. No extra required fields. If this file and
 RFC.md ever disagree on the shared shape, RFC.md wins (RFC § 1.9).
+
+## 9. Fixer-type subSaipen (the OUTBOX carries a tested patch, not just a finding)
+
+saiwiki and saihunt *report*: a finding, a draft page, a proposed change
+in prose. A **fixer-type** subSaipen (saipython is the first) goes one
+step further -- its OUTBOX deliverable is a **ready, already-tested
+patch**. This does NOT weaken the one rule that matters (§ 1): a fixer
+still never writes to the main project, and its `STATE.phase` still never
+enters `BUILD`/`SHIP` (unreachable under `mode: read-only`, RFC § 1.3,
+enforced by `tools/validate.py`). The reconciliation is the same one
+`phases/translate.md` uses for a parallel TRANSLATE instance -- write
+freely, but only inside your own sandbox; never touch the shared tree.
+
+**The pen (own-kitchen sandbox).** A fixer does its work in
+`kitchen/pen/` -- a *copy* of exactly the target file(s), cloned from the
+main tree read-only. It edits the copy, never the original. This is the
+same move saiwiki already makes when it drafts a finished page into its
+own `kitchen/` -- producing a concrete artifact there is not a project
+write and needs no `BUILD` phase. Cloning is read; editing the clone is a
+kitchen write; the main tree is untouched throughout.
+
+**Verify in the sandbox (phase `VERIFY`, which IS reachable for a sub).**
+Run the repo's own harness -- `pytest`, `ruff`, `mypy`, whatever the
+project already uses -- against the patched copy in the pen, never
+inventing a harness. A fix with no green evidence is a `draft`, not
+`ready`. `VERIFY` is a legal sub phase (`tools/validate.py` forbids only
+`BUILD`/`SHIP`/`CLEAN`/`TRANSLATE`), so a fixer records its test run
+honestly under it.
+
+**Capability gate.** A fixer needs shell + the language toolchain
+(for saipython: `python`, and whatever of `pytest`/`ruff`/`mypy` the repo
+uses). Missing on this host -> degrade, don't fake: fall back to
+saihunt-style behavior -- describe the proposed fix as an ordinary
+`critical`-tagged finding, mark it plainly `unverified: no toolchain`, and
+let the main agent build and verify it the normal way. Never mark a patch
+`ready` that was never actually run.
+
+**OUTBOX shape for a patch.** The § 2 format, with the fix carried
+explicitly:
+```markdown
+## PY-001: short description
+- **status:** ready
+- **summary:** one line -- what was broken, what the patch does
+- **main_project_refs:** [src/foo.py]
+- **critical:** true | false
+- **severity:** P2 | P3
+- **base_head:** <git short hash the patch was cut against>
+- **verified:** pytest PASS (N passed) / ruff clean / mypy clean -- quote the real result
+- **patch:**
+  ```diff
+  <unified diff, applies from repo root>
+  ```
+- **details:** root cause, why the diff is minimal, any sibling issue spotted but deliberately left for a separate ticket.
+```
+
+**Freshness on the way out and the way in.** The patch is cut against one
+`base_head`. `PREPARE` (§ 4) MUST re-check it still applies against
+current HEAD before writing `status: ready`; moved on -> re-cut against
+the new HEAD or mark it `stale`, never hand over a diff that won't apply.
+On `collect`, the main agent applies the patch, then runs it through Core
+`VERIFY -> REVIEW -> SHIP` like any other change -- the sub's own green
+run is *evidence that saves the main agent time*, never a substitute for
+Core's own gates (RFC § 1.6). The fixer proposes a finished, tested piece;
+the main agent still decides and still acts.
+
+**Scope discipline (the reverse-end contract).** A fixer exists to clear
+the *tail* -- the low-severity, mechanically-fixable bugs the main flow
+keeps deprioritizing (P2/P3, a missing error path, a lint/type nit, a
+small off-by-one, dead code). One fix per patch, minimal diff, same design
+language as the surrounding code. Anything large, risky, or architectural
+is NOT a fixer's job -- report it as a `critical` finding and leave it for
+the main agent, exactly as saihunt would. Clearing the tail from the
+opposite end is the whole point: the main agent stays on the heavy work,
+the fixer keeps the small stuff from ever piling up.

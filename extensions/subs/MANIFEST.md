@@ -2,3 +2,4 @@
 
 - saiwiki -- .saipen/extensions/subs/saiwiki/
 - saihunt -- .saipen/extensions/subs/saihunt/
+- saipython -- .saipen/extensions/subs/saipython/

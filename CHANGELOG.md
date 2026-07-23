@@ -1,5 +1,18 @@
 # Changelog
 
+## 7.52.0 -- 2026-07-23 -- saipython: the first fixer-type subSaipen (reverse-end Python fixer)
+
+Added a new class of subSaipen and the first instance of it. saiwiki and saihunt *report* -- a finding, a draft, a proposal. A **fixer** goes one step further: its OUTBOX deliverable is a ready, already-tested patch. saipython is that fixer, Python-specialized, aimed at the *tail* of a project -- the low-severity bugs (lint/type nits, small correctness fixes, missing error paths, dead code) the main agent keeps deprioritizing. Main works the trunk; saipython clears the tail; the whole thing ships faster.
+
+The reconciliation with the subSaipen prime rule (never write the main project) is the same one parallel TRANSLATE already uses: write freely, but only inside your own sandbox. saipython clones target files into its own `kitchen/pen/`, fixes and tests the *copy* there, and hands back a unified diff via OUTBOX. It never writes the main tree, and its `STATE.phase` never becomes `BUILD`/`SHIP` (unreachable under `mode: read-only`, enforced by `tools/validate.py`) -- it drafts in the pen (a `SCOUT` kitchen activity, exactly like saiwiki drafting a page) and proves the fix in phase `VERIFY`, which IS reachable for a sub. The main agent applies the patch through Core `VERIFY -> REVIEW -> SHIP`; the sub's green run is evidence that saves time, never a substitute for Core's gates.
+
+- **`extensions/subs/PROTOCOL.md` § 9** -- new "Fixer-type subSaipen" section: the pen sandbox, verify-in-sandbox, capability gate (missing toolchain -> degrade to an `unverified` finding, never fake green), patch-shaped OUTBOX (`base_head` + quoted test result + unified diff), freshness on the way out and in, and the reverse-end scope discipline (one minimal fix per patch, tail only, never a refactor epic). `PY-` added to the ticket namespace (§ 3).
+- **`extensions/subs/saipython/`** -- STATE (`mode: read-only`), BOARD (PY-001..005 fix categories), LOG, `kitchen/OUTBOX.md`, `kitchen/pen/`, and a full mentor charter `README.md`: real Python-pro craft (correctness before cleverness, minimal surgical diffs, root cause not symptom, stdlib before deps, honest error handling, security even on small fixes) plus the teacher's charge -- do the ticket exactly and verified, then exceed with discipline (prove the sibling bug others walked past as a *separate* finding, polish only inside the diff you already need), and grow (log durable lessons for the next run). Hard walls: never touch the main tree, never a feature/refactor epic, never fake green, one fix per patch.
+- **MANIFEST.md / subs README** -- saipython registered as the third bundled example (the fixer).
+- **CONFORMANCE row 33** + `tests/scenarios/fixer-subsaipen-patch-outbox/` -- the fixer stays read-only toward the project and reaches it only as a main-applied, gate-checked patch.
+
+`tools/validate.py` green (3 active subSaipens). No change to `validate.py` was needed -- the fixer fits the existing read-only policy by construction.
+
 ## 7.51.0 -- 2026-07-23 -- audit5: four real RFC/phase-doc fixes, eight ghost findings verified already-closed
 
 Processed a fresh external audit (`tofix/saipen_audit5.md`, 13 findings). Most were written against an older snapshot -- eight were verified already-closed against the live files (grep, not memory): MARKHUNT's `## BLOCKED` (not TODO) recording, done.md's TODO-before-goal-HUNT ordering, the `saipen SYMPTOM` phantom command, VERIFY hysteresis, HUNT's `## BLOCKED` dedupe, translate.md's 32-language count, plan.md's size-gate "no correctness gate skipped" wording, and blocked.md's `-> DONE` path. Five were real; four fixed here, one ticketed.
