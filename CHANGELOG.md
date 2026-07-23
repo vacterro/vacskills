@@ -1,5 +1,13 @@
 # Changelog
 
+## 7.48.0 -- 2026-07-23 -- prepare.md and build.md were missing standard phase-doc scaffolding
+A fourth external audit (`tofix/saipen_audit3_aboutPhases.md`, cleaner and better-organized than the first three, 32 grouped findings across all 15 phase docs). ~80% overlapped what was already closed or already tracked in `BOARD.md`. Checked the four genuinely new claims directly:
+
+- Two false alarms: an "enum prose says 14-value but lists 15" off-by-one -- no such string exists anywhere in the live file; and a claim that duplicate `hunt(1).md`/`scout(1).md` files exist on disk -- they don't.
+- Two real, both simple missing scaffolding every *other* phase doc already has: `prepare.md` never required a completion `LOG` line (every other terminal phase -- `hunt.md`, `clean.md`, `translate.md`, `markhunt.md`, `ship.md` -- does); added, plus an explicit `BLOCKED` path for a failed preparation. `build.md` never mentioned `BLOCKED` at all despite RFC's own transition table listing `BUILD -> VERIFY | BLOCKED` -- added a one-line branch for an unrecoverable build error.
+
+Both validators green.
+
 ## 7.47.0 -- 2026-07-23 -- five more audit2/3 findings closed, each smaller than it first read
 Continued triaging `tofix/saipen_audit2.md`/`saipen_audit3.md`. All five confirmed real by direct grep against the live files, but each turned out narrower than the audit's own framing:
 

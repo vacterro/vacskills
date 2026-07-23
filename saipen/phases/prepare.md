@@ -10,4 +10,9 @@ This phase is primarily used by specialized roles and subSaipens (e.g., `saitran
 4. **Delivery**: 
    - If you are running as a subSaipen (RFC § 1.9), write the combined result and instructions into your `kitchen/OUTBOX.md` with `status: ready`, and mark your current ticket as `[x]` in `## DONE`.
    - If you are running in the main project, place the packaged payload in `kitchen/` or the designated target path.
-5. **Transition**: `STATE.phase -> DONE` (or `BLOCKED` if preparation fails).
+5. **Completion**: LOG one Event Graph line per RFC § 1.2 -- `- DATE
+   [E-###] [parent: E-###] RUN: prepare -> done` -- then `STATE.phase ->
+   DONE`. Preparation failed (freshness check found the work stale beyond
+   repair, or delivery target unwritable)? LOG `RUN: prepare -> FAILED
+   <reason>` (this exact text after the taxonomy) instead, then
+   `STATE.phase -> BLOCKED` with the facts.

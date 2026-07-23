@@ -6,4 +6,7 @@ Risky edit: LOG rollback command first.
 Scope grows / neighbor broken: new TODO ticket, keep moving.
 Ticket touches UI/interface work? Also load UI.md.
 
-After BUILD: STATE -> VERIFY.
+After BUILD: STATE -> VERIFY. Can't complete safely (unrecoverable
+error, no write access, the change needs a decision only the user can
+make)? STATE -> BLOCKED with the facts -- never force a broken edit
+through to VERIFY.
