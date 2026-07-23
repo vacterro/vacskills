@@ -1,5 +1,13 @@
 # Changelog
 
+## 7.44.0 -- 2026-07-23 -- "BOARD.md is empty" unified to "no open TODO tickets" everywhere
+Continued triaging the MARKHUNT backlog (`BOARD.md`'s `## BLOCKED`), picking up the remaining P0 and its closest relatives.
+
+- **RFC § 2.1's own preamble contradicted its own HUNT bullet two lines down.** The section's opening line and its ZERO-PROMPT AUTO-TRANSITION bullet both said "`BOARD.md` is empty" -- but the HUNT bullet right below already correctly said "no open `TODO` tickets without blockers" (fixed in `done.md`/`hunt.md` back in v7.40.0, never back-ported to § 2.1's own preamble). `DONE`/`BLOCKED` tickets sitting on the board don't block Maintenance; only open `TODO` does -- an agent reading only the preamble could reasonably conclude otherwise. Unified both to the precise phrasing. README's two "Board empty?" mentions softened to match, same meaning, lighter touch for prose that was never meant to be normative-precise anyway.
+- **RFC § 1.2's `WAIT:` list didn't cover `BLOCKED`'s own documented use of it.** Five legal categories were listed (manual-verify, destructive-op, first-publish, user brake, INIT bootstrap) -- but `phases/blocked.md` has always instructed asking the user via `next_action: WAIT: <question>` when the session is stuck on a credential or decision, a sixth category RFC never actually listed. A cold agent reading § 1.2 in isolation had no textual basis for `blocked.md`'s own instruction. Added it as the sixth legal category, same "concrete question, not a vague one" constraint as the other five.
+
+Both validators green.
+
 ## 7.43.0 -- 2026-07-23 -- ADD's stale RFC pseudocode fixed; MARKHUNT's first real run triaged
 User brought an external audit (`tofix/saipen_audit1.md`) and asked to work through it starting with its biggest finding. Confirmed against the live files, not just the audit's claims:
 

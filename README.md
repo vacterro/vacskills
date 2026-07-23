@@ -12,7 +12,7 @@ and resumes work in under a minute -- no rebriefing, any vendor, any day.
 
 **One command. Zero amnesia.**
 
-**v7.43.0** | [Spec](SPEC.md) | [Guide](GUIDE.md) | [RFC](saipen/RFC.md) | [Style](saipen/STYLE.md) | [UI](saipen/UI.md) | [Conformance](saipen/CONFORMANCE.md) | plain markdown | zero deps | MIT
+**v7.44.0** | [Spec](SPEC.md) | [Guide](GUIDE.md) | [RFC](saipen/RFC.md) | [Style](saipen/STYLE.md) | [UI](saipen/UI.md) | [Conformance](saipen/CONFORMANCE.md) | plain markdown | zero deps | MIT
 
 [![Russian Guide](https://img.shields.io/badge/📖_ELI5_Guide-НА_РУССКОМ-red?style=for-the-badge)](guides/GUIDE_RU.md)
 [![English Guide](https://img.shields.io/badge/📖_ELI5_Guide-IN_ENGLISH-blue?style=for-the-badge)](guides/GUIDE_EN.md)
@@ -33,7 +33,7 @@ Memory lives in the project, not in a model's head. `Project -> Memory -> LLM` b
 
 ### Key Protocol Logic & Guarantees
 - **Core State Machine**: `INIT → PLAN → SCOUT → BUILD → VERIFY → REVIEW → SHIP → DONE | BLOCKED`
-- **Zero-Prompt Autonomy**: Board empty? Auto-transitions `HUNT` (scan bugs) → `ADD` (evolve features) → `HUNT` loop. Zero questions asked.
+- **Zero-Prompt Autonomy**: No open to-dos left? Auto-transitions `HUNT` (scan bugs) → `ADD` (evolve features) → `HUNT` loop. Zero questions asked.
 - **Explicit Triggers**: `/saipen clean` (repo scrub), `/saipen translate` (isolated `.saipen/saitranslate/` factory), `/saipen validate` (conformance check), `/saipen goal` (autonomous wave execution).
 - **Strict Reliability**: Batch input parsing (surgical 1-by-1 tickets), dirty-tree adoption (never wipes uncommitted work), secret redaction (`sk-***`).
 
@@ -47,7 +47,7 @@ Memory lives in the project, not in a model's head. `Project -> Memory -> LLM` b
 | **Core** | ✅ | Continue work safely |
 | **Maintenance** | On top of Core | Evolve the software with no tasking |
 
-**Automated Evolution.** Board empty, type `/saipen`: `HUNT` audits for bugs, dead code, failing tests. Clean? `ADD` builds the next obvious missing capability, verifies it, hunts again. Product's mature -> stops gracefully.
+**Automated Evolution.** No open to-dos left, type `/saipen`: `HUNT` audits for bugs, dead code, failing tests. Clean? `ADD` builds the next obvious missing capability, verifies it, hunts again. Product's mature -> stops gracefully.
 
 **GOAL Mode.** `/saipen goal <what you want>` pivots the board (old tickets demoted, never deleted) and runs the new objective forward -- no "shall I continue?" between tickets, VERIFY/REVIEW never skipped. SHIP auto-pushes to an existing remote; a brand-new repo still asks once. Shipping the objective isn't the stopping point either -- it falls straight into autonomous HUNT/ADD maintenance until the product is mature, blocked, or the run hits its cap (3 waves / 20 tickets, then checkpoints and reports).
 
