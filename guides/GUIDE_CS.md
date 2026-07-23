@@ -44,3 +44,7 @@ bash bootstrap/inject.sh                                            # macOS / Li
 - Chceš, aby si pamatoval skutečné architektonické rozhodnutí? Ulož ho do `.saipen/KNOWLEDGE/`, buď jako jeden soubor `decisions.md`, nebo jako číslované soubory `ADR-001.md`.
 - Na tomto stroji není git ani shell? Agent to řekne rovnou (`mode`, `WAIT: <otázka>`), místo aby hádal.
 - Chceš záchrannou síť? `python <saipen-klon>/tools/install_hook.py` nainstaluje kontrolu před každým commitem.
+
+---
+
+**Full command list / complete command reference:** [RFC § 1.10](../saipen/RFC.md#110-command-surface) — the authoritative list of every `saipen` command.

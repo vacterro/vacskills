@@ -66,3 +66,14 @@
   Default-reject is discipline; a no-evidence-ever ban would be the same
   rigidity the protocol rejects everywhere else. Treat everything else in
   such an audit as noise.
+- Command-surface compression (`saipen x <sub>` / `--flags`) REJECTED (T-161,
+  v7.55.0). The surface is already tiered: `saipen`/`continue`/`goal` cover the
+  90% case (the proposal itself admits this), and the long tail (`clean`,
+  `translate`, `validate`, `prepare`, `markhunt`, `ship`, `status`, `stop`) is
+  rare *by design*. The proposed fix is itself churn + complexity: it rewrites
+  §1.10 and all 33 guides, breaks existing muscle memory, and `saipen x <cmd>`
+  would collide with the subs extension's real `saipen sub <cmd>` vocabulary
+  (§1.9). Flags-vs-words is cosmetic; plain words are the idiom. The actual
+  "10 seconds per session" win is delivered by BOOT + the human-digest + the
+  90% already being three commands -- renaming the rare tail does nothing for
+  it. Grain taken: keep the bare-`saipen` path frictionless (already is).

@@ -46,3 +46,7 @@ bash bootstrap/inject.sh                                            # macOS / Li
 - Гита нет, шелла нет -- не гадает, прямо говорит (`mode`, `WAIT: <вопрос>`).
 - Ссышь? `python <клон-saipen>/tools/install_hook.py` -- заслон перед каждым коммитом. Разонравилось -- `python <клон-saipen>/tools/uninstall_hook.py`, заслон долой, старый хук на место.
 - Хочешь батраков под себя -- `saipen sub spawn saihunt`, сам притащит `.saipen/extensions/subs/` откуда надо. Свежак, не проверено в бою.
+
+---
+
+**Full command list / complete command reference:** [RFC § 1.10](../saipen/RFC.md#110-command-surface) — the authoritative list of every `saipen` command.

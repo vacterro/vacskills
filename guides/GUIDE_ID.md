@@ -44,3 +44,7 @@ bash bootstrap/inject.sh                                            # macOS / Li
 - Ingin agar ia mengingat keputusan arsitektur yang sebenarnya? Taruh di `.saipen/KNOWLEDGE/`, sebagai satu file `decisions.md` atau file bernomor `ADR-001.md`.
 - Tidak ada git atau shell di mesin ini? Agen akan mengatakannya dengan jelas (`mode`, `WAIT: <pertanyaan>`) alih-alih menebak.
 - Ingin jaring pengaman? `python <klon-saipen>/tools/install_hook.py` memasang pemeriksaan pra-commit.
+
+---
+
+**Full command list / complete command reference:** [RFC § 1.10](../saipen/RFC.md#110-command-surface) — the authoritative list of every `saipen` command.

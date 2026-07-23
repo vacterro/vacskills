@@ -2,6 +2,19 @@
 
 > Older entries live in [CHANGELOG_ARCHIVE.md](CHANGELOG_ARCHIVE.md) -- this file keeps the most recent ~10.
 
+## 7.55.0 -- 2026-07-23 -- ergonomics batch: BOOT kernel, human-digest, human_note, guide pointers
+
+The "10 seconds per session" pass -- everything here cuts what a human or a cold agent has to read.
+
+- **`saipen/BOOT.md`** (T-158) -- a ~30-line cold-start kernel. A bare `saipen continue` reads BOOT -> STATE -> BOARD -> active LOG tail -> executes `next_action`, loading the full RFC only when a rule question actually comes up. A third tier under the 2-tier loader; wired into `SKILL.md`, both injectors, and the `validate.py` manifest. TEST-001 passes off BOOT + STATE + BOARD + tail alone.
+- **Human digest** (T-159) -- `saipen ship` and `saipen stop` now (over)write `.saipen/kitchen/digest.md`: three lines (done / remaining / awaiting) so the human opens one snapshot instead of scrolling `LOG.md`.
+- **`human_note:`** (T-162) -- optional STATE field, a one-line human->agent nudge read on continue (BOOT step 4) and cleared once applied. Not a ticket, not a goal; one that implies work becomes a real `TODO`. Added to `state.schema.json` as an optional field.
+- **BLOCKED-triage nudge** (T-160) -- CLEAN now escalates a ticket that's neither resolvable nor prunable but has rotted across passes into a concrete, two-word-answerable `WAIT:`, instead of letting it sit in the morgue.
+- **Guide command drift** (T-153) -- every guide (`GUIDE.md` + 33 `guides/GUIDE_*.md`) now carries an explicit pointer to RFC §1.10 as the authoritative command list, closing the onboarding gap audit5 #13 flagged.
+- **Command-surface compression** (T-161) -- reviewed and **rejected**, recorded in `KNOWLEDGE/decisions.md`: the surface is already tiered (three common commands + a rare tail by design), and `saipen x <cmd>`/flags would be churn that collides with the subs `saipen sub` vocabulary for no real gain.
+
+CONFORMANCE rows 34-36 + scenario stubs. `T-136` (MARKHUNT completeness self-test) stays the one open item -- P3 design-debt, deferred on purpose. `tools/validate.py` green.
+
 ## 7.54.0 -- 2026-07-23 -- phase-collapse audits reviewed and rejected (recorded, made findable)
 
 Three phase-audits (`tofix/saipen_phaseAudit1/2/3`) all argued the same thing -- 16 phases is too many, collapse them (to 5, 8, and 4 respectively; they didn't even agree with each other). Reviewed and rejected, and the rejection is now recorded where it will actually stop the next identical audit instead of costing a fresh analysis each time.

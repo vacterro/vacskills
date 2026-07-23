@@ -56,6 +56,14 @@ no-publish means git is missing and nearly every step here needs it.
    - Anything else non-transient? `STATE.phase: BLOCKED` -- pushing is
      the one SHIP step an agent must not guess its way through.
 
+**Human digest.** After a successful push, (over)write
+`.saipen/kitchen/digest.md` -- exactly three short lines, written for the
+human so they read one small file instead of scrolling `LOG.md`:
+`done:` (what this session actually shipped), `remaining:` (the top open
+`TODO`, or `nothing`), `awaiting:` (anything parked on a `WAIT:`/decision,
+or `nothing`). Overwrite every time -- it's a snapshot, not history (history
+stays in `LOG.md`). This is the same file `saipen stop` writes (RFC § 1.10).
+
 After SHIP: STATE -> DONE. `goal_mode: true`? Do not treat this as a
 stopping point even momentarily -- `next_action` MUST already name the
 next step, never a wait. `phases/done.md` § 1 sends you straight to HUNT;

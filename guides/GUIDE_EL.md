@@ -44,3 +44,7 @@ bash bootstrap/inject.sh                                            # macOS / Li
 - Θέλεις να θυμάται μια πραγματική απόφαση αρχιτεκτονικής; Βάλε την στο `.saipen/KNOWLEDGE/`, είτε ως ένα αρχείο `decisions.md` είτε ως αριθμημένα αρχεία `ADR-001.md`.
 - Δεν υπάρχει git ή shell σε αυτό το μηχάνημα; Ο πράκτορας το λέει ξεκάθαρα (`mode`, `WAIT: <ερώτηση>`) αντί να μαντεύει.
 - Θέλεις δίχτυ ασφαλείας; Το `python <κλώνος-saipen>/tools/install_hook.py` εγκαθιστά έλεγχο πριν από κάθε commit.
+
+---
+
+**Full command list / complete command reference:** [RFC § 1.10](../saipen/RFC.md#110-command-surface) — the authoritative list of every `saipen` command.

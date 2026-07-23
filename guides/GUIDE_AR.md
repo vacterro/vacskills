@@ -42,3 +42,7 @@ bash bootstrap/inject.sh                                            # macOS / Li
 - تريده أن يتذكر قرارًا معماريًا حقيقيًا؟ ضعه في `.saipen/KNOWLEDGE/`، إما كملف `decisions.md` أو كملفات مرقمة `ADR-001.md`.
 - لا يوجد git أو shell على هذا الجهاز؟ يقول الوكيل ذلك بوضوح (`mode`، `WAIT: <سؤال>`) بدلاً من التخمين.
 - تريد شبكة أمان؟ `python <نسخة-saipen>/tools/install_hook.py` يثبّت فحصًا قبل كل التزام.
+
+---
+
+**Full command list / complete command reference:** [RFC § 1.10](../saipen/RFC.md#110-command-surface) — the authoritative list of every `saipen` command.

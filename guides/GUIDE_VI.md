@@ -42,3 +42,7 @@ bash bootstrap/inject.sh                                            # macOS / Li
 - Muốn nó nhớ một quyết định kiến trúc thực sự? Đặt vào `.saipen/KNOWLEDGE/`, dưới dạng một file `decisions.md` hoặc các file đánh số `ADR-001.md`.
 - Máy này không có git hay shell? Agent sẽ nói thẳng (`mode`, `WAIT: <câu hỏi>`) thay vì đoán mò.
 - Muốn có lưới an toàn? `python <saipen-clone>/tools/install_hook.py` sẽ cài đặt kiểm tra trước khi commit.
+
+---
+
+**Full command list / complete command reference:** [RFC § 1.10](../saipen/RFC.md#110-command-surface) — the authoritative list of every `saipen` command.

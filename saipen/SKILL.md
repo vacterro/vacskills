@@ -11,10 +11,13 @@ description: >
 
 Thin entry for skill-reading platforms. The system lives elsewhere:
 
-1. **Read `RFC.md` here -- the boot protocol. Follow it.**
-2. **Read `STYLE.md` here -- voices. Load both.**
-3. **Phase modules in `phases/` -- loaded by boot per STATE.md phase.**
-4. UI work: also read `UI.md` (Win95 dark golden, Verdana, no AA).
+1. **Continuing? Read `BOOT.md` first -- the ~30-line cold-start kernel
+   (STATE -> BOARD -> LOG tail -> execute `next_action`). It's all a bare
+   `saipen continue` needs; it points into RFC only when a rule question comes up.**
+2. **Read `RFC.md` -- the full boot protocol / constitution. Follow it.**
+3. **Read `STYLE.md` -- voices. Load with RFC.**
+4. **Phase modules in `phases/` -- loaded by boot per STATE.md phase.**
+5. UI work: also read `UI.md` (Win95 dark golden, Verdana, no AA).
 
 Platform notes:
 - Native task lists mirror `.saipen/BOARD.md`, never replace it.

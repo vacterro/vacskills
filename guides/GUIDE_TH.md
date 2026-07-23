@@ -42,3 +42,7 @@ bash bootstrap/inject.sh                                            # macOS / Li
 - อยากให้มันจำการตัดสินใจด้านสถาปัตยกรรมจริงๆ ไหม? ใส่ไว้ใน `.saipen/KNOWLEDGE/` เป็นไฟล์ `decisions.md` หรือไฟล์ที่มีหมายเลข `ADR-001.md`
 - เครื่องนี้ไม่มี git หรือ shell? เอเจนต์จะบอกตรงๆ (`mode`, `WAIT: <คำถาม>`) แทนที่จะเดา
 - อยากได้ตาข่ายนิรภัยไหม? `python <saipen-clone>/tools/install_hook.py` จะติดตั้งการตรวจสอบก่อน commit
+
+---
+
+**Full command list / complete command reference:** [RFC § 1.10](../saipen/RFC.md#110-command-surface) — the authoritative list of every `saipen` command.

@@ -44,3 +44,7 @@ bash bootstrap/inject.sh                                            # macOS / Li
 - Vrei să rețină o decizie arhitecturală reală? Pune-o în `.saipen/KNOWLEDGE/`, fie ca un singur fișier `decisions.md`, fie ca fișiere numerotate `ADR-001.md`.
 - Nu ai git sau shell pe această mașină? Agentul spune asta clar (`mode`, `WAIT: <întrebare>`) în loc să ghicească.
 - Vrei o plasă de siguranță? `python <clonă-saipen>/tools/install_hook.py` instalează o verificare pre-commit.
+
+---
+
+**Full command list / complete command reference:** [RFC § 1.10](../saipen/RFC.md#110-command-surface) — the authoritative list of every `saipen` command.

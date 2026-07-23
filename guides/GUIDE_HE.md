@@ -42,3 +42,7 @@ bash bootstrap/inject.sh                                            # macOS / Li
 - רוצה שהוא יזכור החלטת ארכיטקטורה אמיתית? שים אותה ב-`.saipen/KNOWLEDGE/`, כקובץ `decisions.md` אחד או כקבצים ממוספרים `ADR-001.md`.
 - אין git או shell במחשב הזה? הסוכן אומר את זה בפירוש (`mode`, `WAIT: <שאלה>`) במקום לנחש.
 - רוצה רשת ביטחון? `python <שכפול-saipen>/tools/install_hook.py` מתקין בדיקה לפני כל commit.
+
+---
+
+**Full command list / complete command reference:** [RFC § 1.10](../saipen/RFC.md#110-command-surface) — the authoritative list of every `saipen` command.

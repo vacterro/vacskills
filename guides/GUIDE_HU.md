@@ -44,3 +44,7 @@ bash bootstrap/inject.sh                                            # macOS / Li
 - Szeretnéd, hogy emlékezzen egy valódi architektúra döntésre? Tedd a `.saipen/KNOWLEDGE/` mappába, egyetlen `decisions.md` fájlként vagy számozott `ADR-001.md` fájlokként.
 - Nincs git vagy shell ezen a gépen? Az ágens ezt nyíltan megmondja (`mode`, `WAIT: <kérdés>`), ahelyett hogy találgatna.
 - Szeretnél biztonsági hálót? A `python <saipen-klón>/tools/install_hook.py` telepít egy commit előtti ellenőrzést.
+
+---
+
+**Full command list / complete command reference:** [RFC § 1.10](../saipen/RFC.md#110-command-surface) — the authoritative list of every `saipen` command.

@@ -44,3 +44,7 @@ bash bootstrap/inject.sh                                            # macOS / Li
 - 本物のアーキテクチャ決定を覚えさせたいなら、`.saipen/KNOWLEDGE/`に`decisions.md`か番号付き`ADR-001.md`ファイルとして置け。
 - このマシンにgitやshellがないなら、エージェントは推測せず正直に言う(`mode`、`WAIT: <質問>`)。
 - 保険が欲しいか？`python <saipen-clone>/tools/install_hook.py`でコミット前チェックを導入できる。
+
+---
+
+**Full command list / complete command reference:** [RFC § 1.10](../saipen/RFC.md#110-command-surface) — the authoritative list of every `saipen` command.

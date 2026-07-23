@@ -44,3 +44,7 @@ bash bootstrap/inject.sh                                            # macOS / Li
 - Gerçek bir mimari kararı hatırlamasını mı istiyorsun? `.saipen/KNOWLEDGE/` klasörüne tek bir `decisions.md` dosyası veya numaralandırılmış `ADR-001.md` dosyaları olarak koy.
 - Bu makinede git veya shell yok mu? Ajan tahmin etmek yerine bunu açıkça söyler (`mode`, `WAIT: <soru>`).
 - Bir güvenlik ağı mı istiyorsun? `python <saipen-klonu>/tools/install_hook.py` commit öncesi bir kontrol kurar.
+
+---
+
+**Full command list / complete command reference:** [RFC § 1.10](../saipen/RFC.md#110-command-surface) — the authoritative list of every `saipen` command.

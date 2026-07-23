@@ -44,3 +44,7 @@ bash bootstrap/inject.sh                                            # macOS / Li
 - Хочеш, щоб він пам'ятав справжнє архітектурне рішення? Клади в `.saipen/KNOWLEDGE/` як файл `decisions.md` або нумеровані `ADR-001.md`.
 - Немає git чи shell на машині? Агент прямо про це скаже (`mode`, `WAIT: <питання>`), а не вгадуватиме.
 - Хочеш підстраховку? `python <клон-saipen>/tools/install_hook.py` ставить перевірку перед кожним комітом.
+
+---
+
+**Full command list / complete command reference:** [RFC § 1.10](../saipen/RFC.md#110-command-surface) — the authoritative list of every `saipen` command.

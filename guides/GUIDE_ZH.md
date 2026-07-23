@@ -44,3 +44,7 @@ bash bootstrap/inject.sh                                            # macOS / Li
 - 想让它记住真正的架构决策？把它放进 `.saipen/KNOWLEDGE/`，可以是一个 `decisions.md` 文件，也可以是编号的 `ADR-001.md` 文件。
 - 这台机器没有 git 或 shell？代理会直说（`mode`、`WAIT: <问题>`），而不是瞎猜。
 - 想要个安全网？运行 `python <saipen克隆目录>/tools/install_hook.py` 安装提交前检查。
+
+---
+
+**Full command list / complete command reference:** [RFC § 1.10](../saipen/RFC.md#110-command-surface) — the authoritative list of every `saipen` command.

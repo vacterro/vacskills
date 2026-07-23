@@ -42,3 +42,7 @@ bash bootstrap/inject.sh                                            # macOS / Li
 - Quer que ele lembre uma decisão de arquitetura real? Coloque em `.saipen/KNOWLEDGE/`, como um arquivo `decisions.md` ou arquivos numerados `ADR-001.md`.
 - Sem git ou shell nesta máquina? O agente diz isso claramente (`mode`, `WAIT: <pergunta>`) em vez de adivinhar.
 - Quer uma rede de segurança? `python <clone-saipen>/tools/install_hook.py` instala uma verificação pré-commit.
+
+---
+
+**Full command list / complete command reference:** [RFC § 1.10](../saipen/RFC.md#110-command-surface) — the authoritative list of every `saipen` command.

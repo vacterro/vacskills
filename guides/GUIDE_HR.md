@@ -44,3 +44,7 @@ bash bootstrap/inject.sh                                            # macOS / Li
 - Želiš da pamti pravu arhitektonsku odluku? Stavi je u `.saipen/KNOWLEDGE/`, kao jednu datoteku `decisions.md` ili numerirane datoteke `ADR-001.md`.
 - Nema gita ni shella na ovom stroju? Agent to jasno kaže (`mode`, `WAIT: <pitanje>`) umjesto da nagađa.
 - Želiš sigurnosnu mrežu? `python <saipen-klon>/tools/install_hook.py` instalira provjeru prije svakog commita.
+
+---
+
+**Full command list / complete command reference:** [RFC § 1.10](../saipen/RFC.md#110-command-surface) — the authoritative list of every `saipen` command.
