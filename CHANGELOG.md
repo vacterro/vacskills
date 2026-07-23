@@ -1,5 +1,23 @@
 # Changelog
 
+## 7.40.0 -- 2026-07-23 -- ticket-priority order formalized in DONE/VALIDATE/BLOCKED, plus 2 review fixes
+User hand-edited RFC.md and 9 phase docs directly (10 commits, no ship ritual yet -- backfilled here). Core theme: `DONE` previously jumped straight into `goal_mode`/HUNT logic without ever handling "there are still other TODO tickets" as its own first-class case. Fixed with an explicit priority order, and the transition table + validate.md/blocked.md updated to match:
+
+- **`done.md`** rewritten: (1) pending `TODO` tickets first -> `SCOUT` (or `BLOCKED` if all remaining are unworkable), (2) only if `TODO` is truly empty, check `goal_mode` -> `HUNT`, (3) manual empty-board bare `saipen` -> `HUNT` per § 2.1, (4)-(6) user-driven alternatives unchanged. `hunt.md` retitled "(no TODO tickets remaining)" to match -- `DONE`/`BLOCKED` tickets sitting on the board no longer block the maintenance transition.
+- **State machine table (RFC § 1.6)** gained `PLAN -> BUILD|DONE`, `VERIFY -> SCOUT`, `REVIEW -> SCOUT`, `DONE -> SCOUT`, `VALIDATE -> DONE`, `BLOCKED -> DONE`, and `ADD -> BUILD` (was `-> VERIFY`) to legalize what the phase docs already needed. `PLAN -> BUILD`/`DONE` were already load-bearing in `plan.md`'s pre-existing Size-gate and Proposal-Mode text -- the table just hadn't caught up.
+- **`add.md`**: fixed a real ADD<->HUNT infinite loop -- `bugfix -> RETURN HUNT` assumed HUNT would independently rediscover the same bug via its own 6 mechanical signals; if it didn't, ADD would re-evaluate the same priority and bounce to HUNT forever. Now ADD tickets the bugfix itself and goes straight to `SCOUT`. Also stopped ADD from implementing minimal-delta features inline (bypassing BUILD's own discipline) -- it now tickets and hands off to `BUILD` properly.
+- **`scout.md`** gained an explicit step 0: claim the ticket (`TODO` -> `DOING`, checkbox `[/]`, `owner:`/`claim_time:`) -- previously implicit, owned by no specific step.
+- **`verify.md`**/**`review.md`**: closed a gap where VERIFY could pick up the next ticket directly, skipping REVIEW/SHIP for the one just verified -- there is no next-ticket branch from VERIFY anymore, REVIEW and SHIP are mandatory first. REVIEW's cap-exceeded path now explicitly says where to go next instead of leaving the agent stranded.
+- **`saipen plan [text]`** registered in RFC § 1.10's command surface and `GUIDE.md`'s command table -- it already existed and was fully specified in `phases/plan.md` (bare/Proposal Mode halts at `DONE` for the user to pick a ticket, never auto-runs one), just never actually listed as a recognized command, non-conformant per § 1.10's own closing rule.
+
+Two more holes found reviewing the above, fixed here:
+- RFC § 1.10's `saipen goal <text>` entry never mentioned that bare `saipen goal` (no text) is separately meaningful -- § 2.4 already used it to resume a paused run. Now cross-referenced.
+- `tests/scenarios/board-empty-maintenance-transition/README.md` still said no tickets in `DOING`/`TODO`/`BLOCKED` -- stale against `done.md`'s new explicit "DONE or BLOCKED tickets remaining doesn't matter, only TODO" rule. Reworded.
+
+A separate agent/session ran its own `saipen continue` somewhere mid-sequence (LOG shows `hunt -> clean @b935fc2`, STATE.md's `phase` is now `ADD`) -- left both untouched, that's real pending work, not this ship's to claim or overwrite. Its LOG line collided on `E-597` with one of this ship's own entries (both independently continued from the same `E-596`); renumbered it to the next free ID, kept its true original parent.
+
+Both validators green.
+
 ## 7.39.0 -- 2026-07-23 -- second HUNT in a row: uninstall_hook.py couldn't tell "clean" from "wrong directory"
 User asked for another `continue` right after v7.38.0 shipped. Board still empty -- HUNT again, this time aimed straight at the newest file in the repo: `tools/uninstall_hook.py` itself, written and shipped one cycle ago.
 

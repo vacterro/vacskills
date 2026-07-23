@@ -132,7 +132,7 @@ If the user provides a raw list or backlog of multiple features, tasks, or bug r
 The complete set of recognized user-facing commands. Phase-affecting ones are defined in full where cited; `status` and `stop` are defined here because they are meta/control operations, not phase transitions -- they can be invoked from any phase and MUST NOT be treated as work themselves.
 - `saipen set` / `saipen init` -- bootstrap `.saipen/` (§ 1.7, `phases/init.md`).
 - `saipen continue` / bare `saipen` -- read `STATE.md`/`BOARD.md`/tail of `LOG.md`, execute `next_action` immediately, no rebriefing (§ 1.1, § 2.1 DEFAULT BEHAVIOR, `CONFORMANCE.md` TEST-001).
-- `saipen goal <text>` -- pivot to a new objective, run to completion (§ 2.4).
+- `saipen goal <text>` -- pivot to a new objective, run to completion (§ 2.4). Bare `saipen goal` (no text) is also recognized, but ONLY to resume an already-paused `goal_mode: true` run (§ 2.4 Entry) -- it is never a way to start a new objective without stating one.
 - `saipen plan [text]` -- explicit trigger for PLAN phase (`phases/plan.md`). If run bare without text, agent MUST generate an autonomous proposal plan (next steps, missing features, refactoring) and populate `BOARD.md` with tickets.
 - `saipen clean` -- deep repository scrub (`phases/clean.md`).
 - `saipen translate` -- isolated translation build (`phases/translate.md`).
