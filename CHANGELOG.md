@@ -1,5 +1,16 @@
 # Changelog
 
+## 7.41.0 -- 2026-07-23 -- HUNT skip hardened against a real field-observed fake-clean heuristic
+User flagged a real transcript: a weaker model (a small OpenCode-hosted model), finding the prior `hunt -> clean @HASH` line stale, invented its own substitute -- "no source files changed since the last hunt's timestamp, call it clean" -- skipping the sweep entirely. Corrected once (told to re-read `hunt.md`), it caught the hash mismatch, then made the identical substitution a second time: diffed file mtimes again and declared "0 changes, all 6 categories the same, HUNT clean" without literally re-running a single one of the six checks. The prior hunt in that same transcript had found 2 open tickets -- if nothing changed since, those were still sitting there unaccounted for, so "clean" wasn't just unproven, it was wrong on the model's own logic.
+
+- `phases/hunt.md`'s skip condition is now mechanically spelled out: compute `git rev-parse --short HEAD` first, then grep `.saipen/LOG.md`'s tail for that *exact* string in a `hunt -> clean @<HASH>` line -- no match of any kind (stale hash, no line at all) means run the full sweep, no exceptions.
+- Added an explicit real-incident callout naming the exact failure mode -- "nothing changed on disk" is banned as a substitute for both the hash check and for actually performing the six categories, since silent failures, stale TODOs, and dead code don't leave an mtime trail.
+- Scenario row 26 + `hunt-skip-requires-exact-hash-match` fixture (behavioral, README-only, matching the pattern of every other agent-decision-making assertion in this table).
+
+Separately checked a second transcript the user flagged: an agent invoking `anthropic-skills:caveman` mid-session, worried SAIPEN might depend on an external skill that isn't always available. Traced it -- SAIPEN's own `STYLE.md` is fully self-contained prose, never invokes any external skill tool; `bootstrap/inject.ps1`'s injected block only uses the word "caveman" as the *name* of SAIPEN's own fused style, pointing the agent at `STYLE.md` to read directly. The behavior in that transcript came from that machine's own separate, personal global `CLAUDE.md` (unrelated to SAIPEN, coincidentally using the same word). Not a SAIPEN issue -- no fix made.
+
+Both validators green.
+
 ## 7.40.0 -- 2026-07-23 -- ticket-priority order formalized in DONE/VALIDATE/BLOCKED, plus 2 review fixes
 User hand-edited RFC.md and 9 phase docs directly (10 commits, no ship ritual yet -- backfilled here). Core theme: `DONE` previously jumped straight into `goal_mode`/HUNT logic without ever handling "there are still other TODO tickets" as its own first-class case. Fixed with an explicit priority order, and the transition table + validate.md/blocked.md updated to match:
 

@@ -1,6 +1,28 @@
 # Phase: HUNT (no TODO tickets remaining)
 
-Clean sweep. Skip only if LOG has `hunt -> clean @HASH` matching current HEAD.
+Clean sweep. Skip ONLY if `.saipen/LOG.md`'s tail literally contains
+`hunt -> clean @<HASH>` where `<HASH>` is the exact output of
+`git rev-parse --short HEAD` run right now -- compute the hash first,
+then grep for that exact string. Anything else -- no match, an older
+hash, no `hunt -> clean` line at all -- run the full sweep below. No
+exceptions, no substitute heuristic.
+
+**A real incident**: a weaker model, finding the prior hunt line stale,
+independently invented its own skip condition -- "no source files
+changed since the last hunt's timestamp, call it clean" -- instead of
+the hash-match rule above. Told to re-read this doc, it caught the hash
+mismatch correctly, then made the SAME substitution a second time anyway:
+it diffed file mtimes again and declared "0 changes, all 6 categories
+the same, HUNT clean" -- without actually re-running a single one of
+the six checks below. Both moves are illegal, and the second is worse
+for being dressed up as compliance. "Nothing on disk changed recently"
+is not evidence of "nothing is wrong" -- a silent `except: pass`, a
+stale TODO, or dead code don't announce themselves via mtime, and the
+prior hunt in that incident had found 2 open tickets; if those are
+still unticketed, a fresh hunt cannot honestly call itself clean no
+matter how quiet the filesystem has been. There is no shortcut around
+actually performing the six checks below, every time this phase runs
+for real.
 
 **Subagents available (RFC § 1.3)?** Dispatch the 6 signal categories below
 as one batch of parallel subagent tasks instead of scanning them in turn.
