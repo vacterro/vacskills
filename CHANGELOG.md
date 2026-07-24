@@ -2,6 +2,17 @@
 
 > Older entries live in [CHANGELOG_ARCHIVE.md](CHANGELOG_ARCHIVE.md) -- this file keeps the most recent ~10.
 
+## 7.63.0 -- 2026-07-24 -- BUILD gained its own LOG instruction (misdiagnosed as "RUN is ambiguous", it wasn't)
+
+A live FastPrompter session kept forgetting to LOG, got called out, and self-diagnosed: "RUN is semantically vague, I read it as 'whole session' not 'each discrete act,' AGENTS.md states the rule but has no enforcing mechanism" -- and proposed a new `DISCIPLINE.md` file to fix it.
+
+Checked the live protocol before trusting that diagnosis. It was wrong: RFC § 1.5 already says plainly "MUST checkpoint after every ticket," not after every run or every edit -- there was no ambiguity to resolve. The real gap was mundane and much narrower: `build.md` (the phase where most edits actually happen) had zero instruction to LOG before transitioning to `VERIFY` -- every other phase doc ends with an explicit "LOG one Event Graph line, then transition" step; BUILD never did. And `BOOT.md` (the one file loaded on every cold start) never reinforced the per-ticket checkpoint cadence at all -- only RFC did, which is lazy-loaded "when a rule question comes up," so a session doing routine ticket work might never re-encounter it.
+
+- `build.md` now closes with the same LOG-then-checkpoint pattern every other phase already has, explicit that it's one line per ticket, not one per edit.
+- `BOOT.md` gained a short, generic reinforcement of the same per-ticket cadence, citing this exact incident so a future weak model recognizes the pattern instead of re-diagnosing it as a wording problem.
+
+No new file, no second source of truth alongside RFC -- the fix closes the actual gap instead of adding competing machinery. `tools/validate.py` green.
+
 ## 7.62.0 -- 2026-07-24 -- `saipen sub sync` + mechanical extension discovery (T-170 b+c)
 
 Two of T-170's three remaining verify items, closed with real mechanisms rather than left as open questions.

@@ -22,6 +22,13 @@ For a bare `saipen` / `saipen continue` you do NOT need the full RFC. Do this:
    that value IS the instruction (`CONFORMANCE.md` TEST-001).
 6. Load the phase doc for `STATE.phase` from `<saipen_home>/phases/<phase>.md`
    ONLY when you need its rules -- one phase at a time (2-tier).
+7. **Checkpoint before you stop, every ticket, not just at session end.**
+   A real incident: an agent went several tickets without a single LOG
+   line, then diagnosed the cause as "the word RUN is ambiguous" -- it
+   isn't; RFC § 1.5 says once per ticket, and the actual gap was just not
+   doing it. LOG (append) -> `BOARD.md` -> `STATE.md`, that order, after
+   finishing each ticket -- not a line per edit, not saved up for the end
+   of the session.
 
 That's the fast path. Reach for the full protocol only when a rule question
 comes up that STATE/BOARD/LOG + the active phase doc don't answer:
